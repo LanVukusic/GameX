@@ -2,11 +2,11 @@
 extends Node2D
 
 @export_category("Properties")
-@export var mapRoot:Node2D
-@export var building:PackedScene
+@export var mapRoot: Node2D
+@export var building: PackedScene
 
 @export_category("Map generation")
-@export var mapScale:float = 500000
+@export var mapScale: float = 500000
 
 # clear all buildings
 @export var generateMap: bool:
@@ -26,7 +26,7 @@ func _generate_map():
 	# load new json for world data
 	var imported_resource = preload("res://polygons.json")
 	
-	if mapRoot == null  or building == null:
+	if mapRoot == null or building == null:
 		push_error("Assign a map root node first")
 		return
 
@@ -36,9 +36,9 @@ func _generate_map():
 	for build_inst in imported_resource.data:
 		var ar: PackedVector2Array = []
 		for point in build_inst.data:
-			ar.append(Vector2(point.x* mapScale, point.y* mapScale))
+			ar.append(Vector2(point.x * mapScale, point.y * mapScale))
 			
-		var newBuild  = building.instantiate().new(ar) as Node2D
+		var newBuild = building.instantiate().new(ar) as Node2D
 		newBuild.position = Vector2(
 			build_inst.centroid.x * mapScale,
 			build_inst.centroid.y * mapScale,

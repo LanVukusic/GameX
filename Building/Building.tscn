@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwokgvkfsihtt"]
+
+[ext_resource type="Script" path="res://Building/building.gd" id="1_sqhcw"]
+
+[node name="MainShapePolygon" type="Polygon2D"]
+color = Color(0.811569, 0.282131, 0.462076, 1)
+script = ExtResource("1_sqhcw")
+wallThickness = 5.0
+wallLengthExtension = 1.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="AreaCollisionShape" type="CollisionPolygon2D" parent="Area2D"]
+disabled = true
+
+[node name="Walls" type="Node2D" parent="."]
