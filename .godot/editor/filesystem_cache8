@@ -1,3 +1,9 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1728750706
+::res://::1728809448
+building.gd::GDScript::-1::1728771170::0::1::::<>Node2D<>::
+Building.tscn::PackedScene::8732936903053898037::1728771170::0::1::::<><>::res://building.gd
 icon.png::CompressedTexture2D::5216455709108705238::1728750697::1728750706::1::::<><>::
+main.tscn::PackedScene::79388485266798968::1728770829::0::1::::<><>::
+map.tscn::PackedScene::1459318306543874986::1728771266::0::1::::<><>::res://mapGen.gd<>uid://dwokgvkfsihtt::::res://Building.tscn
+mapGen.gd::GDScript::-1::1728771138::0::1::::<>Node2D<>::
+polygons.json::JSON::-1::1728807511::0::1::::<><>::

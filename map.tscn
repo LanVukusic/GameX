@@ -1,6 +1,812 @@
-[gd_scene load_steps=2 format=3 uid="uid://u15020rsa6mw"]
+[gd_scene load_steps=4 format=3 uid="uid://u15020rsa6mw"]
 
 [ext_resource type="Script" path="res://mapGen.gd" id="1_036jd"]
+[ext_resource type="PackedScene" uid="uid://dwokgvkfsihtt" path="res://Building.tscn" id="2_3ri0n"]
+[ext_resource type="Script" path="res://building.gd" id="3_hfptt"]
 
-[node name="Node2D" type="Node2D"]
+[node name="MapGenerator" type="Node2D" node_paths=PackedStringArray("mapRoot")]
 script = ExtResource("1_036jd")
+mapRoot = NodePath("MapRoot")
+building = ExtResource("2_3ri0n")
+
+[node name="MapRoot" type="Node2D" parent="."]
+
+[node name="3349739" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(865.105, -1342.04)
+script = ExtResource("3_hfptt")
+
+[node name="28861558" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(56.967, -2196.83)
+script = ExtResource("3_hfptt")
+
+[node name="28861563" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-37.1506, -2451.1)
+script = ExtResource("3_hfptt")
+
+[node name="28861579" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-215.935, -1881.74)
+script = ExtResource("3_hfptt")
+
+[node name="28861587" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(146.715, -1824.08)
+script = ExtResource("3_hfptt")
+
+[node name="28861590" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(44.325, -1585.68)
+script = ExtResource("3_hfptt")
+
+[node name="28861596" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(200.656, -1287.8)
+script = ExtResource("3_hfptt")
+
+[node name="28861612" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(328.151, -1545.34)
+script = ExtResource("3_hfptt")
+
+[node name="28861619" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(504.431, -1326.11)
+script = ExtResource("3_hfptt")
+
+[node name="28861627" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(549.519, -1032.99)
+script = ExtResource("3_hfptt")
+
+[node name="28861634" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(369.176, -1140.88)
+script = ExtResource("3_hfptt")
+
+[node name="28861657" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-618.875, -2210.5)
+script = ExtResource("3_hfptt")
+
+[node name="28861826" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(629.1, -285.675)
+script = ExtResource("3_hfptt")
+
+[node name="28866524" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-1334.74, -2595.85)
+script = ExtResource("3_hfptt")
+
+[node name="248950044" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-2163.19, 1016.11)
+script = ExtResource("3_hfptt")
+
+[node name="275160408" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-1406.71, -7364.91)
+script = ExtResource("3_hfptt")
+
+[node name="276424028" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1173.45, -1204.13)
+script = ExtResource("3_hfptt")
+
+[node name="276894463" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1842.22, -7537.52)
+script = ExtResource("3_hfptt")
+
+[node name="276896788" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1878.69, -7451.44)
+script = ExtResource("3_hfptt")
+
+[node name="277423998" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2038.8, -7253.94)
+script = ExtResource("3_hfptt")
+
+[node name="277424000" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1835.73, -7945.92)
+script = ExtResource("3_hfptt")
+
+[node name="277426884" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1944.77, -8032.35)
+script = ExtResource("3_hfptt")
+
+[node name="277426885" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1677.33, -8216.95)
+script = ExtResource("3_hfptt")
+
+[node name="277427690" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1546.62, -8018.93)
+script = ExtResource("3_hfptt")
+
+[node name="277427750" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1497.69, -7947.46)
+script = ExtResource("3_hfptt")
+
+[node name="277427970" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1571.25, -7940.92)
+script = ExtResource("3_hfptt")
+
+[node name="277430147" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1513.67, -8110.8)
+script = ExtResource("3_hfptt")
+
+[node name="277432537" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2022.56, -7526.19)
+script = ExtResource("3_hfptt")
+
+[node name="277432538" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1827.07, -7431.35)
+script = ExtResource("3_hfptt")
+
+[node name="277432719" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1782.08, -7390.69)
+script = ExtResource("3_hfptt")
+
+[node name="277432978" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1708.55, -7349.49)
+script = ExtResource("3_hfptt")
+
+[node name="277434214" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1974.35, -7222.49)
+script = ExtResource("3_hfptt")
+
+[node name="277434235" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1913.84, -7164.87)
+script = ExtResource("3_hfptt")
+
+[node name="277435282" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1966.11, -7668.02)
+script = ExtResource("3_hfptt")
+
+[node name="277435697" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1879.88, -7897.83)
+script = ExtResource("3_hfptt")
+
+[node name="277438219" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1936.4, -7897.82)
+script = ExtResource("3_hfptt")
+
+[node name="277438222" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1938, -7750.2)
+script = ExtResource("3_hfptt")
+
+[node name="277438224" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2010.75, -7785.33)
+script = ExtResource("3_hfptt")
+
+[node name="277438226" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1805.2, -8001.6)
+script = ExtResource("3_hfptt")
+
+[node name="277438228" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1778.95, -8064.01)
+script = ExtResource("3_hfptt")
+
+[node name="277438230" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1755.06, -8126.53)
+script = ExtResource("3_hfptt")
+
+[node name="277438232" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1710.3, -8159.3)
+script = ExtResource("3_hfptt")
+
+[node name="277438234" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1774.38, -8229.01)
+script = ExtResource("3_hfptt")
+
+[node name="277438616" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1785.82, -7546.25)
+script = ExtResource("3_hfptt")
+
+[node name="277438617" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1758.15, -7609.55)
+script = ExtResource("3_hfptt")
+
+[node name="277438618" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1720.05, -7663.12)
+script = ExtResource("3_hfptt")
+
+[node name="277439123" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1697.1, -7722.71)
+script = ExtResource("3_hfptt")
+
+[node name="277439354" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1667.71, -7777.31)
+script = ExtResource("3_hfptt")
+
+[node name="277439355" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1606.14, -7888.26)
+script = ExtResource("3_hfptt")
+
+[node name="277439439" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1633.94, -7832.71)
+script = ExtResource("3_hfptt")
+
+[node name="277440213" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2101.14, -7296)
+script = ExtResource("3_hfptt")
+
+[node name="277440215" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2171.93, -7316.85)
+script = ExtResource("3_hfptt")
+
+[node name="277446743" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1650.15, -8285.4)
+script = ExtResource("3_hfptt")
+
+[node name="277448921" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1628.31, -8344.81)
+script = ExtResource("3_hfptt")
+
+[node name="277454572" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1675.82, -7440.23)
+script = ExtResource("3_hfptt")
+
+[node name="277455206" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1648.2, -7498.02)
+script = ExtResource("3_hfptt")
+
+[node name="277455209" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1607.62, -7548.17)
+script = ExtResource("3_hfptt")
+
+[node name="277455210" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1564.81, -7622.61)
+script = ExtResource("3_hfptt")
+
+[node name="277455211" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1627.07, -7646.1)
+script = ExtResource("3_hfptt")
+
+[node name="277455212" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1519.93, -7671.72)
+script = ExtResource("3_hfptt")
+
+[node name="277455213" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1571.52, -7748.12)
+script = ExtResource("3_hfptt")
+
+[node name="277463194" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(491.875, -6721.65)
+script = ExtResource("3_hfptt")
+
+[node name="277463196" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1461.05, -7383.83)
+script = ExtResource("3_hfptt")
+
+[node name="277463197" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1127.99, -8303.73)
+script = ExtResource("3_hfptt")
+
+[node name="277463198" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(437.7, -8646.2)
+script = ExtResource("3_hfptt")
+
+[node name="277463199" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(732.825, -6643.75)
+script = ExtResource("3_hfptt")
+
+[node name="277463200" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-284.113, -8423.97)
+script = ExtResource("3_hfptt")
+
+[node name="277463201" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1051.88, -8565.75)
+script = ExtResource("3_hfptt")
+
+[node name="277463202" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(694.361, -7115.24)
+script = ExtResource("3_hfptt")
+
+[node name="277463203" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(784.068, -9199.21)
+script = ExtResource("3_hfptt")
+
+[node name="277463204" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2303.88, -7723.69)
+script = ExtResource("3_hfptt")
+
+[node name="277463205" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1367.07, -7134.6)
+script = ExtResource("3_hfptt")
+
+[node name="277463206" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(522.293, -7334.6)
+script = ExtResource("3_hfptt")
+
+[node name="277463207" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1188.88, -6871.42)
+script = ExtResource("3_hfptt")
+
+[node name="277463208" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1580.6, -8594)
+script = ExtResource("3_hfptt")
+
+[node name="277463210" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1221.94, -7564.51)
+script = ExtResource("3_hfptt")
+
+[node name="277463211" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1914.1, -8427.67)
+script = ExtResource("3_hfptt")
+
+[node name="277463212" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1790.17, -7111.84)
+script = ExtResource("3_hfptt")
+
+[node name="277463213" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1348, -8359.1)
+script = ExtResource("3_hfptt")
+
+[node name="277463214" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(165.55, -6874.77)
+script = ExtResource("3_hfptt")
+
+[node name="277463215" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(735.45, -8627.1)
+script = ExtResource("3_hfptt")
+
+[node name="277463217" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1329.44, -8446.03)
+script = ExtResource("3_hfptt")
+
+[node name="277463218" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(59.8235, -8947.84)
+script = ExtResource("3_hfptt")
+
+[node name="277463219" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(254.031, -9288.79)
+script = ExtResource("3_hfptt")
+
+[node name="277463220" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1309.73, -8011.16)
+script = ExtResource("3_hfptt")
+
+[node name="277463221" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-86.8643, -8536)
+script = ExtResource("3_hfptt")
+
+[node name="277463222" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(448.325, -9037.65)
+script = ExtResource("3_hfptt")
+
+[node name="277463223" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(988.289, -7584.06)
+script = ExtResource("3_hfptt")
+
+[node name="277463224" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(672.525, -6887.4)
+script = ExtResource("3_hfptt")
+
+[node name="277463225" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(156.283, -8892.85)
+script = ExtResource("3_hfptt")
+
+[node name="277463226" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(877.258, -6792.5)
+script = ExtResource("3_hfptt")
+
+[node name="277463227" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1212.55, -7760.62)
+script = ExtResource("3_hfptt")
+
+[node name="277463228" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(392.264, -7060.21)
+script = ExtResource("3_hfptt")
+
+[node name="277463229" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1063.57, -8927.62)
+script = ExtResource("3_hfptt")
+
+[node name="277463230" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(702.05, -6840.58)
+script = ExtResource("3_hfptt")
+
+[node name="277463231" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1214.57, -6606.38)
+script = ExtResource("3_hfptt")
+
+[node name="277463232" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2441.17, -7548.42)
+script = ExtResource("3_hfptt")
+
+[node name="277463233" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1357.2, -7410.83)
+script = ExtResource("3_hfptt")
+
+[node name="277463234" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1740.23, -8719.56)
+script = ExtResource("3_hfptt")
+
+[node name="277463235" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1502.26, -8585.1)
+script = ExtResource("3_hfptt")
+
+[node name="277463236" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(279.442, -7571.68)
+script = ExtResource("3_hfptt")
+
+[node name="277463237" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(126.94, -7037.2)
+script = ExtResource("3_hfptt")
+
+[node name="277463238" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(204.33, -7318.48)
+script = ExtResource("3_hfptt")
+
+[node name="277463239" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(966.853, -7272.72)
+script = ExtResource("3_hfptt")
+
+[node name="277463240" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(32.55, -8317.2)
+script = ExtResource("3_hfptt")
+
+[node name="277463241" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(560.6, -8929.62)
+script = ExtResource("3_hfptt")
+
+[node name="277463242" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(715.409, -7596.15)
+script = ExtResource("3_hfptt")
+
+[node name="277463243" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1436.25, -7451.75)
+script = ExtResource("3_hfptt")
+
+[node name="277463244" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(788.13, -6613.83)
+script = ExtResource("3_hfptt")
+
+[node name="277463245" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-316.675, -8489.33)
+script = ExtResource("3_hfptt")
+
+[node name="277463246" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1745.38, -8449.5)
+script = ExtResource("3_hfptt")
+
+[node name="277463247" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1105.43, -8597.93)
+script = ExtResource("3_hfptt")
+
+[node name="277463249" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-135.375, -8739.83)
+script = ExtResource("3_hfptt")
+
+[node name="277463250" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1594.03, -7775.33)
+script = ExtResource("3_hfptt")
+
+[node name="277463251" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1456.68, -8145.32)
+script = ExtResource("3_hfptt")
+
+[node name="277463252" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(290.583, -8697.8)
+script = ExtResource("3_hfptt")
+
+[node name="277463253" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(730.671, -9239.28)
+script = ExtResource("3_hfptt")
+
+[node name="277463254" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1706.84, -8521.08)
+script = ExtResource("3_hfptt")
+
+[node name="277463255" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2262.06, -7840.68)
+script = ExtResource("3_hfptt")
+
+[node name="277463256" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1482.3, -7730.17)
+script = ExtResource("3_hfptt")
+
+[node name="277463257" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(77.4049, -8701.92)
+script = ExtResource("3_hfptt")
+
+[node name="277463258" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(502.85, -7386.52)
+script = ExtResource("3_hfptt")
+
+[node name="277463259" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2205.88, -7643.62)
+script = ExtResource("3_hfptt")
+
+[node name="277463260" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(992.925, -7005.92)
+script = ExtResource("3_hfptt")
+
+[node name="277463261" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(342.517, -9486.7)
+script = ExtResource("3_hfptt")
+
+[node name="277463262" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1946.95, -8373.58)
+script = ExtResource("3_hfptt")
+
+[node name="277463263" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1727.76, -7084.21)
+script = ExtResource("3_hfptt")
+
+[node name="277463264" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2075.03, -8195.35)
+script = ExtResource("3_hfptt")
+
+[node name="277463265" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-76.3164, -9122.91)
+script = ExtResource("3_hfptt")
+
+[node name="277463266" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1482.28, -6899.18)
+script = ExtResource("3_hfptt")
+
+[node name="277463267" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1121.77, -7195.22)
+script = ExtResource("3_hfptt")
+
+[node name="277463268" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(785.325, -8666.12)
+script = ExtResource("3_hfptt")
+
+[node name="277463269" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(524.656, -7786.9)
+script = ExtResource("3_hfptt")
+
+[node name="277463270" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(7.37451, -8924.39)
+script = ExtResource("3_hfptt")
+
+[node name="277463271" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(201.375, -7056.55)
+script = ExtResource("3_hfptt")
+
+[node name="277463272" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1280.43, -8087.28)
+script = ExtResource("3_hfptt")
+
+[node name="277463273" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(541.475, -6709.1)
+script = ExtResource("3_hfptt")
+
+[node name="277463274" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-103.936, -8453.42)
+script = ExtResource("3_hfptt")
+
+[node name="277463275" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(257.718, -8979.7)
+script = ExtResource("3_hfptt")
+
+[node name="277463276" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1108.22, -8367.43)
+script = ExtResource("3_hfptt")
+
+[node name="277463277" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(470.572, -8592.51)
+script = ExtResource("3_hfptt")
+
+[node name="277463278" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(150.005, -8836.35)
+script = ExtResource("3_hfptt")
+
+[node name="277463279" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(845, -6888.42)
+script = ExtResource("3_hfptt")
+
+[node name="277463280" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1175.69, -7878.27)
+script = ExtResource("3_hfptt")
+
+[node name="277463282" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(656.675, -7167.55)
+script = ExtResource("3_hfptt")
+
+[node name="277463283" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(983.458, -9005.22)
+script = ExtResource("3_hfptt")
+
+[node name="277463284" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(186.225, -9390.78)
+script = ExtResource("3_hfptt")
+
+[node name="277463285" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(744.688, -6753.69)
+script = ExtResource("3_hfptt")
+
+[node name="277463286" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1490.57, -7237.08)
+script = ExtResource("3_hfptt")
+
+[node name="277463287" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1183.47, -6508.26)
+script = ExtResource("3_hfptt")
+
+[node name="277463288" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2410.76, -7489.58)
+script = ExtResource("3_hfptt")
+
+[node name="277463289" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2236.14, -7759.81)
+script = ExtResource("3_hfptt")
+
+[node name="277463290" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1337, -7070.14)
+script = ExtResource("3_hfptt")
+
+[node name="277463291" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1383.1, -7293.88)
+script = ExtResource("3_hfptt")
+
+[node name="277463292" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1772.28, -8641.11)
+script = ExtResource("3_hfptt")
+
+[node name="277463293" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1550.96, -8791.28)
+script = ExtResource("3_hfptt")
+
+[node name="277463294" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(157.05, -7287.12)
+script = ExtResource("3_hfptt")
+
+[node name="277463295" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(183.622, -6802.49)
+script = ExtResource("3_hfptt")
+
+[node name="277463296" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(60.3071, -8363.76)
+script = ExtResource("3_hfptt")
+
+[node name="277463298" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(575.598, -8832.76)
+script = ExtResource("3_hfptt")
+
+[node name="277463299" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(762.824, -7523.96)
+script = ExtResource("3_hfptt")
+
+[node name="277463300" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1164.67, -8650.12)
+script = ExtResource("3_hfptt")
+
+[node name="277463301" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-99.6745, -8775.22)
+script = ExtResource("3_hfptt")
+
+[node name="277463302" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1639.33, -8533.08)
+script = ExtResource("3_hfptt")
+
+[node name="277463303" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1453.72, -7785.6)
+script = ExtResource("3_hfptt")
+
+[node name="277463304" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(291.594, -9232.55)
+script = ExtResource("3_hfptt")
+
+[node name="277463305" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1166.42, -7524.97)
+script = ExtResource("3_hfptt")
+
+[node name="277463306" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(471.923, -7453.36)
+script = ExtResource("3_hfptt")
+
+[node name="277463307" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2147.19, -7600.04)
+script = ExtResource("3_hfptt")
+
+[node name="277463308" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1065.65, -6761.08)
+script = ExtResource("3_hfptt")
+
+[node name="277463309" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(941.358, -7657.18)
+script = ExtResource("3_hfptt")
+
+[node name="277463310" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(631.033, -6932.6)
+script = ExtResource("3_hfptt")
+
+[node name="277463312" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2108.63, -8113.59)
+script = ExtResource("3_hfptt")
+
+[node name="277463313" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1419.95, -6836.48)
+script = ExtResource("3_hfptt")
+
+[node name="277463314" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1666.12, -8725.85)
+script = ExtResource("3_hfptt")
+
+[node name="277463315" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1408.98, -8745.96)
+script = ExtResource("3_hfptt")
+
+[node name="277463317" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(830.033, -8724.58)
+script = ExtResource("3_hfptt")
+
+[node name="277463319" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1159.04, -7242.15)
+script = ExtResource("3_hfptt")
+
+[node name="277463321" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1492.64, -8801.39)
+script = ExtResource("3_hfptt")
+
+[node name="277463322" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(487.36, -7737.6)
+script = ExtResource("3_hfptt")
+
+[node name="277463323" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(205.633, -7548.7)
+script = ExtResource("3_hfptt")
+
+[node name="277463325" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(573.869, -7500.27)
+script = ExtResource("3_hfptt")
+
+[node name="277463326" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(594.1, -6686.88)
+script = ExtResource("3_hfptt")
+
+[node name="277463327" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-143.104, -8389.1)
+script = ExtResource("3_hfptt")
+
+[node name="277463328" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(240.075, -8924.47)
+script = ExtResource("3_hfptt")
+
+[node name="277463329" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1065.06, -8404.64)
+script = ExtResource("3_hfptt")
+
+[node name="277463330" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-2.68947, -9348.86)
+script = ExtResource("3_hfptt")
+
+[node name="277463331" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(-265.27, -8544.54)
+script = ExtResource("3_hfptt")
+
+[node name="277463332" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2082.8, -7569.7)
+script = ExtResource("3_hfptt")
+
+[node name="277463333" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(127.794, -8787.96)
+script = ExtResource("3_hfptt")
+
+[node name="277463334" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1096.33, -7875.63)
+script = ExtResource("3_hfptt")
+
+[node name="277463335" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(612.643, -7212.58)
+script = ExtResource("3_hfptt")
+
+[node name="277463336" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(927.774, -9037.41)
+script = ExtResource("3_hfptt")
+
+[node name="277463337" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(620.966, -9223.81)
+script = ExtResource("3_hfptt")
+
+[node name="277463339" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2287.6, -7801.5)
+script = ExtResource("3_hfptt")
+
+[node name="277463340" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(2355.88, -7442.21)
+script = ExtResource("3_hfptt")
+
+[node name="277463341" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1290.71, -7022.55)
+script = ExtResource("3_hfptt")
+
+[node name="277463342" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1218.03, -7182.1)
+script = ExtResource("3_hfptt")
+
+[node name="277463343" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1804.57, -8585.83)
+script = ExtResource("3_hfptt")
+
+[node name="277463344" type="Area2D" parent="MapRoot" instance=ExtResource("2_3ri0n")]
+position = Vector2(1884.48, -8305.59)
+script = ExtResource("3_hfptt")

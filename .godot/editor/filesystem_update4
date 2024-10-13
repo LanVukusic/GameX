@@ -1,2 +1,7 @@
-res://map.tscn
+res://main.tscn
 res://mapGen.gd
+res://polygons.json
+res://test.gd
+res://map.tscn
+res://Building.tscn
+res://building.gd
