@@ -9,6 +9,10 @@ script = ExtResource("1_sn0gv")
 mapRoot = NodePath("MapRoot")
 building = ExtResource("2_s4dok")
 
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.192571, 0.215087, 0.350564, 1)
+polygon = PackedVector2Array(207, -9724, 623, -9692, 1232, -9030, 1752, -8829, 2908, -7065, 3827, -6777, 4072, -5698, 4008, -4513, 3859, -4470, 2840, -5264, 869, -4705, -60, -4673, -1288, -5741, -1772, -7199, -1343, -7876, -585, -8375, -272, -9216)
+
 [node name="MapRoot" type="Node2D" parent="."]
 
 [node name="3349739" type="Polygon2D" parent="MapRoot" instance=ExtResource("2_s4dok")]
@@ -502,7 +506,7 @@ wallLengthExtension = 1.0
 [node name="277463194" type="Polygon2D" parent="MapRoot" instance=ExtResource("2_s4dok")]
 position = Vector2(491.875, -6721.65)
 color = Color(0.811569, 0.282131, 0.462076, 1)
-polygon = PackedVector2Array(-51.875, 98.6499, -11.7, -61.325, 30.65, -49.775, -1.875, 119.65, -33.875, 111.65)
+polygon = PackedVector2Array(-30.65, 49.775, -11.7, -61.325, 30.65, -49.775, 11.7, 61.325, -30.65, 49.775)
 script = ExtResource("3_oduxr")
 wallThickness = 5.0
 wallLengthExtension = 1.0
@@ -2006,7 +2010,7 @@ wallLengthExtension = 1.0
 [node name="277463397" type="Polygon2D" parent="MapRoot" instance=ExtResource("2_s4dok")]
 position = Vector2(388.625, -6762.25)
 color = Color(0.811569, 0.282131, 0.462076, 1)
-polygon = PackedVector2Array(-72.625, 34.25, -13.45, -58.725, 30.65, -47.275, 13.45, 58.725, -53.625, 47.25)
+polygon = PackedVector2Array(-30.65, 47.275, -13.45, -58.725, 30.65, -47.275, 13.45, 58.725, -30.65, 47.275)
 script = ExtResource("3_oduxr")
 wallThickness = 5.0
 wallLengthExtension = 1.0
@@ -6414,7 +6418,7 @@ wallLengthExtension = 1.0
 [node name="285327444" type="Polygon2D" parent="MapRoot" instance=ExtResource("2_s4dok")]
 position = Vector2(-720.934, -7136.8)
 color = Color(0.811569, 0.282131, 0.462076, 1)
-polygon = PackedVector2Array(-83.0588, -86.1262, 87.9412, -30.9262, 78.2412, 17.4238, 43.6412, 6.22382, 21.7412, 115.024, -29.6088, 98.4238, -26.9588, 85.3738, -8.60881, -5.87618, -93.7088, -33.3762, -90.1088, -51.1762, -86.3588, -69.8762, -83.0588, -86.1262)
+polygon = PackedVector2Array(-83.0588, -86.1262, 120.934, -10.1987, 78.2412, 17.4238, 43.6412, 6.22382, 21.7412, 115.024, -29.6088, 98.4238, -26.9588, 85.3738, -8.60881, -5.87618, -93.7088, -33.3762, -90.1088, -51.1762, -86.3588, -69.8762, -83.0588, -86.1262)
 script = ExtResource("3_oduxr")
 wallThickness = 5.0
 wallLengthExtension = 1.0

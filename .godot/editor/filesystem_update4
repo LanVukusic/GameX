@@ -3,3 +3,10 @@ res://Building/Building.tscn
 res://MapGenerator/mapGen.gd
 res://MapGenerator/map.tscn
 res://polygons.json
+res://Entities/Damagable.gd
+res://Entities/Entity.gd
+res://test.gd
+res://Server.gd
+res://socket_server.tscn
+res://Networking/socket_server.tscn
+res://Networking/Server.gd
