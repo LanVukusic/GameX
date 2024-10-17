@@ -1,4 +1,6 @@
+res://SpeedBuff/Speed buff.tscn
 res://Building/building.gd
+<<<<<<< Updated upstream
 res://Building/Building.tscn
 res://MapGenerator/mapGen.gd
 res://MapGenerator/map.tscn
@@ -10,3 +12,8 @@ res://Server.gd
 res://socket_server.tscn
 res://Networking/socket_server.tscn
 res://Networking/Server.gd
+=======
+res://SpeedBuff/speed_buff.gd
+res://Player/player.tscn
+res://main.tscn
+>>>>>>> Stashed changes

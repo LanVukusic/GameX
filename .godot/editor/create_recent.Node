@@ -1,14 +1,24 @@
+<<<<<<< Updated upstream
 Marker2D
 PathFollow2D
 Path2D
 Polygon2D
 Label
+=======
+>>>>>>> Stashed changes
 CollisionShape2D
+Sprite2D
+Area2D
+Camera2D
+CharacterBody2D
+Label
 Node2D
 MeshInstance2D
 CollisionPolygon2D
+<<<<<<< Updated upstream
 Area2D
+=======
+Polygon2D
+>>>>>>> Stashed changes
 CanvasModulate
 Node
-Camera2D
-Sprite2D

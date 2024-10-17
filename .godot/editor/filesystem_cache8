@@ -1,4 +1,5 @@
 ea4bc82a6ad023ab7ee23ee620429895
+<<<<<<< Updated upstream
 ::res://::1729009925
 icon.png::CompressedTexture2D::5216455709108705238::1728750697::1728750706::1::::<><>::
 main.tscn::PackedScene::79388485266798968::1728809515::0::1::::<><>::res://test.gd
@@ -2246,3 +2247,24 @@ mapGen.gd::GDScript::-1::1728850144::0::1::::<>Node2D<>::
 ::res://Networking/::1729012262
 Server.gd::GDScript::-1::1729012296::0::1::::<>Node<>::
 socket_server.tscn::PackedScene::144222912505606404::1729012262::0::1::::<><>::res://Networking/Server.gd
+=======
+::res://::1728932444
+icon.png::CompressedTexture2D::5216455709108705238::1728854064::1728854118::1::::<><>::
+main.tscn::PackedScene::79388485266798968::1728932355::0::1::::<><>::res://test.gd<>uid://dvg52x05ddr1g::::res://Player/player.tscn<>uid://ckdbul8vla5d8::::res://Player/{768B6756-A940-4E02-B0D2-963D91A6511A}.png<>uid://u15020rsa6mw::::res://MapGenerator/map.tscn<>uid://begjvnv4pcvft::::res://SpeedBuff/Speed buff.tscn
+polygons.json::JSON::-1::1728854064::0::1::::<><>::
+test.gd::GDScript::-1::1728854064::0::1::::<>Node2D<>::
+::res://Building/::1728913935
+building.gd::GDScript::-1::1728913935::0::1::::<>Polygon2D<>::
+Building.tscn::PackedScene::8732936903053898037::1728854064::0::1::::<><>::res://Building/building.gd
+::res://MapGenerator/::1728920612
+map.tscn::PackedScene::1459318306543874986::1728920446::0::1::::<><>::res://MapGenerator/mapGen.gd<>uid://dwokgvkfsihtt::::res://Building/Building.tscn
+mapGen.gd::GDScript::-1::1728920612::0::1::::<>Node2D<>::
+::res://Player/::1728932355
+player.gd::GDScript::-1::1728914516::0::1::::<>CharacterBody2D<>::
+player.tscn::PackedScene::8647485008245141894::1728932355::0::1::::<><>::res://Player/player.gd<>uid://ckdbul8vla5d8::::res://Player/{768B6756-A940-4E02-B0D2-963D91A6511A}.png
+{768B6756-A940-4E02-B0D2-963D91A6511A}.png::CompressedTexture2D::5481019999603845391::1728854633::1728920437::1::::<><>::
+::res://SpeedBuff/::1728932428
+Speed buff.tscn::PackedScene::2680146995958710257::1728932355::0::1::::<><>::res://SpeedBuff/speed_buff.gd<>uid://c01ec2brart0r::::res://SpeedBuff/{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png
+speed_buff.gd::GDScript::-1::1728932428::0::1::::<>Area2D<>::
+{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png::CompressedTexture2D::6581484139949793047::1728920645::1728920680::1::::<><>::
+>>>>>>> Stashed changes
