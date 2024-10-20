@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c01ec2brart0r"
-path="res://.godot/imported/{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png-58aac8edb53da96bd4790cc2bcf58cbf.ctex"
+path="res://.godot/imported/{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png-5bfd0a62d81a7254c5ab240ca7c55122.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://SpeedBuff/{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png"
-dest_files=["res://.godot/imported/{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png-58aac8edb53da96bd4790cc2bcf58cbf.ctex"]
+source_file="res://Statuseffect/Speed_buff/{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png"
+dest_files=["res://.godot/imported/{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png-5bfd0a62d81a7254c5ab240ca7c55122.ctex"]
 
 [params]
 

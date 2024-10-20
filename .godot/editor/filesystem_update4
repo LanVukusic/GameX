@@ -1,19 +1,10 @@
-res://SpeedBuff/Speed buff.tscn
 res://Building/building.gd
-<<<<<<< Updated upstream
-res://Building/Building.tscn
-res://MapGenerator/mapGen.gd
 res://MapGenerator/map.tscn
-res://polygons.json
-res://Entities/Damagable.gd
-res://Entities/Entity.gd
-res://test.gd
-res://Server.gd
-res://socket_server.tscn
-res://Networking/socket_server.tscn
-res://Networking/Server.gd
-=======
+res://main.tscn
 res://SpeedBuff/speed_buff.gd
 res://Player/player.tscn
-res://main.tscn
->>>>>>> Stashed changes
+res://SpeedBuff/Speed buff.tscn
+res://MapGenerator/mapGen.gd
+res://Statuseffect/status_effect.tscn
+res://Statuseffect/Speed_buff/speed_buff.gd
+res://Statuseffect/status_effect.gd

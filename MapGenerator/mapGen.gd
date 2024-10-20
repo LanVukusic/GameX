@@ -24,7 +24,7 @@ func _clear_map():
 
 func _generate_map():
 	# load new json for world data
-	var imported_resource = preload("res://polygons.json")
+	var imported_resource = preload("res://MapGenerator/polygons.json")
 	
 	if mapRoot == null or building == null:
 		push_error("Assign a map root node first")
