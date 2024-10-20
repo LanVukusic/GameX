@@ -26,7 +26,7 @@ import { useFullscreen } from "@mantine/hooks";
 import { useGameSocket } from "../WebsocketLogic";
 import { LoaderContent } from "./Loader";
 
-const THROTTLE = 500; // ms for debounce
+const THROTTLE = 50; // ms for debounce
 
 interface Props {
   setMenu: () => void;
