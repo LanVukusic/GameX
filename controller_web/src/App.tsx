@@ -4,6 +4,7 @@ import {
   Center,
   Grid,
   Group,
+  LoadingOverlay,
   SegmentedControl,
   Stack,
   TextInput,
@@ -20,15 +21,14 @@ import {
 import { ThemedJoystick } from "./Components/ThemedJoystick";
 import { ThemedShadow } from "./Components/ThemedShadow";
 import { ThemeIndicator } from "./Components/ThemeIndicator";
-import useWebSocket from "react-use-websocket";
+import { useGameSocket } from "./WebsocketLogic";
+import { ReadyState } from "react-use-websocket";
 
 const THROTTLE = 100; // ms for debounce
 
 export function App() {
   const { toggle, fullscreen } = useFullscreen();
-  const { sendMessage, lastMessage, readyState } = useWebSocket(
-    "ws://localhost:9080"
-  );
+  const { readyState } = useGameSocket();
 
   return (
     <Stack
@@ -39,7 +39,9 @@ export function App() {
       style={{
         overflow: "hidden",
       }}
+      pos="relative"
     >
+      <LoadingOverlay visible={readyState != ReadyState.OPEN} />
       <ThemedShadow />
       <Group wrap="nowrap" p="xs" pb="0">
         <ActionIcon variant="subtle">
@@ -86,7 +88,7 @@ export function App() {
               variant="subtle"
               onClick={() => {
                 const msg = {
-                  type: "lol to je zdej en zelo doug texkst a to bo zdej en message? hmm?",
+                  t: "light",
                 };
                 sendMessage(JSON.stringify(msg));
                 console.log(msg);
@@ -96,11 +98,20 @@ export function App() {
             </Button>
             <ThemedJoystick
               size={100}
+              stop={() => {
+                const msg = {
+                  t: "move",
+                  x: 0.0,
+                  y: 0.0,
+                };
+                sendMessage(JSON.stringify(msg));
+                console.log(msg);
+              }}
               throttle={THROTTLE}
               sticky={false}
               move={(data) => {
                 const msg = {
-                  type: "move",
+                  t: "move",
                   x: data.x,
                   y: data.y,
                 };
