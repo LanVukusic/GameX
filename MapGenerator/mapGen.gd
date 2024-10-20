@@ -47,3 +47,4 @@ func _generate_map():
 		newBuild.visible = true
 		mapRoot.add_child(newBuild)
 		newBuild.owner = self
+		newBuild.name = str(build_inst.id)
