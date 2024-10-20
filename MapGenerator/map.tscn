@@ -865,7 +865,7 @@ wallLengthExtension = 1.0
 
 [node name="277463242" type="Polygon2D" parent="MapRoot" instance=ExtResource("2_s4dok")]
 position = Vector2(715.409, -7596.15)
-color = Color(0.811569, 0.282131, 0.462076, 1)
+color = Color(1.54018e-06, 0.55491, 0.696352, 1)
 polygon = PackedVector2Array(-9.166, 48.0715, -36.716, -16.8785, 9.134, -48.0785, 36.734, 16.8715, -9.166, 48.0715)
 script = ExtResource("3_oduxr")
 wallThickness = 5.0
@@ -1378,7 +1378,7 @@ wallLengthExtension = 1.0
 [node name="277463309" type="Polygon2D" parent="MapRoot" instance=ExtResource("2_s4dok")]
 position = Vector2(941.358, -7657.18)
 color = Color(0.811569, 0.282131, 0.462076, 1)
-polygon = PackedVector2Array(-40.1171, -5.35979, -3.31713, -45.2598, 19.8829, -10.9598, 32.5329, -24.7098, 44.9829, -6.30979, -4.46713, 47.3402, -40.1171, -5.35979)
+polygon = PackedVector2Array(-76.3578, 3.18457, -3.31713, -45.2598, 19.8829, -10.9598, 32.5329, -24.7098, 44.9829, -6.30979, -24.3578, 65.1846, -73.3578, 5.18457)
 script = ExtResource("3_oduxr")
 wallThickness = 5.0
 wallLengthExtension = 1.0
@@ -6418,7 +6418,7 @@ wallLengthExtension = 1.0
 [node name="285327444" type="Polygon2D" parent="MapRoot" instance=ExtResource("2_s4dok")]
 position = Vector2(-720.934, -7136.8)
 color = Color(0.811569, 0.282131, 0.462076, 1)
-polygon = PackedVector2Array(-83.0588, -86.1262, 120.934, -10.1987, 78.2412, 17.4238, 43.6412, 6.22382, 21.7412, 115.024, -29.6088, 98.4238, -26.9588, 85.3738, -8.60881, -5.87618, -93.7088, -33.3762, -90.1088, -51.1762, -86.3588, -69.8762, -83.0588, -86.1262)
+polygon = PackedVector2Array(-83.0588, -86.1262, 87.9412, -30.9262, 78.2412, 17.4238, 43.6412, 6.22382, 21.7412, 115.024, -29.6088, 98.4238, -26.9588, 85.3738, -8.60881, -5.87618, -93.7088, -33.3762, -90.1088, -51.1762, -86.3588, -69.8762, -83.0588, -86.1262)
 script = ExtResource("3_oduxr")
 wallThickness = 5.0
 wallLengthExtension = 1.0

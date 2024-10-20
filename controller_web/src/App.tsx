@@ -20,12 +20,15 @@ import {
 import { ThemedJoystick } from "./Components/ThemedJoystick";
 import { ThemedShadow } from "./Components/ThemedShadow";
 import { ThemeIndicator } from "./Components/ThemeIndicator";
+import useWebSocket from "react-use-websocket";
+
+const THROTTLE = 100; // ms for debounce
 
 export function App() {
   const { toggle, fullscreen } = useFullscreen();
-  // const { sendMessage, lastMessage, readyState } = useWebSocket(
-  //   "ws://localhost:9080"
-  // );
+  const { sendMessage, lastMessage, readyState } = useWebSocket(
+    "ws://localhost:9080"
+  );
 
   return (
     <Stack
@@ -78,10 +81,33 @@ export function App() {
         </Grid.Col>
         <Grid.Col span={3}>
           <Stack h="100%" justify="space-around" align="center" py="md">
-            <Button leftSection={<IconBulb />} variant="subtle">
+            <Button
+              leftSection={<IconBulb />}
+              variant="subtle"
+              onClick={() => {
+                const msg = {
+                  type: "lol to je zdej en zelo doug texkst a to bo zdej en message? hmm?",
+                };
+                sendMessage(JSON.stringify(msg));
+                console.log(msg);
+              }}
+            >
               Light
             </Button>
-            <ThemedJoystick size={100} sticky={false} />
+            <ThemedJoystick
+              size={100}
+              throttle={THROTTLE}
+              sticky={false}
+              move={(data) => {
+                const msg = {
+                  type: "move",
+                  x: data.x,
+                  y: data.y,
+                };
+                sendMessage(JSON.stringify(msg));
+                console.log(msg);
+              }}
+            />
           </Stack>
         </Grid.Col>
       </Grid>

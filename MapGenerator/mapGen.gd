@@ -43,7 +43,7 @@ func _generate_map():
 			build_inst.centroid.x * mapScale,
 			build_inst.centroid.y * mapScale,
 		)
+		newBuild.name = str(build_inst.id)
 		newBuild.visible = true
 		mapRoot.add_child(newBuild)
 		newBuild.owner = self
-		newBuild.name = str(build_inst.id)
