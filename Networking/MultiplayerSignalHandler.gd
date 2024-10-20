@@ -1,20 +1,22 @@
+class_name MultiplayerSignalHandler
 extends Node
 
   
 var multiplayerId: int = 0
 
-signal xMove(x: float)
-signal yMove(y: float)
-signal xLook(x: float)
-signal yLook(y: float)
+signal moveVec(vec: Vector2)
+signal lookVec(vec: Vector2)
+signal lamp()
 
 
-func print_sig(val: float):
+func print_sig2():
+  print(multiplayerId)
+
+func print_sig(val: Vector2):
   print(val, " ", multiplayerId)
 
 func _init(id: int):
   multiplayerId = id
-  xMove.connect(print_sig)
-  yMove.connect(print_sig)
-  xLook.connect(print_sig)
-  yLook.connect(print_sig)
+  moveVec.connect(print_sig)
+  lookVec.connect(print_sig)
+  lamp.connect(print_sig2)

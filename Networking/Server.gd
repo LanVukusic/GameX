@@ -1,14 +1,15 @@
 @tool
 extends Node
 
-const MuliplayerSignalHandler = preload("res://Networking/MultiplayerSignalHandler.gd")
+# var handler = MultiplayerSignalHandler
 
 @export var players: Dictionary = {}
 
 # The port we will listen to
-const PORT = 9080
+const PORT = 9999
 # Our WebSocketServer instance
 var _server = WebSocketMultiplayerPeer.new()
+var player = preload("res://Entities/Player.tscn")
 
 
 func _ready():
@@ -17,11 +18,6 @@ func _ready():
 	# disconnections, and disconnect requests.
 	_server.peer_connected.connect(_connected)
 	_server.peer_disconnected.connect(_disconnected)
-	# This signal is emitted when not using the Multiplayer API every time a
-	# full packet is received.
-	# Alternatively, you could check get_peer(PEER_ID).get_available_packets()
-	# in a loop for each connected peer.
-	# _server.data_received.connect(_on_data)
 	# Start listening on the given port.
 	var err = _server.create_server(PORT)
 	if err != OK:
@@ -34,36 +30,37 @@ func _connected(id):
 	# This is called when a new peer connects, "id" will be the assigned peer id,
 	# "proto" will be the selected WebSocket sub-protocol (which is optional)
 	print("Client %d connected " % [id])
-	players[id] = MuliplayerSignalHandler.new(id)
+	var newPlayer = player.instantiate()
+	self.add_child(newPlayer)
+	newPlayer.visible = true
+	newPlayer.moveSpeed = 600
+	newPlayer.multiplayerId = id
+	players[id] = newPlayer
 
 func get_player_from_id(id: int):
-	return players[id] as MuliplayerSignalHandler
+	return players[id] as Player
 
 func _disconnected(id, was_clean = false):
 	# This is called when a client disconnects, "id" will be the one of the
 	# disconnecting client, "was_clean" will tell you if the disconnection
 	# was correctly notified by the remote peer before closing the socket.
 	print("Client %d disconnected, clean: %s" % [id, str(was_clean)])
-	get_player_from_id(id).xMove.emit(12.8)
+	players[id].queue_free()
 	players.erase(id)
 
 
-# func _on_data(id):
-# 	# Print the received packet, you MUST always use get_peer(id).get_packet to receive data,
-# 	# and not get_packet directly when not using the MultiplayerAPI.
-# 	var pkt = _server.get_peer(id).get_packet()
-# 	print("Got data from client %d: %s ... echoing" % [id, pkt.get_string_from_utf8()])
-# 	_server.get_peer(id).put_packet(pkt)
-
 func handle_packet(data: Variant, peerId: int):
-	var player = get_player_from_id(peerId)
-	if player == null:
+	var player_inst = get_player_from_id(peerId)
+	print(peerId)
+	if player_inst == null:
 		return
 
-	if (data["type"] == "move"):
-		player.xMove.emit(data["x"])
-		player.yMove.emit(data["y"])
-	pass
+	if (data["t"] == "move"):
+		player_inst.moveVec.emit(Vector2(data["x"], -1 * data["y"]))
+	# if (data["t"] == "look"):
+	# 	player_inst.lookVec.emit(Vector2(data["x"], data["y"]))
+	# if (data["t"] == "light"):
+	# 	player_inst.lamp.emit()
 
 
 func _process(_delta):
@@ -80,6 +77,7 @@ func _process(_delta):
 			else:
 				handle_packet(json.data, ownerId)
 				# print("Packet: ", ownerId, " ", json.data["type"])
+
 	elif state == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		var code = _server.get_close_code()
 		var reason = _server.get_close_reason()

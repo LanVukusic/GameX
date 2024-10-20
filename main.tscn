@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://beprtmqmivbc"]
+[gd_scene load_steps=5 format=3 uid="uid://beprtmqmivbc"]
 
-[ext_resource type="PackedScene" uid="uid://d3xwc1h623488" path="res://Statuseffect/status_effect.tscn" id="2_lfi4e"]
-[ext_resource type="PackedScene" uid="uid://dvg52x05ddr1g" path="res://Player/player.tscn" id="2_x5abf"]
-[ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Player/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="3_6fncj"]
+[ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="1_lnlvx"]
+[ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player.tscn" id="3_wenu0"]
 [ext_resource type="PackedScene" uid="uid://u15020rsa6mw" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
-[ext_resource type="PackedScene" uid="uid://begjvnv4pcvft" path="res://Statuseffect/Speed_buff/Speed buff.tscn" id="5_xjdie"]
 
 [sub_resource type="GDScript" id="GDScript_d5741"]
 script/source = "extends Node2D
@@ -27,19 +25,13 @@ func _process(delta: float) -> void:
 [node name="Node2D" type="Node2D"]
 script = SubResource("GDScript_d5741")
 
-[node name="Player" parent="." instance=ExtResource("2_x5abf")]
-z_index = 2
-position = Vector2(1, -99)
-
-[node name="StatusEffect" parent="." instance=ExtResource("2_lfi4e")]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-46, -33)
+position = Vector2(1, 5)
 scale = Vector2(11.2568, 9.87083)
-texture = ExtResource("3_6fncj")
+texture = ExtResource("1_lnlvx")
 
 [node name="MapGenerator" parent="." instance=ExtResource("4_bs0r5")]
+visible = false
 position = Vector2(-360.366, -174.572)
 
-[node name="Collision" parent="." instance=ExtResource("5_xjdie")]
-position = Vector2(-1, -793)
+[node name="Player" parent="." instance=ExtResource("3_wenu0")]

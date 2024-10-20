@@ -1,5 +1,5 @@
 @tool
-extends Node
+extends PhysicsBody2D
 class_name Damagable
 
 @export_category("Configurable")
@@ -9,6 +9,7 @@ class_name Damagable
 @export var health: float
 
 signal damageTaken(damage: float)
+# signal died()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,12 +18,14 @@ func _ready() -> void:
 func dealDamage(damage: float):
 	health -= damage
 	damageTaken.emit(damage)
-
+	if (health <= 0):
+		health = 0
+		die()
+		# died.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	push_error()
 	pass
 
-# func _get_configuration_warnings() -> PackedStringArray:
-# 	return ["penis"]
+func die():
+	pass
