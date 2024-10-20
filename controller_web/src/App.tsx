@@ -1,9 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Center, Stack, Title } from "@mantine/core";
 import { Controller } from "./Controller/Controller";
+import { useFullscreen } from "@mantine/hooks";
 
 export function App() {
   const [view, setView] = useState<"main" | "controller">("main");
+  const { toggle, fullscreen } = useFullscreen();
+
+  useEffect(() => {
+    if (view == "main" && fullscreen) {
+      toggle();
+    }
+  }, [fullscreen, toggle, view]);
 
   if (view == "main") {
     return (

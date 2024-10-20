@@ -26,7 +26,7 @@ import { useFullscreen } from "@mantine/hooks";
 import { useGameSocket } from "../WebsocketLogic";
 import { LoaderContent } from "./Loader";
 
-const THROTTLE = 100; // ms for debounce
+const THROTTLE = 500; // ms for debounce
 
 interface Props {
   setMenu: () => void;
@@ -34,7 +34,7 @@ interface Props {
 
 export const Controller = ({ setMenu }: Props) => {
   const { toggle, fullscreen } = useFullscreen();
-  const { readyState } = useGameSocket();
+  const { readyState, sendMsg } = useGameSocket();
 
   return (
     <Stack
@@ -49,6 +49,10 @@ export const Controller = ({ setMenu }: Props) => {
     >
       <LoadingOverlay
         visible={readyState != ReadyState.OPEN}
+        overlayProps={{
+          blur: 15,
+          opacity: 0.9,
+        }}
         loaderProps={{ children: <LoaderContent setMenu={setMenu} /> }}
       />
       <ThemedShadow />
@@ -99,11 +103,9 @@ export const Controller = ({ setMenu }: Props) => {
               leftSection={<IconBulb />}
               variant="subtle"
               onClick={() => {
-                const msg = {
+                sendMsg({
                   t: "light",
-                };
-                // sendMessage(JSON.stringify(msg));
-                console.log(msg);
+                });
               }}
             >
               Light
@@ -111,24 +113,20 @@ export const Controller = ({ setMenu }: Props) => {
             <ThemedJoystick
               size={100}
               stop={() => {
-                const msg = {
+                sendMsg({
                   t: "move",
                   x: 0.0,
                   y: 0.0,
-                };
-                // sendMessage(JSON.stringify(msg));
-                console.log(msg);
+                });
               }}
               throttle={THROTTLE}
               sticky={false}
               move={(data) => {
-                const msg = {
+                sendMsg({
                   t: "move",
-                  x: data.x,
-                  y: data.y,
-                };
-                // sendMessage(JSON.stringify(msg));
-                console.log(msg);
+                  x: data.x || 0,
+                  y: data.y || 0,
+                });
               }}
             />
           </Stack>

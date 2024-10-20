@@ -17,3 +17,5 @@ export interface LookMessage extends ControllerMessage {
 export interface LightMessage extends ControllerMessage {
   t: "light";
 }
+
+export type MSG = MoveMessage | LookMessage | LightMessage;
