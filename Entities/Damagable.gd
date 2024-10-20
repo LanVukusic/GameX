@@ -23,3 +23,6 @@ func dealDamage(damage: float):
 func _process(_delta: float) -> void:
 	push_error()
 	pass
+
+# func _get_configuration_warnings() -> PackedStringArray:
+# 	return ["penis"]
