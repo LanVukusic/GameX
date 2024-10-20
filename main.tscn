@@ -1,17 +1,34 @@
 [gd_scene load_steps=6 format=3 uid="uid://beprtmqmivbc"]
 
-[ext_resource type="Script" path="res://test.gd" id="1_4c5g1"]
 [ext_resource type="PackedScene" uid="uid://dvg52x05ddr1g" path="res://Player/player.tscn" id="2_x5abf"]
 [ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Player/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="3_6fncj"]
-[ext_resource type="PackedScene" uid="uid://u15020rsa6mw" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
-[ext_resource type="PackedScene" uid="uid://begjvnv4pcvft" path="res://SpeedBuff/Speed buff.tscn" id="5_xjdie"]
+[ext_resource type="PackedScene" uid="uid://cvbcww24g0gmf" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
+[ext_resource type="PackedScene" uid="uid://begjvnv4pcvft" path="res://Statuseffect/Speed_buff/Speed buff.tscn" id="5_xjdie"]
+
+[sub_resource type="GDScript" id="GDScript_d5741"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var n2d = Node2D.new()
+	n2d.visible = true
+	self.add_child(n2d)
+	pass # Replace with function body.
+	
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_4c5g1")
+script = SubResource("GDScript_d5741")
 
 [node name="Player" parent="." instance=ExtResource("2_x5abf")]
 z_index = 2
-position = Vector2(1, -96)
+position = Vector2(1, -99)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-46, -33)

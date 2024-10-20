@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3xwc1h623488"]
+
+[ext_resource type="Script" path="res://Statuseffect/status_effect.gd" id="1_0h4fh"]
+[ext_resource type="PackedScene" uid="uid://begjvnv4pcvft" path="res://Statuseffect/Speed_buff/Speed buff.tscn" id="2_4ep3o"]
+
+[node name="StatusEffect" type="Node"]
+script = ExtResource("1_0h4fh")
+
+[node name="SpeedBuff" parent="." instance=ExtResource("2_4ep3o")]
