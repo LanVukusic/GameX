@@ -1,4 +1,4 @@
-extends "res://Entities/Damagable.gd"	
+extends Damagable
 
 @export_category("Entity config")
 @export var moveSpeed: float

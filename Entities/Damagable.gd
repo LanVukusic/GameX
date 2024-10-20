@@ -1,4 +1,6 @@
+@tool
 extends Node
+class_name Damagable
 
 @export_category("Configurable")
 @export var maxHealth: float
@@ -19,4 +21,5 @@ func dealDamage(damage: float):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	push_error()
 	pass
