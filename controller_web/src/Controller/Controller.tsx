@@ -86,7 +86,18 @@ export const Controller = ({ setMenu }: Props) => {
             <Button leftSection={<IconBolt />} variant="light">
               Super
             </Button>
-            <ThemedJoystick size={100} sticky={false} />
+            <ThemedJoystick
+              size={100}
+              sticky={false}
+              throttle={THROTTLE}
+              move={(data) => {
+                sendMsg({
+                  t: "look",
+                  x: data.x || 0,
+                  y: data.y || 0,
+                });
+              }}
+            />
           </Stack>
         </Grid.Col>
         <Grid.Col span={6}>
