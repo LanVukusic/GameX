@@ -25,6 +25,8 @@ import { ThemeIndicator } from "../Components/ThemeIndicator";
 import { useFullscreen } from "@mantine/hooks";
 import { useGameSocket } from "../WebsocketLogic";
 import { LoaderContent } from "./Loader";
+import { $player } from "../store/player";
+import { useStore } from "@nanostores/react";
 
 const THROTTLE = 50; // ms for debounce
 
@@ -35,6 +37,7 @@ interface Props {
 export const Controller = ({ setMenu }: Props) => {
   const { toggle, fullscreen } = useFullscreen();
   const { readyState, sendMsg } = useGameSocket();
+  const player = useStore($player);
 
   return (
     <Stack
@@ -63,13 +66,14 @@ export const Controller = ({ setMenu }: Props) => {
         <ActionIcon variant="subtle">
           <IconSettings />
         </ActionIcon>
+
+        <TextInput w="100%" value={player.name} readOnly />
         <ActionIcon onClick={toggle} variant="light">
           {fullscreen ? <IconMinimize /> : <IconMaximize />}
         </ActionIcon>
-        <TextInput w="100%" placeholder="display name" />
-        <ActionIcon variant="subtle">
+        {/* <ActionIcon variant="subtle">
           <ThemeIndicator />
-        </ActionIcon>
+        </ActionIcon> */}
       </Group>
       <Grid
         justify="flex-start"

@@ -1,20 +1,12 @@
-import { useEffect, useState } from "react";
-import {
-  Button,
-  Center,
-  Stack,
-  TextInput,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
-import { Controller } from "./Controller/Controller";
 import { useFullscreen } from "@mantine/hooks";
-import { PlayerColorPicker } from "./Components/PlayerColorPicker";
+import { useEffect, useState } from "react";
+import { Controller } from "./Controller/Controller";
+import { Menu } from "./Menu";
+
+export type links = "main" | "controller";
 
 export function App() {
-  const theme = useMantineTheme();
-
-  const [view, setView] = useState<"main" | "controller">("main");
+  const [view, setView] = useState<links>("main");
   const { toggle, fullscreen } = useFullscreen();
 
   useEffect(() => {
@@ -25,22 +17,11 @@ export function App() {
 
   if (view == "main") {
     return (
-      <Center h="100vh">
-        <Stack p="xl">
-          <Title size="3rem" c={theme.primaryColor}>
-            Game X
-          </Title>
-          <TextInput />
-          <PlayerColorPicker />
-          <Button
-            onClick={() => {
-              setView("controller");
-            }}
-          >
-            Connect
-          </Button>
-        </Stack>
-      </Center>
+      <Menu
+        setMenu={(url) => {
+          setView(url);
+        }}
+      />
     );
   }
 
