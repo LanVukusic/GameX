@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bu1vvd37kb4tn"]
+
+[ext_resource type="Script" path="res://Camera/Camera.gd" id="1_78nmc"]
+
+[node name="MainCamera" type="Camera2D"]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.02
+script = ExtResource("1_78nmc")
+player_padding = null

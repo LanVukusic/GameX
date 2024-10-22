@@ -1,37 +1,45 @@
-[gd_scene load_steps=5 format=3 uid="uid://beprtmqmivbc"]
+[gd_scene load_steps=8 format=3 uid="uid://beprtmqmivbc"]
 
 [ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="1_lnlvx"]
-[ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player.tscn" id="3_wenu0"]
+[ext_resource type="PackedScene" uid="uid://cb4lh3a0xlxc" path="res://Networking/socket_server.tscn" id="1_nn1ch"]
 [ext_resource type="PackedScene" uid="uid://u15020rsa6mw" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
+[ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="4_x7123"]
 
-[sub_resource type="GDScript" id="GDScript_d5741"]
-script/source = "extends Node2D
+[sub_resource type="Environment" id="Environment_r0amb"]
+background_energy_multiplier = 0.0
+ambient_light_color = Color(0.0945368, 0, 0.73594, 1)
+ambient_light_energy = 0.0
 
+[sub_resource type="Compositor" id="Compositor_aw3xq"]
+compositor_effects = Array[CompositorEffect]([null])
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	var n2d = Node2D.new()
-	n2d.visible = true
-	self.add_child(n2d)
-	pass # Replace with function body.
-	
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sqc3j"]
+polygon = PackedVector2Array(-1172, 32, -1149, 145, -974, 162, -923, 32)
 
+[node name="WorldEnvironment" type="WorldEnvironment"]
+environment = SubResource("Environment_r0amb")
+compositor = SubResource("Compositor_aw3xq")
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-"
+[node name="MainCamera" parent="." instance=ExtResource("4_x7123")]
+position = Vector2(159, 185)
+player_padding = 450
 
-[node name="Node2D" type="Node2D"]
-script = SubResource("GDScript_d5741")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 5)
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(-935, 248)
 scale = Vector2(11.2568, 9.87083)
 texture = ExtResource("1_lnlvx")
+
+[node name="SocketServer" parent="." node_paths=PackedStringArray("player_root") instance=ExtResource("1_nn1ch")]
+player_root = NodePath("../PlayerRoot")
 
 [node name="MapGenerator" parent="." instance=ExtResource("4_bs0r5")]
 visible = false
 position = Vector2(-360.366, -174.572)
 
-[node name="Player" parent="." instance=ExtResource("3_wenu0")]
+[node name="PlayerRoot" type="Node2D" parent="."]
+show_behind_parent = true
+z_index = 1
+position = Vector2(192, -192)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_sqc3j")
