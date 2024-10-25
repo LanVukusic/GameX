@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://b4webqe3ocltu"]
+
+[ext_resource type="Script" path="res://Weapon/weapon_resource.gd" id="1_m536s"]
+[ext_resource type="Texture2D" uid="uid://dvx0udm51bagn" path="res://Weapon/ranged_weapons/resources/gun_placeholder.png" id="2_ta037"]
+
+[resource]
+script = ExtResource("1_m536s")
+total_ammo_capacity = 0
+current_reserve_ammo = 0
+magazine_capacity = 0
+ammo_in_magazine = 0
+spare_magazines = 0
+texture = ExtResource("2_ta037")
+reload_time = 5.0
+fire_rate = 800.0
+is_automatic = true
+damage_per_shot = 0.0
+weapon_range = 0.0

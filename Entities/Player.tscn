@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=6 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player.gd" id="1_keugx"]
 [ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="2_t6q8m"]
 [ext_resource type="Texture2D" uid="uid://boaxn5rowb0eo" path="res://light.webp" id="3_ia4o3"]
+[ext_resource type="Script" path="res://Entities/HUD_test.gd" id="4_kcuxb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 202.549
@@ -11,10 +12,6 @@ radius = 202.549
 top_level = true
 script = ExtResource("1_keugx")
 moveSpeed = 500.0
-multiplayerId = null
-color = null
-maxHealth = null
-health = null
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.641018, 0.000771728, 0.726354, 1)
@@ -32,3 +29,40 @@ texture_scale = 6.23
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("4_kcuxb")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "Weapon:"
+
+[node name="CurrentWeapon" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+text = "Ammo:"
+
+[node name="Ammo" type="Label" parent="CanvasLayer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer2"]
+layout_mode = 2
+text = "Mag:"
+
+[node name="Magasine" type="Label" parent="CanvasLayer/HBoxContainer2"]
+layout_mode = 2
