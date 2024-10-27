@@ -21,14 +21,13 @@ import {
 import { ReadyState } from "react-use-websocket";
 import { ThemedJoystick } from "../Components/ThemedJoystick";
 import { ThemedShadow } from "../Components/ThemedShadow";
-import { ThemeIndicator } from "../Components/ThemeIndicator";
 import { useFullscreen } from "@mantine/hooks";
 import { useGameSocket } from "../WebsocketLogic";
 import { LoaderContent } from "./Loader";
 import { $player } from "../store/player";
 import { useStore } from "@nanostores/react";
 
-const THROTTLE = 50; // ms for debounce
+const THROTTLE = 10; // ms for debounce
 
 interface Props {
   setMenu: () => void;
@@ -92,11 +91,18 @@ export const Controller = ({ setMenu }: Props) => {
             </Button>
             <ThemedJoystick
               size={100}
-              sticky={false}
+              stop={() => {
+                sendMsg({
+                  t: "move",
+                  x: 0.0,
+                  y: 0.0,
+                });
+              }}
               throttle={THROTTLE}
+              sticky={false}
               move={(data) => {
                 sendMsg({
-                  t: "look",
+                  t: "move",
                   x: data.x || 0,
                   y: data.y || 0,
                 });
@@ -127,18 +133,11 @@ export const Controller = ({ setMenu }: Props) => {
             </Button>
             <ThemedJoystick
               size={100}
-              stop={() => {
-                sendMsg({
-                  t: "move",
-                  x: 0.0,
-                  y: 0.0,
-                });
-              }}
-              throttle={THROTTLE}
               sticky={false}
+              throttle={THROTTLE}
               move={(data) => {
                 sendMsg({
-                  t: "move",
+                  t: "look",
                   x: data.x || 0,
                   y: data.y || 0,
                 });

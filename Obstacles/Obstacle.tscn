@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dofo2ppuqj4b1"]
+
+[sub_resource type="Gradient" id="Gradient_3og0t"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_to4jh"]
+gradient = SubResource("Gradient_3og0t")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_epp8b"]
+polygon = PackedVector2Array(-21, -20, -21, 19, 20, 19, 20, -20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjjb0"]
+size = Vector2(41, 39)
+
+[node name="Obstacle" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.63, 0.63)
+texture = SubResource("GradientTexture2D_to4jh")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_epp8b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tjjb0")

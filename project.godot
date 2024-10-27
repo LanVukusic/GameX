@@ -25,5 +25,5 @@ Player="group for all the player instances"
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+environment/defaults/default_clear_color=Color(0.912289, 0.912289, 0.912289, 1)
 viewport/hdr_2d=true

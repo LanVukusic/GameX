@@ -1,11 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=8 format=3 uid="uid://lrrmhxf8p6g3"]
 
-[ext_resource type="Script" path="res://Entities/Player.gd" id="1_keugx"]
-[ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="2_t6q8m"]
+[ext_resource type="Script" path="res://Player.gd" id="1_keugx"]
 [ext_resource type="Texture2D" uid="uid://boaxn5rowb0eo" path="res://light.webp" id="3_ia4o3"]
+[ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="3_lmimy"]
+[ext_resource type="Texture2D" uid="uid://caxkjybrkro8y" path="res://Assets/Gun.png" id="4_wcjk1"]
+[ext_resource type="Texture2D" uid="uid://bbajg4k5bjlp2" path="res://Assets/torch.png" id="4_y126b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 202.549
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fc420"]
+polygon = PackedVector2Array(-187.865, -2.5618, -314.247, 50.382, -361.214, 182.742, -302.292, 304, -183.596, 341.573, -51.236, 294.607, -4.26967, 173.348, -55.5056, 56.3596)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 top_level = true
@@ -16,19 +21,30 @@ color = null
 maxHealth = null
 health = null
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.641018, 0.000771728, 0.726354, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasModulate"]
-modulate = Color(0, 1, 1, 1)
-scale = Vector2(2.03611, 1.78542)
-texture = ExtResource("2_t6q8m")
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
-energy = 3.88
+position = Vector2(-288, -176)
+energy = 16.05
 shadow_enabled = true
 texture = ExtResource("3_ia4o3")
-texture_scale = 6.23
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4.66555, 2.28882e-05)
+scale = Vector2(1.29358, 1.22302)
+texture = ExtResource("3_lmimy")
+
+[node name="Gun" type="Sprite2D" parent="."]
+position = Vector2(213, -204)
+scale = Vector2(1.17105, 1.17105)
+texture = ExtResource("4_wcjk1")
+
+[node name="Torch" type="Sprite2D" parent="."]
+position = Vector2(-285, -60)
+texture = ExtResource("4_y126b")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(213, -204)
+scale = Vector2(1.17105, 1.17105)
+occluder = SubResource("OccluderPolygon2D_fc420")

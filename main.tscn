@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://beprtmqmivbc"]
 
-[ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="1_lnlvx"]
 [ext_resource type="PackedScene" uid="uid://cb4lh3a0xlxc" path="res://Networking/socket_server.tscn" id="1_nn1ch"]
 [ext_resource type="PackedScene" uid="uid://u15020rsa6mw" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
+[ext_resource type="PackedScene" uid="uid://dofo2ppuqj4b1" path="res://Obstacles/Obstacle.tscn" id="4_i6ngn"]
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="4_x7123"]
 
 [sub_resource type="Environment" id="Environment_r0amb"]
@@ -13,8 +13,8 @@ ambient_light_energy = 0.0
 [sub_resource type="Compositor" id="Compositor_aw3xq"]
 compositor_effects = Array[CompositorEffect]([null])
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_sqc3j"]
-polygon = PackedVector2Array(-1172, 32, -1149, 145, -974, 162, -923, 32)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_orhr8"]
+load_path = "res://.godot/imported/floor.webp-cd2fc86e8eb8246efce6f0555369bc6b.ctex"
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_r0amb")
@@ -23,11 +23,13 @@ compositor = SubResource("Compositor_aw3xq")
 [node name="MainCamera" parent="." instance=ExtResource("4_x7123")]
 position = Vector2(159, 185)
 player_padding = 450
+min_zoom = 2.11
 
 [node name="BG" type="Sprite2D" parent="."]
-position = Vector2(-935, 248)
-scale = Vector2(11.2568, 9.87083)
-texture = ExtResource("1_lnlvx")
+modulate = Color(0.176419, 0.176419, 0.176419, 1)
+position = Vector2(762, -5)
+scale = Vector2(5.91936, 5.19055)
+texture = SubResource("CompressedTexture2D_orhr8")
 
 [node name="SocketServer" parent="." node_paths=PackedStringArray("player_root") instance=ExtResource("1_nn1ch")]
 player_root = NodePath("../PlayerRoot")
@@ -41,5 +43,26 @@ show_behind_parent = true
 z_index = 1
 position = Vector2(192, -192)
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
-occluder = SubResource("OccluderPolygon2D_sqc3j")
+[node name="Obstacle" parent="." instance=ExtResource("4_i6ngn")]
+position = Vector2(1353, 726)
+scale = Vector2(6.955, 6.955)
+
+[node name="Obstacle2" parent="." instance=ExtResource("4_i6ngn")]
+position = Vector2(-1608, 138)
+scale = Vector2(6.955, 6.955)
+
+[node name="Obstacle3" parent="." instance=ExtResource("4_i6ngn")]
+position = Vector2(-1637, -474)
+scale = Vector2(6.955, 6.955)
+
+[node name="Obstacle4" parent="." instance=ExtResource("4_i6ngn")]
+position = Vector2(463, -100)
+scale = Vector2(6.955, 6.955)
+
+[node name="Obstacle5" parent="." instance=ExtResource("4_i6ngn")]
+position = Vector2(-838, 591)
+scale = Vector2(6.955, 6.955)
+
+[node name="Obstacle6" parent="." instance=ExtResource("4_i6ngn")]
+position = Vector2(-547, -706)
+scale = Vector2(6.955, 6.955)
