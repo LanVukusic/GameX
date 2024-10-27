@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=7 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player.gd" id="1_keugx"]
 [ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="2_t6q8m"]
@@ -6,20 +6,23 @@
 [ext_resource type="Script" path="res://Entities/HUD_test.gd" id="4_kcuxb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
-radius = 202.549
+radius = 148.273
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_kpki2"]
+radius = 135.69
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-top_level = true
+z_index = 1
+disable_mode = 2
+collision_layer = 2
 script = ExtResource("1_keugx")
 moveSpeed = 500.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_aj4h7")
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.641018, 0.000771728, 0.726354, 1)
-
-[node name="Sprite2D" type="Sprite2D" parent="CanvasModulate"]
-modulate = Color(0, 1, 1, 1)
-scale = Vector2(2.03611, 1.78542)
-texture = ExtResource("2_t6q8m")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 3.88
@@ -27,11 +30,19 @@ shadow_enabled = true
 texture = ExtResource("3_ia4o3")
 texture_scale = 6.23
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_aj4h7")
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("CircleShape2D_kpki2")
+debug_color = Color(0.968627, 0, 0, 0.419608)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+z_index = 1
+scale = Vector2(2.03611, 1.78542)
+texture = ExtResource("2_t6q8m")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("4_kcuxb")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
@@ -66,3 +77,5 @@ text = "Mag:"
 
 [node name="Magasine" type="Label" parent="CanvasLayer/HBoxContainer2"]
 layout_mode = 2
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
