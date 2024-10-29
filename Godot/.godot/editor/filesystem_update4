@@ -1,0 +1,5 @@
+res://Entities/Player.tscn
+res://Camera/MainCamera.tscn
+res://main.tscn
+res://Camera/Camera.gd
+res://Player.gd
