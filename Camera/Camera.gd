@@ -41,5 +41,5 @@ func _physics_process(_delta: float) -> void:
 	var zoom_x = ((max_x - min_x) + player_padding) / pos_zoom_ratio.x
 	var zoom_y = ((max_y - min_y) + player_padding) / pos_zoom_ratio.y
 
-  var zoom_set = max(zoom_x, zoom_y, min_zoom)
-  self.zoom = Vector2(1.0 / zoom_set, 1.0 / zoom_set)
+	var zoom_set = max(zoom_x, zoom_y, min_zoom)
+	self.zoom = Vector2(1.0 / zoom_set, 1.0 / zoom_set)

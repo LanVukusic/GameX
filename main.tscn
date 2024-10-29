@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://beprtmqmivbc"]
+[gd_scene load_steps=15 format=4 uid="uid://beprtmqmivbc"]
 
 [ext_resource type="PackedScene" uid="uid://cb4lh3a0xlxc" path="res://Networking/socket_server.tscn" id="1_nn1ch"]
 [ext_resource type="PackedScene" uid="uid://u15020rsa6mw" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
-[ext_resource type="PackedScene" uid="uid://dofo2ppuqj4b1" path="res://Obstacles/Obstacle.tscn" id="4_i6ngn"]
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="4_x7123"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player.tscn" id="5_aim4h"]
 [ext_resource type="Texture2D" uid="uid://cobuypvovcmdu" path="res://ExternalAssets/RF_Catacombs_v1.0/mainlevbuild.png" id="6_8kioe"]
@@ -1181,12 +1180,7 @@ script = SubResource("GDScript_3b180")
 [node name="MainCamera" parent="." instance=ExtResource("4_x7123")]
 position = Vector2(159, 185)
 player_padding = 500
-
-[node name="BG" type="Sprite2D" parent="."]
-modulate = Color(0.176419, 0.176419, 0.176419, 1)
-position = Vector2(762, -5)
-scale = Vector2(5.91936, 5.19055)
-texture = SubResource("CompressedTexture2D_orhr8")
+min_zoom = null
 
 [node name="SocketServer" parent="." node_paths=PackedStringArray("player_root") instance=ExtResource("1_nn1ch")]
 player_root = NodePath("../PlayerRoot")
@@ -1202,10 +1196,9 @@ position = Vector2(192, -192)
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_sqc3j")
 
-[node name="Player" parent="." node_paths=PackedStringArray("DEBUG_EnemyTest") instance=ExtResource("5_aim4h")]
+[node name="Player" parent="." instance=ExtResource("5_aim4h")]
 position = Vector2(1699, 539)
 scale = Vector2(0.2, 0.2)
-DEBUG_EnemyTest = NodePath("../Zergling")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 scale = Vector2(1.4, 1.4)

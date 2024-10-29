@@ -1,36 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=8 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_keugx"]
-[ext_resource type="Texture2D" uid="uid://boaxn5rowb0eo" path="res://light.webp" id="3_ia4o3"]
+[ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="2_r763t"]
 [ext_resource type="Script" path="res://Entities/HUD_test.gd" id="4_kcuxb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 148.273
 
+[sub_resource type="Gradient" id="Gradient_nfeg3"]
+offsets = PackedFloat32Array(0, 0.704587)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kwrs8"]
+gradient = SubResource("Gradient_nfeg3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpki2"]
 radius = 135.69
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fc420"]
-polygon = PackedVector2Array(-187.865, -2.5618, -314.247, 50.382, -361.214, 182.742, -302.292, 304, -183.596, 341.573, -51.236, 294.607, -4.26967, 173.348, -55.5056, 56.3596)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 disable_mode = 2
 collision_layer = 2
 script = ExtResource("1_keugx")
-moveSpeed = 500.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
 
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.641018, 0.000771728, 0.726354, 1)
-
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-288, -176)
-energy = 16.05
+position = Vector2(-2, 1)
+scale = Vector2(18.125, 18.125)
+energy = 1.71
 shadow_enabled = true
-texture = ExtResource("3_ia4o3")
+texture = SubResource("GradientTexture2D_kwrs8")
 
 [node name="HurtBox" type="Area2D" parent="."]
 
@@ -41,8 +44,9 @@ debug_color = Color(0.968627, 0, 0, 0.419608)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 1, 1)
 z_index = 1
-scale = Vector2(2.03611, 1.78542)
-texture = ExtResource("2_t6q8m")
+position = Vector2(-0.500003, -0.749584)
+scale = Vector2(0.886179, 0.839587)
+texture = ExtResource("2_r763t")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("4_kcuxb")

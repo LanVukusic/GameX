@@ -6,3 +6,5 @@
 position_smoothing_enabled = true
 position_smoothing_speed = 10.02
 script = ExtResource("1_78nmc")
+player_padding = null
+min_zoom = null
