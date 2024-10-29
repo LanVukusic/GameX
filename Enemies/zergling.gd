@@ -11,7 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if(position.distance_to(nav.get_next_path_position()) < 10):
+	if(moving == true and position.distance_to(nav.get_next_path_position()) < 10):
 		print("[Zergling.gd] Stopping")
 		moving = false;
 	pass
