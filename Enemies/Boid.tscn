@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://db6l50gqap81g"]
+
+[ext_resource type="Script" path="res://Enemies/boid.gd" id="1_i3al8"]
+[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="1_ohjkw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwxkx"]
+radius = 25.0
+height = 62.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_63tst"]
+size = Vector2(248, 97)
+
+[node name="Boid" type="Node2D" groups=["Boid"]]
+script = ExtResource("1_i3al8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_nwxkx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_ohjkw")
+
+[node name="Vision" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
+position = Vector2(75, 3.5)
+shape = SubResource("RectangleShape2D_63tst")
+
+[node name="Rays" type="Node2D" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="Rays"]
+target_position = Vector2(43, -45)
+
+[node name="RayCast2D2" type="RayCast2D" parent="Rays"]
+target_position = Vector2(91, -7)
+
+[node name="RayCast2D3" type="RayCast2D" parent="Rays"]
+target_position = Vector2(78, 4)
+
+[node name="RayCast2D4" type="RayCast2D" parent="Rays"]
+target_position = Vector2(46, 52)
+
+[connection signal="area_entered" from="Vision" to="." method="_on_vision_area_entered"]
+[connection signal="area_exited" from="Vision" to="." method="_on_vision_area_exited"]
