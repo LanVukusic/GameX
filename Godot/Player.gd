@@ -2,7 +2,7 @@ class_name Player
 extends Damagable
 
 @export_category("Movement config")
-@export var moveSpeed: float
+@export var moveSpeed: float = 600.0
 @export var multiplayerId: int = 0
 @export var color: Color
 
@@ -10,6 +10,7 @@ extends Damagable
 signal moveVec(vec: Vector2)
 signal lookVec(vec: Vector2)
 signal lamp()
+signal connect(color: Color, name: String)
 
 var _input_direction = Vector2(0, 0)
 
@@ -26,15 +27,20 @@ func get_input():
 func toggle_lamp():
 	$PointLight2D.enabled = !$PointLight2D.enabled
 
+func conn(col: Color, _name: String):
+	color = col
+	$ModulatableSprite.modulate = col
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	moveVec.connect(set_input_direction)
 	lookVec.connect(set_look_direction)
 	lamp.connect(toggle_lamp)
+	connect.connect(conn)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	get_input()
+	# get_input()
 	var velocity = _input_direction * moveSpeed
 	self.position += velocity * _delta
 

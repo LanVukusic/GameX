@@ -21,11 +21,7 @@ export interface LightMessage extends ControllerMessage {
 export interface JoinMessage extends ControllerMessage {
   t: "join";
   name: string;
-  color: {
-    r: number;
-    g: number;
-    b: number;
-  };
+  color: string;
 }
 
-export type MSG = MoveMessage | LookMessage | LightMessage;
+export type MSG = MoveMessage | LookMessage | LightMessage | JoinMessage;

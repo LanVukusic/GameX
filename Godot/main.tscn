@@ -1,9 +1,8 @@
-[gd_scene load_steps=19 format=4 uid="uid://beprtmqmivbc"]
+[gd_scene load_steps=17 format=4 uid="uid://beprtmqmivbc"]
 
 [ext_resource type="PackedScene" uid="uid://cb4lh3a0xlxc" path="res://Networking/socket_server.tscn" id="1_nn1ch"]
 [ext_resource type="PackedScene" uid="uid://u15020rsa6mw" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="4_x7123"]
-[ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player.tscn" id="5_aim4h"]
 [ext_resource type="Texture2D" uid="uid://cobuypvovcmdu" path="res://ExternalAssets/RF_Catacombs_v1.0/mainlevbuild.png" id="6_8kioe"]
 [ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Enemies/Zergling.tscn" id="7_hlqnb"]
 [ext_resource type="PackedScene" uid="uid://db6l50gqap81g" path="res://Enemies/Boid.tscn" id="8_xs35m"]
@@ -36,9 +35,9 @@ func _process(delta: float) -> void:
 polygon = PackedVector2Array(-1172, 32, -1149, 145, -974, 162, -923, 32)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_2l8f7"]
-vertices = PackedVector2Array(1578, 538, 1578, 182, 5506.6, -41.1172, 5566.96, 3424.25, 409.133, 114.703, 790, 182, 355.156, 3404.32, 790, 522, 1391.29, 618, 1390.92, 594.867, 1418, 595.078, 1189.96, 559, 1187.13, 559.047, 1187.13, 550, 1190, 558.922, 1333.96, 559, 1331.13, 559.047, 1331.13, 550, 1334, 558.922, 1146, 595.078, 1152.72, 598, 1152.97, 614, 1152.8, 614, 1130, 595.078, 1130, 594.953, 1286, 595.211, 1296.72, 614, 1296.97, 630, 1296.63, 630, 1246.88, 624.039, 1247.29, 618, 1258, 594.922, 1247, 630, 1246.83, 630, 1246.92, 595, 1297.02, 595.117, 1297.05, 598, 1296.92, 598, 1146, 594.953, 1153.02, 595.008, 1153.05, 598, 842, 595.078, 842, 594.953, 858, 595.078, 858, 594.953, 874, 595.078, 874, 594.953, 890, 595.078, 890, 594.953, 906, 595.078, 906, 594.953, 922, 595.078, 922, 594.953, 938, 595.078, 938, 594.953, 954, 595.078, 954, 594.953, 970, 595.078, 970, 594.953, 986, 595.078, 986, 594.953, 1002, 595.078, 1002, 594.953, 1018, 595.078, 1018, 594.953, 1034, 595.078, 1034, 594.953, 1050, 595.078, 1153.24, 654.648, 1050, 594.953, 1066, 595.078, 1066, 594.953, 1082, 595.078, 1082, 594.953, 1098, 595.078, 1098, 594.953, 1114, 595.078, 1152.63, 630, 1114, 594.953, 1152.92, 630, 1178, 655.172, 1190, 655.078, 1190, 655.133, 1178, 655.242, 1226, 655.133, 1226, 654.953, 1242, 655.078, 1297.05, 614, 1322, 655.172, 1334, 655.078, 1334, 655.133, 1322, 655.242, 1370, 655.133, 1370, 654.953, 1386, 655.078, 1418, 594.953, 1434, 595.078, 1434, 594.953, 1450, 595.078, 1450, 594.953, 1466, 595.078, 1466, 594.953, 1482, 595.078, 1482, 594.953, 1498, 595.078, 1498, 594.953, 1514, 595.078, 1514, 594.953, 1530, 595.078, 806, 522, 806, 594.813, 1242, 654.883, 1247, 654.883, 1246.88, 618, 1190, 559, 1382, 502, 1162, 550, 1162, 502, 1542, 218, 826, 502, 826, 218, 1542, 518, 1530, 518, 1530, 502, 1382, 550, 1357.28, 550, 1334, 559, 1386, 654.883, 1391, 654.883, 1391, 630, 1390.88, 630, 1390.88, 624.07, 1530, 586, 1562, 586, 1562, 538, 1213.28, 550, 1213.14, 559.102, 1357.14, 559.102, 1390.93, 618, 1174, 655.141, 1174, 655.211, 1297.24, 654.648, 1318, 655.141, 1318, 655.211, 1258, 550, 1286, 550, 1176.04, 655.188, 1320.04, 655.188)
+vertices = PackedVector2Array(1578, 538, 1578, 182, 5506.43, -41.1094, 5507.85, 3432.8, 409.133, 114.703, 790, 182, 355.156, 3404.34, 790, 522, 1391.29, 618, 1390.92, 594.867, 1418, 595.078, 1189.96, 559, 1187.13, 559.047, 1187.13, 550, 1190, 558.922, 1333.96, 559, 1331.13, 559.047, 1331.13, 550, 1334, 558.922, 1146, 595.078, 1152.72, 598, 1152.97, 614, 1152.8, 614, 1130, 595.078, 1130, 594.953, 1286, 595.211, 1296.72, 614, 1296.97, 630, 1296.63, 630, 1246.88, 624.039, 1247.29, 618, 1258, 594.922, 1247, 630, 1246.83, 630, 1246.92, 595, 1297.02, 595.117, 1297.05, 598, 1296.92, 598, 1146, 594.953, 1153.02, 595.008, 1153.05, 598, 842, 595.078, 842, 594.953, 858, 595.078, 858, 594.953, 874, 595.078, 874, 594.953, 890, 595.078, 890, 594.953, 906, 595.078, 906, 594.953, 922, 595.078, 922, 594.953, 938, 595.078, 938, 594.953, 954, 595.078, 954, 594.953, 970, 595.078, 970, 594.953, 986, 595.078, 986, 594.953, 1002, 595.078, 1002, 594.953, 1018, 595.078, 1018, 594.953, 1034, 595.078, 1034, 594.953, 1050, 595.078, 1153.24, 654.648, 1050, 594.953, 1066, 595.078, 1066, 594.953, 1082, 595.078, 1082, 594.953, 1098, 595.078, 1098, 594.953, 1114, 595.078, 1152.63, 630, 1114, 594.953, 1152.92, 630, 1178, 655.172, 1190, 655.078, 1190, 655.133, 1178, 655.242, 1226, 655.133, 1226, 654.953, 1242, 655.078, 1297.05, 614, 1322, 655.172, 1334, 655.078, 1334, 655.133, 1322, 655.242, 1370, 655.133, 1370, 654.953, 1386, 655.078, 1418, 594.953, 1434, 595.078, 1434, 594.953, 1450, 595.078, 1450, 594.953, 1466, 595.078, 1466, 594.953, 1482, 595.078, 1482, 594.953, 1498, 595.078, 1498, 594.953, 1514, 595.078, 1514, 594.953, 1530, 595.078, 806, 522, 806, 594.812, 1242, 654.883, 1247, 654.883, 1246.88, 618, 1190, 559, 1382, 502, 1162, 550, 1162, 502, 1542, 218, 826, 502, 826, 218, 1542, 518, 1530, 518, 1530, 502, 1382, 550, 1357.28, 550, 1334, 559, 1386, 654.883, 1391, 654.883, 1391, 630, 1390.88, 630, 1390.88, 624.07, 1530, 586, 1562, 586, 1562, 538, 1213.28, 550, 1213.14, 559.102, 1357.14, 559.102, 1390.93, 618, 1174, 655.141, 1174, 655.211, 1297.24, 654.648, 1318, 655.141, 1318, 655.211, 1258, 550, 1286, 550, 1176.04, 655.188, 1320.04, 655.188)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 2, 1, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(15, 16, 17, 18), PackedInt32Array(19, 20, 21, 22, 23, 24), PackedInt32Array(25, 26, 27, 28, 29, 30, 31), PackedInt32Array(32, 33, 29), PackedInt32Array(30, 34, 31), PackedInt32Array(35, 36, 37, 25), PackedInt32Array(38, 39, 40, 20, 19), PackedInt32Array(41, 42, 43, 3), PackedInt32Array(43, 44, 45, 3), PackedInt32Array(45, 46, 47, 3), PackedInt32Array(47, 48, 49, 3), PackedInt32Array(49, 50, 51, 3), PackedInt32Array(51, 52, 53, 3), PackedInt32Array(53, 54, 55, 3), PackedInt32Array(55, 56, 57, 3), PackedInt32Array(57, 58, 59, 3), PackedInt32Array(59, 60, 61, 3), PackedInt32Array(61, 62, 63, 3), PackedInt32Array(63, 64, 65, 3), PackedInt32Array(3, 65, 66, 67, 68), PackedInt32Array(67, 69, 70, 68), PackedInt32Array(70, 71, 72, 68), PackedInt32Array(72, 73, 74, 68), PackedInt32Array(68, 74, 75, 76, 77), PackedInt32Array(77, 76, 78, 23, 22, 79), PackedInt32Array(80, 81, 82, 83), PackedInt32Array(84, 85, 86, 3), PackedInt32Array(37, 87, 26, 25), PackedInt32Array(88, 89, 90, 91), PackedInt32Array(92, 93, 94, 3), PackedInt32Array(10, 95, 96), PackedInt32Array(96, 97, 98), PackedInt32Array(98, 99, 100), PackedInt32Array(100, 101, 102), PackedInt32Array(102, 103, 104, 3), PackedInt32Array(104, 105, 106, 3), PackedInt32Array(106, 107, 108, 3), PackedInt32Array(7, 109, 110, 6), PackedInt32Array(3, 6, 110, 41), PackedInt32Array(86, 111, 112, 3), PackedInt32Array(29, 113, 30), PackedInt32Array(14, 114, 11), PackedInt32Array(115, 13, 116, 117, 118), PackedInt32Array(117, 119, 120, 118), PackedInt32Array(118, 121, 122, 123), PackedInt32Array(115, 124, 125), PackedInt32Array(18, 126, 15), PackedInt32Array(94, 127, 128, 3), PackedInt32Array(10, 96, 129, 130, 131, 8), PackedInt32Array(108, 132, 133, 3), PackedInt32Array(133, 134, 0, 3), PackedInt32Array(135, 136, 14, 13), PackedInt32Array(125, 137, 18, 17), PackedInt32Array(131, 138, 8), PackedInt32Array(68, 139, 140), PackedInt32Array(141, 142, 143), PackedInt32Array(118, 123, 115), PackedInt32Array(135, 13, 115), PackedInt32Array(144, 135, 115), PackedInt32Array(115, 125, 17), PackedInt32Array(128, 129, 96, 98), PackedInt32Array(128, 98, 100), PackedInt32Array(115, 17, 145), PackedInt32Array(144, 115, 145), PackedInt32Array(31, 144, 145, 25), PackedInt32Array(32, 29, 28), PackedInt32Array(112, 32, 28, 141), PackedInt32Array(128, 100, 102, 3), PackedInt32Array(3, 68, 140), PackedInt32Array(3, 140, 146, 83), PackedInt32Array(3, 83, 82, 84), PackedInt32Array(3, 112, 141, 143), PackedInt32Array(3, 143, 147, 91), PackedInt32Array(3, 91, 90, 92)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(399.286, 105, 345, 3414.29, 5577.14, 3434.29, 5516.43, -51.4286)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(399.286, 105, 345, 3414.29, 5517.86, 3442.86, 5516.43, -51.4286)])
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_cvnke"]
 
@@ -1185,11 +1184,10 @@ compositor = SubResource("Compositor_aw3xq")
 script = SubResource("GDScript_3b180")
 
 [node name="MainCamera" parent="." instance=ExtResource("4_x7123")]
-position = Vector2(159, 185)
 player_padding = 500
-min_zoom = null
 
 [node name="SocketServer" parent="." node_paths=PackedStringArray("player_root") instance=ExtResource("1_nn1ch")]
+players = {}
 player_root = NodePath("../PlayerRoot")
 
 [node name="MapGenerator" parent="." instance=ExtResource("4_bs0r5")]
@@ -1202,10 +1200,6 @@ position = Vector2(192, -192)
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="."]
 occluder = SubResource("OccluderPolygon2D_sqc3j")
-
-[node name="Player" parent="." instance=ExtResource("5_aim4h")]
-position = Vector2(1699, 539)
-scale = Vector2(0.2, 0.2)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 scale = Vector2(1.4, 1.4)

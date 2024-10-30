@@ -27,14 +27,16 @@ func _ready():
 		print("Server started on:", PORT)
 
 func _connected(id):
+	print("Connection established with ", id)
 	# This is called when a new peer connects, "id" will be the assigned peer id,
-	print("Client %d connected " % [id])
-	var newPlayer = playerScene.instantiate() as Player
-	players[id] = newPlayer
-	newPlayer.visible = true
-	newPlayer.moveSpeed = 600
-	newPlayer.multiplayerId = id
-	player_root.add_child(newPlayer)
+	# print("Client %d connected " % [id])
+	# var newPlayer = playerScene.instantiate() as Player
+	# players[id] = newPlayer
+	# newPlayer.visible = true
+	# newPlayer.moveSpeed = 600
+	# newPlayer.multiplayerId = id
+	# player_root.add_child(newPlayer)
+	pass
 	# newPlayer.owner = self.get_parent()
 	# if self.get_parent() == null:
 	# 	newPlayer.owner = self
@@ -55,6 +57,19 @@ func _disconnected(id, was_clean = false):
 
 
 func handle_packet(data: Variant, peerId: int):
+	if (data["t"] == "join"):
+		var id = peerId
+		print("Client %d connected " % [id])
+		var newPlayer = playerScene.instantiate() as Player
+		players[id] = newPlayer
+		newPlayer.visible = true
+		# newPlayer.moveSpeed = 600
+		newPlayer.multiplayerId = id
+		player_root.add_child(newPlayer)
+		newPlayer.connect.emit(Color(data["color"]), data["name"])
+
+		return
+
 	var player_inst = get_player_from_id(peerId)
 	if player_inst == null:
 		print("no player found")
@@ -62,10 +77,13 @@ func handle_packet(data: Variant, peerId: int):
 
 	if (data["t"] == "move"):
 		player_inst.moveVec.emit(Vector2(data["x"], -1 * data["y"]))
+		return
 	if (data["t"] == "look"):
-		player_inst.lookVec.emit(Vector2(data["x"], -1 * data["y"]))
+		player_inst.lookVec.emit(Vector2(data["x"], -1 * data["y"]), data["x"])
+		return
 	if (data["t"] == "light"):
 		player_inst.lamp.emit()
+		return
 
 
 func _process(_delta):

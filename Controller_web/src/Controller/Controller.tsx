@@ -9,6 +9,7 @@ import {
   SegmentedControl,
   Center,
   Title,
+  useMantineTheme,
 } from "@mantine/core";
 import {
   IconSettings,
@@ -26,6 +27,7 @@ import { useGameSocket } from "../WebsocketLogic";
 import { LoaderContent } from "./Loader";
 import { $player } from "../store/player";
 import { useStore } from "@nanostores/react";
+import { useEffect } from "react";
 
 const THROTTLE = 10; // ms for debounce
 
@@ -37,6 +39,18 @@ export const Controller = ({ setMenu }: Props) => {
   const { toggle, fullscreen } = useFullscreen();
   const { readyState, sendMsg } = useGameSocket();
   const player = useStore($player);
+  const theme = useMantineTheme();
+  const hex = theme.colors[player.color];
+
+  useEffect(() => {
+    if (readyState == ReadyState.OPEN) {
+      sendMsg({
+        t: "join",
+        name: player.name,
+        color: hex[4],
+      });
+    }
+  }, [hex, player.name, readyState, sendMsg]);
 
   return (
     <Stack

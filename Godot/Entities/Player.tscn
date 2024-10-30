@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Entities/HUD_test.gd" id="4_kcuxb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
-radius = 148.273
+radius = 33.99
 
 [sub_resource type="Gradient" id="Gradient_nfeg3"]
 offsets = PackedFloat32Array(0, 0.704587)
@@ -17,13 +17,14 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpki2"]
-radius = 135.69
+radius = 30.55
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-z_index = 1
+z_index = 10
 disable_mode = 2
 collision_layer = 2
 script = ExtResource("1_keugx")
+moveSpeed = 800.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
@@ -32,7 +33,6 @@ shape = SubResource("CircleShape2D_aj4h7")
 position = Vector2(-2, 1)
 scale = Vector2(18.125, 18.125)
 energy = 1.71
-shadow_enabled = true
 texture = SubResource("GradientTexture2D_kwrs8")
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -40,13 +40,6 @@ texture = SubResource("GradientTexture2D_kwrs8")
 [node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
 shape = SubResource("CircleShape2D_kpki2")
 debug_color = Color(0.968627, 0, 0, 0.419608)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0, 1, 1, 1)
-z_index = 1
-position = Vector2(-0.500003, -0.749584)
-scale = Vector2(0.886179, 0.839587)
-texture = ExtResource("2_r763t")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("4_kcuxb")
@@ -83,5 +76,10 @@ text = "Mag:"
 
 [node name="Magasine" type="Label" parent="CanvasLayer/HBoxContainer2"]
 layout_mode = 2
+
+[node name="ModulatableSprite" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.157182, 0.148918)
+texture = ExtResource("2_r763t")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
