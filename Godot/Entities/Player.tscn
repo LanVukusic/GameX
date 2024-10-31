@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://lrrmhxf8p6g3"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_keugx"]
+[ext_resource type="Script" path="res://Entities/Player.gd" id="1_y5r5s"]
 [ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="2_r763t"]
 [ext_resource type="Script" path="res://Entities/HUD_test.gd" id="4_kcuxb"]
 
@@ -23,8 +23,7 @@ radius = 30.55
 z_index = 10
 disable_mode = 2
 collision_layer = 2
-script = ExtResource("1_keugx")
-moveSpeed = 800.0
+script = ExtResource("1_y5r5s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")

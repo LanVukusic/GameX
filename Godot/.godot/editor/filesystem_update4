@@ -1,6 +1,5 @@
 res://Player.gd
-res://main.tscn
-res://Entities/Player.tscn
-res://Camera/MainCamera.tscn
-res://Networking/MultiplayerSignalHandler.gd
 res://Networking/Server.gd
+res://Entities/Player.tscn
+res://main.tscn
+res://Entities/Player.gd
