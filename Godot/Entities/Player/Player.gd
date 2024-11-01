@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody2D
 
+@export_category("DEBUG AND DEV")
+@export var localControll: bool = false
+
 @export_category("Movement config")
 @export var moveSpeed: float = 400
 @export var multiplayerId: int = 0
@@ -17,12 +20,15 @@ signal lamp()
 signal connect(color: Color, name: String)
 
 var _input_direction = Vector2(0, 0)
+var lerpTween: Tween
 
 func set_input_direction(vec: Vector2):
 	_input_direction = vec
 
-func set_look_direction(vec: Vector2):
-	self.rotation = vec.angle() + PI / 2
+func set_look_direction(vec: Vector2, _delta: float):
+	var target = vec.angle() + PI / 2
+	var lookSpeed = min(10 * _delta, 1.0)
+	self.rotation = lerp_angle(self.rotation, target, lookSpeed)
 
 func get_input():
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -41,21 +47,19 @@ func _ready() -> void:
 	lookVec.connect(set_look_direction)
 	lamp.connect(toggle_lamp)
 	connect.connect(conn)
+	lerpTween = self.create_tween()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	get_input()
+	if (localControll):
+		set_look_direction(get_global_mouse_position() - global_position, _delta)
+		get_input()
 	self.velocity = _input_direction * moveSpeed
-	#self.position += velocity * _delta
 	move_and_slide()
 
 func new(id: int):
 	self.multiplayerId = id
 	return self
-
-# func _physics_process(delta):
-# 	get_input()
-# 	move_and_slide()
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group("Enemy"):
@@ -63,7 +67,6 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 		var areaDamage = 5
 		curHealth -= areaDamage
 	pass # Replace with function body.
-
 
 # Debug for testing pathfinding, goes to player when 'x' is pressed
 func _input(event):

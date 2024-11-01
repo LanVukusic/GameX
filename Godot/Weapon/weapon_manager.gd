@@ -1,3 +1,4 @@
+@tool
 extends Node2D
 
 #signal Weapon_Changed
@@ -11,7 +12,7 @@ extends Node2D
 #var weapon_stack = []
 #var weapon_indicator = 0
 var ammo: int
-enum weapon_state{READY, RELOADING}
+enum weapon_state {READY, RELOADING}
 var current_weapon_state: weapon_state = weapon_state.READY
 var reload_timer: Timer
 
@@ -19,10 +20,6 @@ var reload_timer: Timer
 func _ready() -> void:
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Shoot"):
@@ -41,10 +38,10 @@ func fire():
 		return
 	
 	ammo -= 1
-	var b = current_bullet.instantiate()
+	var b = current_bullet.instantiate() as Projectile
 	b.global_position = bullet_transform.global_position
-	owner.add_child(b)
-	print("fire, ",ammo )
+	b.rotation = global_rotation + bullet_transform.target_position.angle()
+	get_tree().get_root().add_child(b)
 
 func reload():
 	current_weapon_state = weapon_state.RELOADING
@@ -63,4 +60,3 @@ func reload():
 func _init_weapon():
 	$Sprite2D.texture = current_weapon.texture
 	reload()
-	

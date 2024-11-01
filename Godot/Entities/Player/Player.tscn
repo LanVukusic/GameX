@@ -22,12 +22,17 @@ radius = 30.55
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 z_index = 10
-disable_mode = 2
-collision_layer = 2
+up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
+localControll = null
+moveSpeed = null
+multiplayerId = null
+color = null
+maxHealth = null
 
 [node name="Weapon" parent="." instance=ExtResource("2_t0cl3")]
-position = Vector2(-29.145, 0)
+position = Vector2(-30, 0)
+scale = Vector2(0.165, 0.165)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
