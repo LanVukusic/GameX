@@ -9,7 +9,7 @@ const PORT = 9999
 @export var player_root: Node2D
 # Our WebSocketServer instance
 var _server = WebSocketMultiplayerPeer.new()
-var playerScene = preload("res://Entities/Player.tscn")
+var playerScene = preload("res://Entities/Player/Player.tscn")
 
 
 func _ready():

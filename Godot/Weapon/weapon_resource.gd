@@ -1,6 +1,6 @@
 extends Resource
 class_name WeaponResource
-
+@export_category("All ammunition")
 # Maximum ammunition the player can carry across all magazines
 @export var total_ammo_capacity: int
 
@@ -10,15 +10,11 @@ class_name WeaponResource
 # Maximum ammo that can fit into the weapon's magazine (clip size)
 @export var magazine_capacity: int
 
-# Current amount of ammunition in the weapon's loaded magazine
-@export var ammo_in_magazine: int
-
-# Number of additional full magazines the player holds
-@export var spare_magazines: int
-
+@export_category("Visual")
 # The texture used for the weapon
 @export var texture: Texture2D
 
+@export_category("Fire logic")
 # The reload time for the weapon (in seconds)
 @export var reload_time: float
 
@@ -33,3 +29,5 @@ class_name WeaponResource
 
 # The weapon's range (could be in arbitrary units, depending on the game design)
 @export var weapon_range: float
+
+@export var bullet_spread: float

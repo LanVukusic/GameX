@@ -1,14 +1,19 @@
 extends Node2D
 
-signal Weapon_Changed
-signal Weapon_stack
-signal Update_weapon_stack
+#signal Weapon_Changed
+#signal Weapon_stack
+#signal Update_weapon_stack
 
-var current_weapon = null
-var weapon_stack = []
-var weapon_indicator = 0
+@export var current_bullet: PackedScene
+@export var current_weapon: WeaponResource
+@export var bullet_transform: RayCast2D
 
-var total_ammo_capacity: int
+#var weapon_stack = []
+#var weapon_indicator = 0
+var ammo: int
+enum weapon_state{READY, RELOADING}
+var current_weapon_state: weapon_state = weapon_state.READY
+var reload_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,7 +32,35 @@ func _input(event: InputEvent) -> void:
 
 
 func fire():
-	pass
+	if current_weapon_state == weapon_state.RELOADING:
+		print("cant do dat sir you are reloading ", reload_timer.time_left)
+		return
+	
+	if ammo <= 0:
+		print("out of ammo")
+		return
+	
+	ammo -= 1
+	var b = current_bullet.instantiate()
+	b.global_position = bullet_transform.global_position
+	owner.add_child(b)
+	print("fire, ",ammo )
 
 func reload():
-	pass
+	current_weapon_state = weapon_state.RELOADING
+	reload_timer = Timer.new()
+	add_child(reload_timer)
+	reload_timer.one_shot = true
+	reload_timer.start(current_weapon.reload_time)
+	reload_timer.timeout.connect(func():
+			ammo = current_weapon.total_ammo_capacity
+			current_weapon_state = weapon_state.READY
+			print("delam")
+			)
+	print("hihi")
+
+
+func _init_weapon():
+	$Sprite2D.texture = current_weapon.texture
+	reload()
+	

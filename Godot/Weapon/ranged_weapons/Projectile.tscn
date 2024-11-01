@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://brfnadljnnin1"]
+
+[ext_resource type="Script" path="res://Weapon/ranged_weapons/projectile.gd" id="1_gwyq8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2q5dv"]
+radius = 3.16228
+
+[sub_resource type="Gradient" id="Gradient_t4buc"]
+colors = PackedColorArray(0, 0, 0, 1, 0.712297, 6.16074e-06, 0.465964, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w66ve"]
+gradient = SubResource("Gradient_t4buc")
+
+[node name="Projectile" type="RigidBody2D"]
+collision_layer = 2
+script = ExtResource("1_gwyq8")
+lifetime = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2q5dv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.145, 0.145)
+texture = SubResource("GradientTexture2D_w66ve")

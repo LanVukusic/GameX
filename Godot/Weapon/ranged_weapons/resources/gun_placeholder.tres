@@ -5,14 +5,13 @@
 
 [resource]
 script = ExtResource("1_m536s")
-total_ammo_capacity = 0
+total_ammo_capacity = 10
 current_reserve_ammo = 0
 magazine_capacity = 0
-ammo_in_magazine = 0
-spare_magazines = 0
 texture = ExtResource("2_ta037")
-reload_time = 5.0
+reload_time = 1.235
 fire_rate = 800.0
 is_automatic = true
 damage_per_shot = 0.0
 weapon_range = 0.0
+bullet_spread = 0.0

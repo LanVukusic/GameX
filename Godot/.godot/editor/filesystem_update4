@@ -1,5 +1,11 @@
-res://Player.gd
-res://Networking/Server.gd
 res://Entities/Player.tscn
+res://Weapon/ranged_weapons/projectile.gd
+res://Weapon/weapon_resource.gd
+res://Weapon/weapon_manager.gd
+res://Weapon/ranged_weapons/Projectile.tscn
 res://main.tscn
-res://Entities/Player.gd
+res://Weapon/Weapon.tscn
+res://Entities/Player/Player.tscn
+res://Networking/Server.gd
+res://Weapon/ranged_weapons/resources/gun_placeholder.tres
+res://TEST.tscn
