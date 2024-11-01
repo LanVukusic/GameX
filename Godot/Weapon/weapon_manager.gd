@@ -15,25 +15,23 @@ var ammo: int
 enum weapon_state {READY, RELOADING}
 var current_weapon_state: weapon_state = weapon_state.READY
 var reload_timer: Timer
-var bpm_timer: Timer
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_init_weapon()
 	pass # Replace with function body.
 
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	# print(bullet_transform.position - bullet_transform.target_position)
+	pass
+
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Shoot"):
-		if current_weapon.is_automatic == true:
-			bpm_timer.start()
-		else:
-			fire()
-	if event.is_action_released("Shoot"):
-		bpm_timer.stop()
-
+		fire()
 	if event.is_action_pressed("Reload"):
 		reload()
+
 
 func fire():
 	if current_weapon_state == weapon_state.RELOADING:
@@ -46,14 +44,12 @@ func fire():
 	
 	ammo -= 1
 	var b = current_bullet.instantiate() as Projectile
-	b.global_position = bullet_transform.global_position
-	b.rotation = global_rotation + bullet_transform.target_position.angle()
-	get_tree().get_root().add_child(b)
+	b.position = bullet_transform.position
+	# b.add_constant_central_force(to_global(bullet_transform.position - bullet_transform.target_position))
+	owner.add_child(b)
+	# print("fire, ", ammo)
 
 func reload():
-	if current_weapon_state == weapon_state.RELOADING:
-		print("you are already reloading dipshit")
-		return 
 	current_weapon_state = weapon_state.RELOADING
 	reload_timer = Timer.new()
 	add_child(reload_timer)
@@ -64,17 +60,9 @@ func reload():
 			current_weapon_state = weapon_state.READY
 			print("delam")
 			)
-	print("delam2")
+	print("hihi")
 
-func bpm_time(value):
-	bpm_timer = Timer.new()
-	add_child(bpm_timer)
-	bpm_timer.one_shot = false
-	bpm_timer.paused = false
-	bpm_timer.wait_time = value
-	bpm_timer.timeout.connect(fire)
 
 func _init_weapon():
-	bpm_time(current_weapon.fire_rate)
 	$Sprite2D.texture = current_weapon.texture
 	reload()
