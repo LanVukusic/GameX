@@ -22,7 +22,7 @@ collision_layer = 2
 mass = 0.005
 physics_material_override = SubResource("PhysicsMaterial_7dgaa")
 script = ExtResource("1_gwyq8")
-lifetime = 2.0
+lifetime = 5.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2q5dv")

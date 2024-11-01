@@ -15,18 +15,25 @@ var ammo: int
 enum weapon_state {READY, RELOADING}
 var current_weapon_state: weapon_state = weapon_state.READY
 var reload_timer: Timer
-
+var bpm_timer: Timer
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_init_weapon()
 	pass # Replace with function body.
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Shoot"):
-		fire()
+		if current_weapon.is_automatic == true:
+			bpm_timer.start()
+		else:
+			fire()
+	if event.is_action_released("Shoot"):
+		bpm_timer.stop()
+
 	if event.is_action_pressed("Reload"):
 		reload()
-
 
 func fire():
 	if current_weapon_state == weapon_state.RELOADING:
@@ -44,6 +51,9 @@ func fire():
 	get_tree().get_root().add_child(b)
 
 func reload():
+	if current_weapon_state == weapon_state.RELOADING:
+		print("you are already reloading dipshit")
+		return 
 	current_weapon_state = weapon_state.RELOADING
 	reload_timer = Timer.new()
 	add_child(reload_timer)
@@ -54,9 +64,17 @@ func reload():
 			current_weapon_state = weapon_state.READY
 			print("delam")
 			)
-	print("hihi")
+	print("delam2")
 
+func bpm_time(value):
+	bpm_timer = Timer.new()
+	add_child(bpm_timer)
+	bpm_timer.one_shot = false
+	bpm_timer.paused = false
+	bpm_timer.wait_time = value
+	bpm_timer.timeout.connect(fire)
 
 func _init_weapon():
+	bpm_time(current_weapon.fire_rate)
 	$Sprite2D.texture = current_weapon.texture
 	reload()
