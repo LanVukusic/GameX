@@ -11,7 +11,7 @@ func _ready() -> void:
 	var life_timer = Timer.new()
 	add_child(life_timer)
 	life_timer.one_shot = true
-	life_timer.wait_time = lifetime
+	life_timer.start(lifetime)
 	life_timer.timeout.connect(queue_free)
 	pass # Replace with function body.
 
