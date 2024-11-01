@@ -44,10 +44,9 @@ func fire():
 	
 	ammo -= 1
 	var b = current_bullet.instantiate() as Projectile
-	b.position = bullet_transform.position
-	# b.add_constant_central_force(to_global(bullet_transform.position - bullet_transform.target_position))
-	owner.add_child(b)
-	# print("fire, ", ammo)
+	b.global_position = bullet_transform.global_position
+	b.rotation = global_rotation + bullet_transform.target_position.angle()
+	get_tree().get_root().add_child(b)
 
 func reload():
 	current_weapon_state = weapon_state.RELOADING
