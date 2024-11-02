@@ -18,6 +18,7 @@ import {
   IconBolt,
   IconBulb,
   IconChevronLeft,
+  IconDots,
 } from "@tabler/icons-react";
 import { ReadyState } from "react-use-websocket";
 import { ThemedJoystick } from "../Components/ThemedJoystick";
@@ -101,7 +102,10 @@ export const Controller = ({ setMenu }: Props) => {
         <Grid.Col span={3} h="100%">
           <Stack h="100%" justify="space-around" align="center" py="md">
             <Button leftSection={<IconBolt />} variant="light">
-              Super
+              Reload
+            </Button>
+            <Button leftSection={<IconDots />} variant="light">
+              Fire
             </Button>
             <ThemedJoystick
               size={100}

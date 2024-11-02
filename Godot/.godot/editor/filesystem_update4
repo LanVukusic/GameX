@@ -1,8 +1,0 @@
-res://Weapon/weapon_manager.gd
-res://TEST.tscn
-res://Entities/Player/Player.tscn
-res://Weapon/Weapon.tscn
-res://Weapon/ranged_weapons/resources/gun_placeholder.tres
-res://Entities/Player/Player.gd
-res://Weapon/ranged_weapons/Projectile.tscn
-res://Weapon/ranged_weapons/projectile.gd

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btda7ax5atic7"]
+[gd_scene load_steps=5 format=3 uid="uid://btda7ax5atic7"]
 
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="1_imvub"]
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="2_oifng"]
 [ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="3_i0f0g"]
+[ext_resource type="PackedScene" uid="uid://cb4lh3a0xlxc" path="res://Networking/socket_server.tscn" id="4_5k5dy"]
 
 [node name="Test" type="Node2D"]
 
@@ -16,4 +17,10 @@ player_padding = 200
 min_zoom = 0.63
 
 [node name="Player" parent="." instance=ExtResource("1_imvub")]
+visible = false
 localControll = true
+
+[node name="SocketServer" parent="." node_paths=PackedStringArray("player_root") instance=ExtResource("4_5k5dy")]
+position = Vector2(11, -11)
+scale = Vector2(2.77703, 2.14167)
+player_root = NodePath("..")

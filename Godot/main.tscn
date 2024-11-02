@@ -1184,7 +1184,7 @@ compositor = SubResource("Compositor_aw3xq")
 script = SubResource("GDScript_3b180")
 
 [node name="MainCamera" parent="." instance=ExtResource("4_x7123")]
-player_padding = 500
+player_padding = 140
 
 [node name="SocketServer" parent="." node_paths=PackedStringArray("player_root") instance=ExtResource("1_nn1ch")]
 players = {}

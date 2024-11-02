@@ -18,10 +18,19 @@ export interface LightMessage extends ControllerMessage {
   t: "light";
 }
 
+export interface ShootMessage extends ControllerMessage {
+  t: "shoot";
+}
+
 export interface JoinMessage extends ControllerMessage {
   t: "join";
   name: string;
   color: string;
 }
 
-export type MSG = MoveMessage | LookMessage | LightMessage | JoinMessage;
+export type MSG =
+  | MoveMessage
+  | LookMessage
+  | LightMessage
+  | JoinMessage
+  | ShootMessage;
