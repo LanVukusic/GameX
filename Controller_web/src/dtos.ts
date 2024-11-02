@@ -20,6 +20,11 @@ export interface LightMessage extends ControllerMessage {
 
 export interface ShootMessage extends ControllerMessage {
   t: "shoot";
+  state: "active" | "release";
+}
+
+export interface ReloadMessage extends ControllerMessage {
+  t: "reload";
 }
 
 export interface JoinMessage extends ControllerMessage {
@@ -33,4 +38,5 @@ export type MSG =
   | LookMessage
   | LightMessage
   | JoinMessage
-  | ShootMessage;
+  | ShootMessage
+  | ReloadMessage;

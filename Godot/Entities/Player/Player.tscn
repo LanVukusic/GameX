@@ -20,15 +20,11 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_kpki2"]
 radius = 30.55
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon_manager") groups=["Player"]]
 z_index = 10
 up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
-localControll = null
-moveSpeed = null
-multiplayerId = null
-color = null
-maxHealth = null
+weapon_manager = NodePath("Weapon")
 
 [node name="Weapon" parent="." instance=ExtResource("2_t0cl3")]
 position = Vector2(-30, 0)

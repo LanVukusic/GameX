@@ -9,16 +9,17 @@ import {
   SegmentedControl,
   Center,
   Title,
+  Text,
   useMantineTheme,
 } from "@mantine/core";
 import {
   IconSettings,
   IconMinimize,
   IconMaximize,
-  IconBolt,
   IconBulb,
   IconChevronLeft,
   IconDots,
+  IconRepeat,
 } from "@tabler/icons-react";
 import { ReadyState } from "react-use-websocket";
 import { ThemedJoystick } from "../Components/ThemedJoystick";
@@ -38,7 +39,8 @@ interface Props {
 
 export const Controller = ({ setMenu }: Props) => {
   const { toggle, fullscreen } = useFullscreen();
-  const { readyState, sendMsg } = useGameSocket();
+  const { sendMsg } = useGameSocket();
+  const readyState = ReadyState.OPEN;
   const player = useStore($player);
   const theme = useMantineTheme();
   const hex = theme.colors[player.color];
@@ -101,31 +103,41 @@ export const Controller = ({ setMenu }: Props) => {
       >
         <Grid.Col span={3} h="100%">
           <Stack h="100%" justify="space-around" align="center" py="md">
-            <Button leftSection={<IconBolt />} variant="light">
-              Reload
-            </Button>
-            <Button leftSection={<IconDots />} variant="light">
-              Fire
-            </Button>
-            <ThemedJoystick
-              size={100}
-              stop={() => {
+            <Button
+              leftSection={<IconBulb />}
+              variant="subtle"
+              onClick={() => {
                 sendMsg({
-                  t: "move",
-                  x: 0.0,
-                  y: 0.0,
+                  t: "light",
                 });
               }}
-              throttle={THROTTLE}
-              sticky={false}
-              move={(data) => {
-                sendMsg({
-                  t: "move",
-                  x: data.x || 0,
-                  y: data.y || 0,
-                });
-              }}
-            />
+            >
+              Light
+            </Button>
+            <Stack align="center">
+              <Text size="xl" opacity={0.2}>
+                Move
+              </Text>
+              <ThemedJoystick
+                size={100}
+                stop={() => {
+                  sendMsg({
+                    t: "move",
+                    x: 0.0,
+                    y: 0.0,
+                  });
+                }}
+                throttle={THROTTLE}
+                sticky={false}
+                move={(data) => {
+                  sendMsg({
+                    t: "move",
+                    x: data.x || 0,
+                    y: data.y || 0,
+                  });
+                }}
+              />
+            </Stack>
           </Stack>
         </Grid.Col>
         <Grid.Col span={6}>
@@ -138,29 +150,64 @@ export const Controller = ({ setMenu }: Props) => {
         </Grid.Col>
         <Grid.Col span={3}>
           <Stack h="100%" justify="space-around" align="center" py="md">
-            <Button
-              leftSection={<IconBulb />}
-              variant="subtle"
-              onClick={() => {
-                sendMsg({
-                  t: "light",
-                });
-              }}
-            >
-              Light
-            </Button>
-            <ThemedJoystick
-              size={100}
-              sticky={false}
-              throttle={THROTTLE}
-              move={(data) => {
-                sendMsg({
-                  t: "look",
-                  x: data.x || 0,
-                  y: data.y || 0,
-                });
-              }}
-            />
+            <Group w="100%" px="xs">
+              <Button
+                fullWidth
+                leftSection={<IconRepeat />}
+                variant="light"
+                size="xs"
+                onClick={() => {
+                  sendMsg({
+                    t: "reload",
+                  });
+                }}
+              >
+                Reload
+              </Button>
+              <Button
+                mt="lg"
+                fullWidth
+                variant="light"
+                size="xl"
+                // onClick={() => {
+                //   sendMsg({
+                //     t: "shoot",
+                //   });
+                // }}
+                onMouseDown={() => {
+                  sendMsg({
+                    t: "shoot",
+                    state: "active",
+                  });
+                }}
+                onMouseUp={() => {
+                  sendMsg({
+                    t: "shoot",
+                    state: "release",
+                  });
+                }}
+              >
+                Shoot
+              </Button>
+            </Group>
+            <Stack align="center">
+              <Text size="xl" opacity={0.2}>
+                Look
+              </Text>
+
+              <ThemedJoystick
+                size={100}
+                sticky={false}
+                throttle={THROTTLE}
+                move={(data) => {
+                  sendMsg({
+                    t: "look",
+                    x: data.x || 0,
+                    y: data.y || 0,
+                  });
+                }}
+              />
+            </Stack>
           </Stack>
         </Grid.Col>
       </Grid>

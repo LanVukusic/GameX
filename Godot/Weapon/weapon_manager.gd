@@ -1,16 +1,15 @@
 @tool
 extends Node2D
-
-#signal Weapon_Changed
-#signal Weapon_stack
-#signal Update_weapon_stack
+class_name Weapon_manager
 
 @export var current_bullet: PackedScene
 @export var current_weapon: WeaponResource
 @export var bullet_transform: RayCast2D
 
-#var weapon_stack = []
-#var weapon_indicator = 0
+signal shoot_active
+signal shoot_release
+signal reload_active
+
 var ammo: int
 enum weapon_state {READY, RELOADING}
 var current_weapon_state: weapon_state
@@ -19,12 +18,11 @@ var bpm_timer: float = 0.0
 var is_firing = false
 var can_shoot = true
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	reload_active.connect(reload)
+	shoot_active.connect(_shot_active)
+	shoot_release.connect(_shot_released)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -34,28 +32,23 @@ func _process(delta: float) -> void:
 	# **Automatic firing**: Fire at intervals if the button is held
 	if is_firing and current_weapon.is_automatic and bpm_timer >= current_weapon.fire_rate:
 		fire()
-		bpm_timer = 0.0  # Reset timer for the next interval
+		bpm_timer = 0.0 # Reset timer for the next interval
 
 	# **Reset can_shoot after cooldown** for both automatic and semi-automatic modes
 	if bpm_timer >= current_weapon.fire_rate:
-		can_shoot = true  # Allow new shot when cooldown is complete
-		bpm_timer = 0.0  # Reset timer
-	pass
+		can_shoot = true # Allow new shot when cooldown is complete
+		bpm_timer = 0.0 # Reset timer
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Shoot") and can_shoot:
-		is_firing = true
-		fire()  # Fire immediately on press for automatic weapons
-		can_shoot = false  # Set cooldown
-		bpm_timer = 0.0  # Reset timer for consistent interval
+func _shot_active():
+	if (!can_shoot):
+		return
+	is_firing = true
+	fire() # Fire immediately on press for automatic weapons
+	can_shoot = false # Set cooldown
+	bpm_timer = 0.0 # Reset timer for consistent interval
 
-	if event.is_action_released("Shoot"):
-		is_firing = false
-
-	if event.is_action_pressed("Reload"):
-		reload()
-
-
+func _shot_released():
+	is_firing = false
 
 func fire():
 	if current_weapon_state == weapon_state.RELOADING:
@@ -87,7 +80,6 @@ func reload():
 			current_weapon_state = weapon_state.READY
 			print("delam")
 			)
-	print("hihi")
 
 
 func _init_weapon():

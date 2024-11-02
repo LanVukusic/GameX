@@ -6,7 +6,7 @@
 friction = 0.5
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2q5dv"]
-radius = 3.16228
+radius = 6.08276
 
 [sub_resource type="Gradient" id="Gradient_t4buc"]
 colors = PackedColorArray(0, 0, 0, 1, 0.712297, 6.16074e-06, 0.465964, 1)

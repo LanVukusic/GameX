@@ -6,7 +6,7 @@ import { Menu } from "./Menu";
 export type links = "main" | "controller";
 
 export function App() {
-  const [view, setView] = useState<links>("main");
+  const [view, setView] = useState<links>("controller");
   const { toggle, fullscreen } = useFullscreen();
 
   useEffect(() => {
