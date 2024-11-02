@@ -13,8 +13,13 @@ extends Node2D
 #var weapon_indicator = 0
 var ammo: int
 enum weapon_state {READY, RELOADING}
-var current_weapon_state: weapon_state = weapon_state.READY
+var current_weapon_state: weapon_state
 var reload_timer: Timer
+var bpm_timer: float = 0.0
+var is_firing = false
+var can_shoot = true
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,14 +28,33 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	# print(bullet_transform.position - bullet_transform.target_position)
+ # **Increment bpm_timer every frame**
+	bpm_timer += delta
+
+	# **Automatic firing**: Fire at intervals if the button is held
+	if is_firing and current_weapon.is_automatic and bpm_timer >= current_weapon.fire_rate:
+		fire()
+		bpm_timer = 0.0  # Reset timer for the next interval
+
+	# **Reset can_shoot after cooldown** for both automatic and semi-automatic modes
+	if bpm_timer >= current_weapon.fire_rate:
+		can_shoot = true  # Allow new shot when cooldown is complete
+		bpm_timer = 0.0  # Reset timer
 	pass
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("Shoot"):
-		fire()
+	if event.is_action_pressed("Shoot") and can_shoot:
+		is_firing = true
+		fire()  # Fire immediately on press for automatic weapons
+		can_shoot = false  # Set cooldown
+		bpm_timer = 0.0  # Reset timer for consistent interval
+
+	if event.is_action_released("Shoot"):
+		is_firing = false
+
 	if event.is_action_pressed("Reload"):
 		reload()
+
 
 
 func fire():
@@ -49,6 +73,10 @@ func fire():
 	get_tree().get_root().add_child(b)
 
 func reload():
+	if current_weapon_state == weapon_state.RELOADING:
+		print("you are already reloading bozo")
+		return
+		
 	current_weapon_state = weapon_state.RELOADING
 	reload_timer = Timer.new()
 	add_child(reload_timer)
@@ -64,4 +92,5 @@ func reload():
 
 func _init_weapon():
 	$Sprite2D.texture = current_weapon.texture
+	current_weapon_state = weapon_state.READY
 	reload()
