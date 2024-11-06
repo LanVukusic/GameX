@@ -1,34 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://c87u2t2spvcmv"]
+[gd_scene load_steps=6 format=3 uid="uid://c87u2t2spvcmv"]
 
 [ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="1_bn2mq"]
 [ext_resource type="Script" path="res://Enemies/zergling.gd" id="1_pas7h"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r6nu"]
+radius = 16.0
+height = 40.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g0m3i"]
 radius = 72.0
 height = 182.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r6nu"]
-radius = 69.0
-height = 172.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_p8ph6"]
+radius = 530.589
 
-[node name="Zergling" type="Node2D" groups=["Enemy"]]
-scale = Vector2(0.2, 0.2)
+[node name="Zergling" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
 script = ExtResource("1_pas7h")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_0r6nu")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.295501, 0.295501)
+scale = Vector2(0.0591002, 0.0591002)
 texture = ExtResource("1_bn2mq")
 
 [node name="HitBox" type="Area2D" parent="."]
+scale = Vector2(0.2, 0.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 shape = SubResource("CapsuleShape2D_g0m3i")
 debug_color = Color(0.95925, 0, 0.522667, 0.42)
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-collision_layer = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-shape = SubResource("CapsuleShape2D_0r6nu")
-
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 5.0
+max_speed = 300.0
+avoidance_layers = 2
+avoidance_mask = 2
+
+[node name="AlertZone" type="Area2D" parent="."]
+scale = Vector2(0.2, 0.2)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AlertZone"]
+shape = SubResource("CircleShape2D_p8ph6")
+
+[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

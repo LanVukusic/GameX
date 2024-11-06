@@ -59,6 +59,13 @@ func boids() -> void:
 		velocity += (steerAway)
 		
 func checkCollision() -> void:
+	for ray in rays:
+		var r : RayCast2D = ray
+		if r.is_colliding():
+			if r.get_collider().is_in_group("World"):
+				var magi := 100/(r.get_collision_point() - global_position).length_squared()
+				velocity -= (r.target_position.rotated(rotation) * magi)
+			pass
 	pass
 
 func move() -> void:
