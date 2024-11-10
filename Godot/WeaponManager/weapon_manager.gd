@@ -1,10 +1,12 @@
-@tool
 extends Node2D
 class_name Weapon_manager
 
 @export var current_bullet: PackedScene
-@export var current_weapon: WeaponResource
-@export var bullet_transform: RayCast2D
+@export var current_weapon_scene: PackedScene
+var current_weapon: Weapon
+@export var weapon_resource_array: Array[WeaponResource]
+@export var current_weapon_stack: Array[Weapon]
+
 
 signal shoot_active
 signal shoot_release
@@ -23,6 +25,7 @@ func _ready() -> void:
 	reload_active.connect(reload)
 	shoot_active.connect(_shot_active)
 	shoot_release.connect(_shot_released)
+	init_weapon()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -30,12 +33,12 @@ func _process(delta: float) -> void:
 	bpm_timer += delta
 
 	# **Automatic firing**: Fire at intervals if the button is held
-	if is_firing and current_weapon.is_automatic and bpm_timer >= current_weapon.fire_rate:
+	if is_firing and current_weapon.WEAPON.is_automatic and bpm_timer >= current_weapon.WEAPON.fire_rate:
 		fire()
 		bpm_timer = 0.0 # Reset timer for the next interval
 
 	# **Reset can_shoot after cooldown** for both automatic and semi-automatic modes
-	if bpm_timer >= current_weapon.fire_rate:
+	if bpm_timer >= current_weapon.WEAPON.fire_rate:
 		can_shoot = true # Allow new shot when cooldown is complete
 		bpm_timer = 0.0 # Reset timer
 
@@ -61,9 +64,10 @@ func fire():
 	
 	ammo -= 1
 	var b = current_bullet.instantiate() as Projectile
-	b.global_position = bullet_transform.global_position
-	b.rotation = global_rotation + bullet_transform.target_position.angle()
+	b.global_position = current_weapon.raycast.global_position
+	b.rotation = global_rotation + current_weapon.raycast.target_position.angle()
 	get_tree().get_root().add_child(b)
+	print(ammo)
 
 func reload():
 	if current_weapon_state == weapon_state.RELOADING:
@@ -74,15 +78,22 @@ func reload():
 	reload_timer = Timer.new()
 	add_child(reload_timer)
 	reload_timer.one_shot = true
-	reload_timer.start(current_weapon.reload_time)
+	reload_timer.start(current_weapon.WEAPON.reload_time)
 	reload_timer.timeout.connect(func():
-			ammo = current_weapon.total_ammo_capacity
+			ammo = current_weapon.WEAPON.total_ammo_capacity
 			current_weapon_state = weapon_state.READY
 			print("delam")
 			)
 
+#func _input(event: InputEvent) -> void:
+#	if Input.action_press("WeaponSwitch"):
+#		switch_weapon()
 
-func _init_weapon():
-	$Sprite2D.texture = current_weapon.texture
-	current_weapon_state = weapon_state.READY
+func switch_weapon():
+	pass
+
+
+func init_weapon():
+	current_weapon = current_weapon_scene.instantiate() as Weapon
+	add_child(current_weapon)
 	reload()

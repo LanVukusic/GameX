@@ -1,11 +1,7 @@
-res://Entities/Player/Player.gd
-res://Weapon/ranged_weapons/projectile.gd
-res://Weapon/weapon_manager.gd
 res://Entities/Player/Player.tscn
+res://Weapons/ranged_weapons/PlaceholderGun/placeholder_gun.tres
 res://TEST.tscn
-res://Weapon/Weapon.tscn
-res://Weapon/ranged_weapons/Projectile.tscn
-res://Camera/MainCamera.tscn
-res://Entities/Player/PlayerDebugNode.gd
-res://Statuseffect/status_effect.gd
-res://Entities/Player/PlayerDevNode.gd
+res://WeaponManager/weapon_base/Weapon.tscn
+res://WeaponManager/WeaponManager.tscn
+res://Weapons/ranged_weapons/PlaceholderGun/jansa_gun.tres
+res://WeaponManager/weapon_manager.gd

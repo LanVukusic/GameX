@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://brfnadljnnin1"]
 
-[ext_resource type="Script" path="res://Weapon/ranged_weapons/projectile.gd" id="1_gwyq8"]
+[ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_gwyq8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dgaa"]
 friction = 0.5

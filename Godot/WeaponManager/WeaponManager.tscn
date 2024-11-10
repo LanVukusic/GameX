@@ -1,0 +1,14 @@
+[gd_scene load_steps=7 format=3 uid="uid://bajkwgp562ka7"]
+
+[ext_resource type="Script" path="res://WeaponManager/weapon_manager.gd" id="1_w2u53"]
+[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="2_6btbt"]
+[ext_resource type="PackedScene" uid="uid://cpowpkwnauhml" path="res://WeaponManager/weapon_base/Weapon.tscn" id="3_4maiy"]
+[ext_resource type="Resource" uid="uid://b4webqe3ocltu" path="res://Weapons/ranged_weapons/PlaceholderGun/placeholder_gun.tres" id="3_ot5yu"]
+[ext_resource type="Script" path="res://weapon_resource.gd" id="4_c2nt7"]
+[ext_resource type="Resource" uid="uid://cr8topnu8vra5" path="res://Weapons/ranged_weapons/PlaceholderGun/jansa_gun.tres" id="5_gok7h"]
+
+[node name="WeaponManager" type="Node2D"]
+script = ExtResource("1_w2u53")
+current_bullet = ExtResource("2_6btbt")
+current_weapon_scene = ExtResource("3_4maiy")
+weapon_resource_array = Array[ExtResource("4_c2nt7")]([ExtResource("5_gok7h"), ExtResource("3_ot5yu")])
