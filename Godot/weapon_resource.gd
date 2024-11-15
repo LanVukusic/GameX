@@ -15,6 +15,8 @@ class_name WeaponResource
 @export var sprite_texture: Texture2D
 @export var sprite_scale: Vector2
 
+@export_category("Sound")
+
 
 @export_category("All ammunition")
 # Maximum ammunition the player can carry across all magazines

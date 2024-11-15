@@ -1,18 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpowpkwnauhml"]
+[gd_scene load_steps=7 format=3 uid="uid://cpowpkwnauhml"]
 
 [ext_resource type="Script" path="res://WeaponManager/weapon_base/weapon.gd" id="1_2ve5w"]
 [ext_resource type="Resource" uid="uid://cr8topnu8vra5" path="res://Weapons/ranged_weapons/PlaceholderGun/jansa_gun.tres" id="2_7aa7h"]
+[ext_resource type="Script" path="res://weapon_resource.gd" id="2_oxdt8"]
+[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="3_c48st"]
 [ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="3_dbv5m"]
+[ext_resource type="Resource" uid="uid://b4webqe3ocltu" path="res://Weapons/ranged_weapons/PlaceholderGun/placeholder_gun.tres" id="4_y63vv"]
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("1_2ve5w")
+avaliable_weapons_resouces = Array[ExtResource("2_oxdt8")]([ExtResource("2_7aa7h"), ExtResource("4_y63vv")])
 WEAPON = ExtResource("2_7aa7h")
+current_bullet = ExtResource("3_c48st")
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-scale = Vector2(1e-05, 1e-05)
+scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_dbv5m")
 
 [node name="BulletTransform" type="RayCast2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(0, -10)
 target_position = Vector2(0, -1)

@@ -22,13 +22,13 @@ func _physics_process(_delta: float) -> void:
 # button events
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Shoot"):
-		player.weapon_manager.shoot_active.emit()
+		player.weapon_manager.current_weapon.shoot_active.emit()
 
 	if event.is_action_released("Shoot"):
-		player.weapon_manager.shoot_release.emit()
+		player.weapon_manager.current_weapon.shoot_release.emit()
 
 	if event.is_action_pressed("Reload"):
-		player.weapon_manager.reload_active.emit()
+		player.weapon_manager.current_weapon.reload_active.emit()
 
 	if event.is_action_pressed("Lamp"):
 		player.lamp.emit()
