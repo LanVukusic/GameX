@@ -1,11 +1,6 @@
-res://Entities/Player/Player.gd
-res://Weapon/ranged_weapons/projectile.gd
-res://Weapon/weapon_manager.gd
-res://Entities/Player/Player.tscn
-res://TEST.tscn
-res://Weapon/Weapon.tscn
-res://Weapon/ranged_weapons/Projectile.tscn
-res://Camera/MainCamera.tscn
-res://Entities/Player/PlayerDebugNode.gd
-res://Statuseffect/status_effect.gd
-res://Entities/Player/PlayerDevNode.gd
+res://DynamicProjectiles/ProjectileTester.tscn
+res://DynamicProjectiles/projectiles/basic_trigger_bullet/BasicTriggerBullet.tscn
+res://DynamicProjectiles/projectiles/basic_bullet/BasicBullet.tscn
+res://DynamicProjectiles/projectiles/tri_forkate/n_forkate.tscn
+res://DynamicProjectiles/projectiles/tri_forkate/n_forkate.gd
+res://DynamicProjectiles/base_projectile.gd

@@ -1,8 +1,14 @@
+GPUParticles2D
+RayCast2D
+Sprite2D
+CollisionShape2D
+NForkateBullet
+BasicTriggerBulletProjectile
+Camera2D
+StaticBody2D
+BasicBulletProjectile
 PlayerDevNode
 Player
 TileMapLayer
-RayCast2D
 RigidBody2D
-Sprite2D
-CollisionShape2D
 Area2D

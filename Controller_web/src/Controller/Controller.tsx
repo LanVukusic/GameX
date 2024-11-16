@@ -11,6 +11,7 @@ import {
   Title,
   Text,
   useMantineTheme,
+  Box,
 } from "@mantine/core";
 import {
   IconSettings,
@@ -18,7 +19,6 @@ import {
   IconMaximize,
   IconBulb,
   IconChevronLeft,
-  IconDots,
   IconRepeat,
 } from "@tabler/icons-react";
 import { ReadyState } from "react-use-websocket";
@@ -31,7 +31,7 @@ import { $player } from "../store/player";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
 
-const THROTTLE = 10; // ms for debounce
+const THROTTLE = 50; // ms for debounce
 
 interface Props {
   setMenu: () => void;
@@ -39,8 +39,8 @@ interface Props {
 
 export const Controller = ({ setMenu }: Props) => {
   const { toggle, fullscreen } = useFullscreen();
-  const { sendMsg } = useGameSocket();
-  const readyState = ReadyState.OPEN;
+  const { sendMsg, readyState } = useGameSocket();
+  // const readyState = ReadyState.OPEN;
   const player = useStore($player);
   const theme = useMantineTheme();
   const hex = theme.colors[player.color];
@@ -53,7 +53,9 @@ export const Controller = ({ setMenu }: Props) => {
         color: hex[4],
       });
     }
-  }, [hex, player.name, readyState, sendMsg]);
+    // only do it once
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [readyState]);
 
   return (
     <Stack
@@ -165,22 +167,34 @@ export const Controller = ({ setMenu }: Props) => {
                 Reload
               </Button>
               <Button
+                component="div"
                 mt="lg"
                 fullWidth
                 variant="light"
                 size="xl"
-                // onClick={() => {
-                //   sendMsg({
-                //     t: "shoot",
-                //   });
-                // }}
+                onTouchStart={() => {
+                  console.log("active");
+                  sendMsg({
+                    t: "shoot",
+                    state: "active",
+                  });
+                }}
+                onTouchEnd={() => {
+                  console.log("release");
+                  sendMsg({
+                    t: "shoot",
+                    state: "release",
+                  });
+                }}
                 onMouseDown={() => {
+                  console.log("active");
                   sendMsg({
                     t: "shoot",
                     state: "active",
                   });
                 }}
                 onMouseUp={() => {
+                  console.log("release");
                   sendMsg({
                     t: "shoot",
                     state: "release",

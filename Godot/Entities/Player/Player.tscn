@@ -24,9 +24,9 @@ radius = 30.55
 z_index = 10
 up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
-weapon_manager = NodePath("Weapon")
+weapon_manager = NodePath("WeaponManager")
 
-[node name="Weapon" parent="." instance=ExtResource("2_t0cl3")]
+[node name="WeaponManager" parent="." instance=ExtResource("2_t0cl3")]
 position = Vector2(-30, 0)
 scale = Vector2(0.165, 0.165)
 

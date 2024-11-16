@@ -1,7 +1,7 @@
 import useWebSocket from "react-use-websocket";
 import { MSG } from "./dtos";
 
-const hostname = "192.168.1.29";
+const hostname = "192.168.1.30";
 
 export const useGameSocket = () => {
   const socket = useWebSocket(`ws://${hostname}:9999`);
