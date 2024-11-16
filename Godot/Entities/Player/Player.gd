@@ -13,7 +13,7 @@ extends CharacterBody2D
 @export var curHealth: int = maxHealth
 
 
-@export var weapon_manager: Weapon_manager
+@export var weapon_manager: WeaponManager
 
 signal connect(color: Color, name: String)
 signal moveVec(vec: Vector2)

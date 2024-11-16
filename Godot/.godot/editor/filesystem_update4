@@ -1,4 +1,11 @@
-res://WeaponManager/WeaponManager.tscn
+res://Entities/Player/Player.tscn
 res://Weapons/ranged_weapons/PlaceholderGun/placeholder_gun.tres
+res://TEST.tscn
+res://WeaponManager/weapon_base/Weapon.tscn
+res://WeaponManager/WeaponManager.tscn
+res://Projectiles/projectile.gd
+res://Weapons/ranged_weapons/Shit_gun/Shit_gun.tres
+res://weapon_resource.gd
 res://WeaponManager/weapon_base/weapon.gd
-res://WeaponManager/weapon_manager.gd
+res://Weapons/ranged_weapons/Good_gun/Good_gun.tres
+res://Weapons/ranged_weapons/Jansa_gun/jansa_gun.tres

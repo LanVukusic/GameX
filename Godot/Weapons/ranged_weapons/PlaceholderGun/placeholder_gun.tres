@@ -7,13 +7,14 @@
 script = ExtResource("1_dptjn")
 name = "Placeholder_gun"
 sprite_pos = Vector2(0, 0)
+sprite_rotation = 0.0
 raycast_target_pos = Vector2(0, -1)
 raycast_pos = Vector2(-11, -107)
 sprite_texture = ExtResource("2_ntnka")
 sprite_scale = Vector2(0.573, 0.5)
-total_ammo_capacity = 100
-current_reserve_ammo = 0
-magazine_capacity = 0
+current_mags = 5
+magazine_capacity = 30
+current_mag_ammo = 30
 reload_time = 1.0
 fire_rate = 0.1
 is_automatic = true

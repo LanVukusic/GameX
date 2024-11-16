@@ -1,51 +1,52 @@
 extends Node2D
-class_name weapon_manager
+class_name WeaponManager
 
-signal weapon_changed
+@export var current_bullet: PackedScene
+@export var available_weapon_resources: Array[WeaponResource]  # Use consistent naming
+var weapon_stack: Array[Weapon] = []  # To hold instantiated Weapon nodes
+@export var current_weapon: Weapon = null
 
-var weapon_scenes: Array[PackedScene] = []   # Empty array, to be filled with weapon scenes at runtime
-var current_weapon_index: int = 0            # Tracks the current weapon index
-var current_weapon: Weapon = null            # Reference to the current weapon instance
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Check if weapons are initialized and initialize the first weapon
-	if weapon_scenes.size() > 0:
-		switch_weapon(0)
+	# Initialize weapons from available resources
+	for resource in available_weapon_resources:
+		add_weapon(resource)
+	switch_weapon()
 
-# Method to dynamically add a weapon scene to the manager
-func add_weapon_scene(weapon_scene: PackedScene) -> void:
-	weapon_scenes.append(weapon_scene)
-	if weapon_scenes.size() == 1:
-		switch_weapon(0)  # Automatically initialize the first weapon if this is the first entry
 
-# Method to switch to the next weapon in the list
-func switch_weapon(next_index: int = -1):
-	# Ensure we have weapons to switch between
-	if weapon_scenes.size() == 0:
+func add_weapon(weapon_resource: WeaponResource):
+	# Create a new Weapon instance and initialize it with the provided resource
+	var weapon = Weapon.new()
+	weapon.WEAPON = weapon_resource  # Setter for the WeaponResource
+	weapon.current_bullet = current_bullet
+	weapon.name = weapon.WEAPON.name
+	# Add the weapon as a child and to the weapon stack
+	weapon_stack.append(weapon)
+
+func switch_weapon():
+	if weapon_stack.size() == 0:
 		print("No weapons available to switch.")
 		return
 
-	# Calculate the next weapon index in a circular fashion if no specific index is provided
-	if next_index == -1:
-		current_weapon_index = (current_weapon_index + 1) % weapon_scenes.size()
-	else:
-		current_weapon_index = next_index % weapon_scenes.size()
 
-	# Remove the current weapon if it exists
-	if current_weapon:
-		remove_child(current_weapon)
-		current_weapon.queue_free()  # Free the weapon instance
+	# Find the next weapon index in a circular fashion
+	var current_index = weapon_stack.find(current_weapon)
+	var next_index = (current_index + 1) % weapon_stack.size()
 
-	# Instantiate the new weapon and add it to the WeaponManager node
-	var new_weapon_scene = weapon_scenes[current_weapon_index]
-	current_weapon = new_weapon_scene.instantiate() as Weapon
+	# Only keep the current weapon visible
+	for gun in weapon_stack:
+		print("brisem ", gun,gun.get_parent())
+		if(gun.get_parent() != null):
+			remove_child(gun)
+
+	# Switch visibility and set the new weapon
+	current_weapon = weapon_stack[next_index]
 	add_child(current_weapon)
-	
 
-func _on_wepon_switch_pressed():
+#	print("Switched to weapon:", current_weapon.name)
 
-# Optional: Switch weapon on a key press (or call this function from other code to switch)
 func _input(event: InputEvent) -> void:
+	# Listen for input to switch weapons
 	if event.is_action_pressed("WeaponSwitch"):
-		pass  # Custom input action, e.g., "switch_weapon"
+		switch_weapon()
+	if event.is_action_pressed("CheckTree"):
+		print_tree()

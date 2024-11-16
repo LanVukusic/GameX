@@ -1,29 +1,25 @@
 @tool
 
+
 extends Node2D
 class_name Weapon
 
-@export var avaliable_weapons_resouces: Array[WeaponResource]
 
 
 signal shoot_active
 signal shoot_release
 signal reload_active
-signal switch_weapon
-
 
 @export var WEAPON : WeaponResource:
 	set(value):
 		WEAPON = value
-		if Engine.is_editor_hint():
-			load_weapon()
+		#if Engine.is_editor_hint():
+		load_weapon()
 
 @export var current_bullet: PackedScene
-@onready var sprite: Sprite2D = %WeaponSprite
-@onready var raycast: RayCast2D = %BulletTransform
+var sprite: Sprite2D
+var raycast: RayCast2D
 
-
-var ammo: int
 enum weapon_state {READY, RELOADING}
 var current_weapon_state: weapon_state
 var reload_timer: Timer
@@ -31,13 +27,19 @@ var bpm_timer: float = 0.0
 var is_firing = false
 var can_shoot = true
 
+func _init() -> void:
+	sprite = Sprite2D.new()
+	raycast = RayCast2D.new()
+	self.add_child(sprite)
+	self.add_child(raycast)
+#sirotišnica mogoče rabi starša
 
 func _ready() -> void:
 	load_weapon()
 	reload_active.connect(reload)
 	shoot_active.connect(_shot_active)
 	shoot_release.connect(_shot_released)
-	
+
 
 func _process(delta: float) -> void:
 	 # **Increment bpm_timer every frame**
@@ -72,32 +74,35 @@ func fire():
 		print("cant do dat sir you are reloading ", reload_timer.time_left)
 		return
 	
-	if ammo <= 0:
+	if WEAPON.current_mag_ammo <= 0:
 		print("out of ammo")
 		return
 	
-	ammo -= 1
+	WEAPON.current_mag_ammo -= 1
 	var b = current_bullet.instantiate() as Projectile
 	b.global_position = raycast.global_position
 	b.rotation = global_rotation + raycast.target_position.angle()
 	get_tree().get_root().add_child(b)
-	print(ammo)
+	print(WEAPON.current_mag_ammo)
 
 
 func reload():
 	if current_weapon_state == weapon_state.RELOADING:
 		print("you are already reloading bozo")
 		return
-		
+	if WEAPON.current_mags == 0:
+		print("no more magazines")
+		return
 	current_weapon_state = weapon_state.RELOADING
 	reload_timer = Timer.new()
 	add_child(reload_timer)
 	reload_timer.one_shot = true
 	reload_timer.start(WEAPON.reload_time)
 	reload_timer.timeout.connect(func():
-			ammo = WEAPON.total_ammo_capacity
+			WEAPON.current_mags -= 1 #SPREMENI
+			WEAPON.current_mag_ammo = WEAPON.magazine_capacity
 			current_weapon_state = weapon_state.READY
-			print("delam")
+			print("delam, mags left: ", WEAPON.current_mags)
 			)
 
 
@@ -107,7 +112,4 @@ func load_weapon() -> void:
 	sprite.scale = WEAPON.sprite_scale
 	raycast.target_position = WEAPON.raycast_target_pos
 	raycast.position = WEAPON.raycast_pos
-
-
-func switch_weapon_resource():
-	WEAPON = avaliable_weapons_resouces
+	sprite.rotation = WEAPON.sprite_rotation

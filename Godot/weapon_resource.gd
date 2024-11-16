@@ -6,6 +6,7 @@ class_name WeaponResource
 
 @export_category("Gun(Sprite) position")
 @export var sprite_pos: Vector2
+@export var sprite_rotation: float
 
 @export_category("Raycast(bullettransform) position")
 @export var raycast_target_pos: Vector2
@@ -19,12 +20,12 @@ class_name WeaponResource
 
 
 @export_category("All ammunition")
-# Maximum ammunition the player can carry across all magazines
-@export var total_ammo_capacity: int
 # Current ammunition the player has available to reload into the weapon
-@export var current_reserve_ammo: int
+@export var current_mags: int
 # Maximum ammo that can fit into the weapon's magazine (clip size)
 @export var magazine_capacity: int
+
+@export var current_mag_ammo: int
 
 
 @export_category("Fire logic")
