@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb41j7ymxdxxl"]
+
+[ext_resource type="Script" path="res://DynamicProjectiles/projectiles/tri_forkate/n_forkate.gd" id="1_2f7ph"]
+[ext_resource type="Texture2D" uid="uid://cgk5i7qqvjqs1" path="res://icon.png" id="2_4bien"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mx1cu"]
+friction = 0.0
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ciqli"]
+
+[node name="NForkate" type="RigidBody2D" node_paths=PackedStringArray("shot_dirs")]
+collision_layer = 2
+physics_material_override = SubResource("PhysicsMaterial_mx1cu")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_2f7ph")
+shot_dirs = [NodePath("RayCast2D"), NodePath("RayCast2D2"), NodePath("RayCast2D3")]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(38, -16)
+
+[node name="RayCast2D2" type="RayCast2D" parent="."]
+target_position = Vector2(45, 0)
+
+[node name="RayCast2D3" type="RayCast2D" parent="."]
+target_position = Vector2(38, 17)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ciqli")
+one_way_collision_margin = 20.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_4bien")
