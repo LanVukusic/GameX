@@ -15,6 +15,11 @@ run/main_scene="res://TEST.tscn"
 config/features=PackedStringArray("4.3")
 config/icon="res://icon.png"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [global_group]
 
 Player="group for all the player instances"
