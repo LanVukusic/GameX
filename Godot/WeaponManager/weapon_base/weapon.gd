@@ -41,19 +41,22 @@ func _ready() -> void:
 	
 	#intialise fire_timer
 	fire_timer = Timer.new()
+	fire_timer.name = "FireTimer"
 	fire_timer.one_shot = true
 	fire_timer.timeout.connect(_on_fire_timer_timeout)
 	add_child(fire_timer)
 	
 	#initialise reload_timer
 	reload_timer = Timer.new()
+	reload_timer.name = "ReloadTimer"
 	reload_timer.one_shot = true
+	reload_timer.timeout.connect(_on_reload_timeout)
 	add_child(reload_timer)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Shoot") and WEAPON.is_automatic == false:
 		fire()
 		can_shoot = false
@@ -95,7 +98,6 @@ func reload():
 
 	current_weapon_state = weapon_state.RELOADING
 	reload_timer.start(WEAPON.reload_time)
-	reload_timer.timeout.connect(_on_reload_timeout)
 	print("Reloading...")
 
 func _on_reload_timeout():

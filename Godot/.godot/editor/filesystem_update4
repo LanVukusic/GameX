@@ -2,9 +2,9 @@ res://TEST.tscn
 res://Weapons/ranged_weapons/PlaceholderGun/placeholder_gun.tres
 res://Weapons/ranged_weapons/Shit_gun/Shit_gun.tres
 res://Weapons/ranged_weapons/Good_gun/Good_gun.tres
-res://WeaponManager/weapon_base/weapon.gd
 res://WeaponManager/weapon_base/Weapon.tscn
 res://WeaponManager/WeaponManager.tscn
 res://UI/Ui.tscn
 res://Entities/Player/Player.tscn
-res://Entities/Player/PlayerDevNode.gd
+res://WeaponManager/weapon_base/weapon.gd
+res://UI/ui.gd
