@@ -7,4 +7,3 @@ res://WeaponManager/WeaponManager.tscn
 res://UI/Ui.tscn
 res://Entities/Player/Player.tscn
 res://WeaponManager/weapon_base/weapon.gd
-res://UI/ui.gd

@@ -70,7 +70,7 @@ func _on_fire_timer_timeout():
 
 
 func fire():
-	if can_shoot:
+	if can_shoot and current_weapon_state == weapon_state.READY:
 		# Decrement ammo and instantiate the bullet
 		if WEAPON.current_mag_ammo <= 0:
 			print("Out of ammo.")
