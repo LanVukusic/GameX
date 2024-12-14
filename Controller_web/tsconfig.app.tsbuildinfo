@@ -1,1 +1,20 @@
-{"root":["./src/App.tsx","./src/Menu.tsx","./src/WebsocketLogic.ts","./src/dtos.ts","./src/main.tsx","./src/vite-env.d.ts","./src/Components/ColorHandlerLayout.tsx","./src/Components/PlayerColorPicker.tsx","./src/Components/ThemeIndicator.tsx","./src/Components/ThemedJoystick.tsx","./src/Components/ThemedShadow.tsx","./src/Controller/Controller.tsx","./src/Controller/Loader.tsx","./src/store/player.ts"],"errors":true,"version":"5.6.3"}
+{
+  "root": [
+    "./src/App.tsx",
+    "./src/Menu.tsx",
+    "./src/WebsocketLogic.ts",
+    "./src/dtos.ts",
+    "./src/main.tsx",
+    "./src/vite-env.d.ts",
+    "./src/Components/ColorHandlerLayout.tsx",
+    "./src/Components/PlayerColorPicker.tsx",
+    "./src/Components/ThemeIndicator.tsx",
+    "./src/Components/ThemedJoystick.tsx",
+    "./src/Components/ThemedShadow.tsx",
+    "./src/Controller/Controller.tsx",
+    "./src/Controller/Loader.tsx",
+    "./src/store/player.ts"
+  ],
+  "errors": true,
+  "version": "5.6.3"
+}

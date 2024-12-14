@@ -1,19 +1,4 @@
 import {
-  Stack,
-  LoadingOverlay,
-  Group,
-  ActionIcon,
-  TextInput,
-  Grid,
-  Button,
-  SegmentedControl,
-  Center,
-  Title,
-  Text,
-  useMantineTheme,
-  Box,
-} from "@mantine/core";
-import {
   IconSettings,
   IconMinimize,
   IconMaximize,
@@ -26,12 +11,22 @@ import { ThemedJoystick } from "../Components/ThemedJoystick";
 import { ThemedShadow } from "../Components/ThemedShadow";
 import { useFullscreen } from "@mantine/hooks";
 import { useGameSocket } from "../WebsocketLogic";
-import { LoaderContent } from "./Loader";
 import { $player } from "../store/player";
 import { useStore } from "@nanostores/react";
 import { useEffect } from "react";
+import {
+  ActionIcon,
+  Button,
+  Center,
+  Grid,
+  Group,
+  Stack,
+  TextInput,
+  Title,
+  useMantineTheme,
+} from "@mantine/core";
 
-const THROTTLE = 50; // ms for debounce
+const THROTTLE = 200; // ms for debounce
 
 interface Props {
   setMenu: () => void;
@@ -68,14 +63,14 @@ export const Controller = ({ setMenu }: Props) => {
       }}
       pos="relative"
     >
-      <LoadingOverlay
+      {/* <LoadingOverlay
         visible={readyState != ReadyState.OPEN}
         overlayProps={{
           blur: 15,
           opacity: 0.9,
         }}
         loaderProps={{ children: <LoaderContent setMenu={setMenu} /> }}
-      />
+      /> */}
       <ThemedShadow />
       <Group wrap="nowrap" p="xs" pb="0">
         <ActionIcon variant="subtle" onClick={setMenu}>
@@ -117,11 +112,9 @@ export const Controller = ({ setMenu }: Props) => {
               Light
             </Button>
             <Stack align="center">
-              <Text size="xl" opacity={0.2}>
-                Move
-              </Text>
               <ThemedJoystick
-                size={100}
+                id="move"
+                radius={80}
                 stop={() => {
                   sendMsg({
                     t: "move",
@@ -129,13 +122,12 @@ export const Controller = ({ setMenu }: Props) => {
                     y: 0.0,
                   });
                 }}
-                throttle={THROTTLE}
-                sticky={false}
-                move={(data) => {
+                reportDebounce={THROTTLE}
+                move={(x, y) => {
                   sendMsg({
                     t: "move",
-                    x: data.x || 0,
-                    y: data.y || 0,
+                    x: x,
+                    y: y,
                   });
                 }}
               />
@@ -144,7 +136,7 @@ export const Controller = ({ setMenu }: Props) => {
         </Grid.Col>
         <Grid.Col span={6}>
           <Stack h="100%">
-            <SegmentedControl fullWidth data={["Inventory", "Map", "Stats"]} />
+            {/* <SegmentedControl fullWidth data={["Inventory", "Map", "Stats"]} /> */}
             <Center w="100%" h="100%" bg="blue.1" opacity={0.1}>
               <Title> TODO</Title>
             </Center>
@@ -205,19 +197,15 @@ export const Controller = ({ setMenu }: Props) => {
               </Button>
             </Group>
             <Stack align="center">
-              <Text size="xl" opacity={0.2}>
-                Look
-              </Text>
-
               <ThemedJoystick
-                size={100}
-                sticky={false}
-                throttle={THROTTLE}
-                move={(data) => {
+                id="look"
+                radius={80}
+                reportDebounce={THROTTLE}
+                move={(x, y) => {
                   sendMsg({
                     t: "look",
-                    x: data.x || 0,
-                    y: data.y || 0,
+                    x: x,
+                    y: y,
                   });
                 }}
               />
