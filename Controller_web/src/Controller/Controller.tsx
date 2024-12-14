@@ -7,7 +7,7 @@ import {
   IconRepeat,
 } from "@tabler/icons-react";
 import { ReadyState } from "react-use-websocket";
-import { ThemedJoystick } from "../Components/ThemedJoystick";
+import { ThemedJoystick } from "../Components/Joysticks/ThemedJoystick";
 import { ThemedShadow } from "../Components/ThemedShadow";
 import { useFullscreen } from "@mantine/hooks";
 import { useGameSocket } from "../WebsocketLogic";
@@ -25,6 +25,7 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
+import { HoldableButton } from "../Components/HoldableButton/HoldableButton";
 
 const THROTTLE = 200; // ms for debounce
 
@@ -84,9 +85,6 @@ export const Controller = ({ setMenu }: Props) => {
         <ActionIcon onClick={toggle} variant="light">
           {fullscreen ? <IconMinimize /> : <IconMaximize />}
         </ActionIcon>
-        {/* <ActionIcon variant="subtle">
-          <ThemeIndicator />
-        </ActionIcon> */}
       </Group>
       <Grid
         justify="flex-start"
@@ -158,34 +156,19 @@ export const Controller = ({ setMenu }: Props) => {
               >
                 Reload
               </Button>
-              <Button
-                component="div"
+              <HoldableButton
                 mt="lg"
                 fullWidth
                 variant="light"
                 size="xl"
-                onTouchStart={() => {
+                onPressed={() => {
                   console.log("active");
                   sendMsg({
                     t: "shoot",
                     state: "active",
                   });
                 }}
-                onTouchEnd={() => {
-                  console.log("release");
-                  sendMsg({
-                    t: "shoot",
-                    state: "release",
-                  });
-                }}
-                onMouseDown={() => {
-                  console.log("active");
-                  sendMsg({
-                    t: "shoot",
-                    state: "active",
-                  });
-                }}
-                onMouseUp={() => {
+                onReleased={() => {
                   console.log("release");
                   sendMsg({
                     t: "shoot",
@@ -194,7 +177,7 @@ export const Controller = ({ setMenu }: Props) => {
                 }}
               >
                 Shoot
-              </Button>
+              </HoldableButton>
             </Group>
             <Stack align="center">
               <ThemedJoystick

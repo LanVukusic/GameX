@@ -6,7 +6,7 @@ import {
   parseThemeColor,
   useMantineTheme,
 } from "@mantine/core";
-import { Draggable, IJoystickProps } from "../Controller/Joystick";
+import { Draggable, IJoystickProps } from "./Joystick";
 
 export const ThemedJoystick = (joyProps: IJoystickProps) => {
   const theme = useMantineTheme();
