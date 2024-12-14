@@ -1,26 +1,19 @@
 extends Node2D
 class_name WeaponManager
 
-@export var current_bullet: PackedScene
-@export var available_weapon_resources: Array[WeaponResource]  # Use consistent naming
+#@export var current_bullet: PackedScene
+@export var avaliable_weapons: Array[PackedScene]
 var weapon_stack: Array[Weapon] = []  # To hold instantiated Weapon nodes
 @export var current_weapon: Weapon = null
 
 func _ready() -> void:
 	# Initialize weapons from available resources
-	for resource in available_weapon_resources:
-		add_weapon(resource)
-	switch_weapon()
+	for w in avaliable_weapons:
+		var weapon = w.instantiate() as Weapon
+		add_child(weapon)
+		weapon_stack.append(weapon)
+		switch_weapon()
 
-
-func add_weapon(weapon_resource: WeaponResource):
-	# Create a new Weapon instance and initialize it with the provided resource
-	var weapon = Weapon.new()
-	weapon.WEAPON = weapon_resource  # Setter for the WeaponResource
-	weapon.current_bullet = current_bullet
-	weapon.name = weapon.WEAPON.name
-	# Add the weapon as a child and to the weapon stack
-	weapon_stack.append(weapon)
 
 func switch_weapon():
 	if weapon_stack.size() == 0:
@@ -32,17 +25,19 @@ func switch_weapon():
 	var current_index = weapon_stack.find(current_weapon)
 	var next_index = (current_index + 1) % weapon_stack.size()
 
+
 	# Only keep the current weapon visible
-	for gun in weapon_stack:
-		print("brisem ", gun,gun.get_parent())
-		if(gun.get_parent() != null):
-			remove_child(gun)
+	for w in weapon_stack:
+		if(w.get_parent() != null):
+			remove_child(w)
+			print("brisem ", w,w.get_parent())
+
 
 	# Switch visibility and set the new weapon
 	current_weapon = weapon_stack[next_index]
 	add_child(current_weapon)
 
-#	print("Switched to weapon:", current_weapon.name)
+	print("Switched to weapon:", current_weapon.name)
 
 func _input(event: InputEvent) -> void:
 	# Listen for input to switch weapons

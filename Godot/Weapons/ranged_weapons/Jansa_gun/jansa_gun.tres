@@ -1,17 +1,10 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://cr8topnu8vra5"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://cr8topnu8vra5"]
 
 [ext_resource type="Script" path="res://weapon_resource.gd" id="1_c2kmi"]
-[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="2_8lm36"]
 
 [resource]
 script = ExtResource("1_c2kmi")
 name = "Jansa Gun"
-sprite_pos = Vector2(0, 0)
-sprite_rotation = 0.0
-raycast_target_pos = Vector2(0, -1)
-raycast_pos = Vector2(0, -10)
-sprite_texture = ExtResource("2_8lm36")
-sprite_scale = Vector2(0.1, 0.1)
 current_mags = 2
 magazine_capacity = 500
 current_mag_ammo = 500

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://brfnadljnnin1"]
+[gd_scene load_steps=9 format=3 uid="uid://brfnadljnnin1"]
 
 [ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_gwyq8"]
 
@@ -17,6 +17,27 @@ fill = 1
 fill_from = Vector2(1, 0.50641)
 fill_to = Vector2(0.487179, 0.534188)
 
+[sub_resource type="Gradient" id="Gradient_7pmha"]
+colors = PackedColorArray(0.0196078, 0.294118, 0.823529, 1, 0.643137, 0.384314, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_g3hco"]
+gradient = SubResource("Gradient_7pmha")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_twyjn"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 17.89
+angle_min = -45.0
+angle_max = 45.0
+gravity = Vector3(0, 98, 0)
+scale_min = 5.0
+scale_max = 12.0
+color_ramp = SubResource("GradientTexture1D_g3hco")
+turbulence_enabled = true
+turbulence_noise_strength = 0.3
+turbulence_noise_scale = 6.84
+
 [node name="Projectile" type="RigidBody2D"]
 collision_layer = 2
 mass = 0.005
@@ -30,3 +51,8 @@ shape = SubResource("CircleShape2D_2q5dv")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.145, 0.145)
 texture = SubResource("GradientTexture2D_w66ve")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_twyjn")
+lifetime = 0.2

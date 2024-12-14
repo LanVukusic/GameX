@@ -1,22 +1,13 @@
 extends Resource
 class_name WeaponResource
 
+
 @export_category("Description")
 @export var name: String
 
-@export_category("Gun(Sprite) position")
-@export var sprite_pos: Vector2
-@export var sprite_rotation: float
-
-@export_category("Raycast(bullettransform) position")
-@export var raycast_target_pos: Vector2
-@export var raycast_pos: Vector2
-
-@export_category("Visuals")
-@export var sprite_texture: Texture2D
-@export var sprite_scale: Vector2
 
 @export_category("Sound")
+var resource: Resource
 
 
 @export_category("All ammunition")

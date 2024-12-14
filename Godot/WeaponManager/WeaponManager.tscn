@@ -1,15 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bajkwgp562ka7"]
+[gd_scene load_steps=5 format=3 uid="uid://bajkwgp562ka7"]
 
 [ext_resource type="Script" path="res://WeaponManager/weapon_manager.gd" id="1_w2u53"]
-[ext_resource type="Script" path="res://weapon_resource.gd" id="2_4qwgv"]
-[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="2_njp7j"]
-[ext_resource type="Resource" uid="uid://cr8topnu8vra5" path="res://Weapons/ranged_weapons/Jansa_gun/jansa_gun.tres" id="2_ph7ji"]
-[ext_resource type="Resource" uid="uid://b4webqe3ocltu" path="res://Weapons/ranged_weapons/PlaceholderGun/placeholder_gun.tres" id="4_2fpst"]
-[ext_resource type="Resource" uid="uid://bq8mwxf25o25k" path="res://Weapons/ranged_weapons/Shit_gun/Shit_gun.tres" id="6_vku10"]
-[ext_resource type="Resource" uid="uid://c1e3qvcnk0adb" path="res://Weapons/ranged_weapons/Good_gun/Good_gun.tres" id="7_6koi7"]
+[ext_resource type="PackedScene" uid="uid://xh18vyvxxyev" path="res://Weapons/ranged_weapons/Jansa_gun/JansaGun.tscn" id="3_3em6w"]
+[ext_resource type="PackedScene" uid="uid://bkqvwyt2n84pc" path="res://Weapons/ranged_weapons/Good_gun/GoodGun.tscn" id="4_a5gc4"]
+[ext_resource type="PackedScene" uid="uid://wxeb7vtfni6g" path="res://Weapons/ranged_weapons/Shit_gun/ShitGun.tscn" id="5_rhlds"]
 
 [node name="WeaponManager" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_w2u53")
-current_bullet = ExtResource("2_njp7j")
-available_weapon_resources = Array[ExtResource("2_4qwgv")]([ExtResource("4_2fpst"), ExtResource("2_ph7ji"), ExtResource("6_vku10"), ExtResource("7_6koi7")])
+avaliable_weapons = Array[PackedScene]([ExtResource("3_3em6w"), ExtResource("4_a5gc4"), ExtResource("5_rhlds")])
