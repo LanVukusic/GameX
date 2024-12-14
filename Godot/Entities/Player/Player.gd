@@ -64,4 +64,4 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 func _input(event):
 	if event is InputEventKey and event.pressed and event.keycode == 88:
 		print("[Player.gd] x")
-		DEBUG_EnemyTest.setDestination(position)
+		DEBUG_EnemyTest.alertTo(self)
