@@ -1,31 +1,30 @@
 import {
-  IconSettings,
-  IconMinimize,
-  IconMaximize,
-  IconBulb,
-  IconChevronLeft,
-  IconRepeat,
-} from "@tabler/icons-react";
-import { ReadyState } from "react-use-websocket";
-import { ThemedJoystick } from "../Components/Joysticks/ThemedJoystick";
-import { ThemedShadow } from "../Components/ThemedShadow";
-import { useFullscreen } from "@mantine/hooks";
-import { useGameSocket } from "../WebsocketLogic";
-import { $player } from "../store/player";
-import { useStore } from "@nanostores/react";
-import { useEffect } from "react";
-import {
   ActionIcon,
   Button,
-  Center,
   Grid,
   Group,
   Stack,
-  TextInput,
-  Title,
   useMantineTheme,
 } from "@mantine/core";
+import { useFullscreen } from "@mantine/hooks";
+import { useStore } from "@nanostores/react";
+import {
+  IconBulb,
+  IconChevronLeft,
+  IconMaximize,
+  IconMinimize,
+  IconRepeat,
+  IconSettings,
+} from "@tabler/icons-react";
+import { useCallback, useEffect } from "react";
+import { ReadyState } from "react-use-websocket";
 import { HoldableButton } from "../Components/HoldableButton/HoldableButton";
+import { Inventory } from "../Components/Inventory/Inventory";
+import { ThemedJoystick } from "../Components/Joysticks/ThemedJoystick";
+import { useGameSocket } from "../WebsocketLogic";
+import { $player } from "../store/player";
+import { DndContext } from "@dnd-kit/core";
+import { useSensorsSettings } from "../Components/DnD/UseSensors";
 
 const THROTTLE = 200; // ms for debounce
 
@@ -36,10 +35,28 @@ interface Props {
 export const Controller = ({ setMenu }: Props) => {
   const { toggle, fullscreen } = useFullscreen();
   const { sendMsg, readyState } = useGameSocket();
+  const sensors = useSensorsSettings();
   // const readyState = ReadyState.OPEN;
+
   const player = useStore($player);
   const theme = useMantineTheme();
   const hex = theme.colors[player.color];
+
+  const activePressed = useCallback(() => {
+    console.count("active");
+    sendMsg({
+      t: "shoot",
+      state: "active",
+    });
+  }, [sendMsg]);
+
+  const releasePressed = useCallback(() => {
+    console.count("released");
+    sendMsg({
+      t: "shoot",
+      state: "release",
+    });
+  }, [sendMsg]);
 
   useEffect(() => {
     if (readyState == ReadyState.OPEN) {
@@ -72,20 +89,8 @@ export const Controller = ({ setMenu }: Props) => {
         }}
         loaderProps={{ children: <LoaderContent setMenu={setMenu} /> }}
       /> */}
-      <ThemedShadow />
-      <Group wrap="nowrap" p="xs" pb="0">
-        <ActionIcon variant="subtle" onClick={setMenu}>
-          <IconChevronLeft />
-        </ActionIcon>
-        <ActionIcon variant="subtle">
-          <IconSettings />
-        </ActionIcon>
+      {/* <ThemedShadow /> */}
 
-        <TextInput w="100%" value={player.name} readOnly />
-        <ActionIcon onClick={toggle} variant="light">
-          {fullscreen ? <IconMinimize /> : <IconMaximize />}
-        </ActionIcon>
-      </Group>
       <Grid
         justify="flex-start"
         align="stretch"
@@ -97,7 +102,19 @@ export const Controller = ({ setMenu }: Props) => {
         }}
       >
         <Grid.Col span={3} h="100%">
-          <Stack h="100%" justify="space-around" align="center" py="md">
+          <Stack h="100%" justify="space-around" align="center">
+            <Group wrap="nowrap" p="xs" pb="0" w="100%" justify="space-around">
+              <ActionIcon variant="subtle" onClick={setMenu}>
+                <IconChevronLeft />
+              </ActionIcon>
+              <ActionIcon variant="subtle">
+                <IconSettings />
+              </ActionIcon>
+
+              <ActionIcon onClick={toggle} variant="light">
+                {fullscreen ? <IconMinimize /> : <IconMaximize />}
+              </ActionIcon>
+            </Group>
             <Button
               leftSection={<IconBulb />}
               variant="subtle"
@@ -135,9 +152,9 @@ export const Controller = ({ setMenu }: Props) => {
         <Grid.Col span={6}>
           <Stack h="100%">
             {/* <SegmentedControl fullWidth data={["Inventory", "Map", "Stats"]} /> */}
-            <Center w="100%" h="100%" bg="blue.1" opacity={0.1}>
-              <Title> TODO</Title>
-            </Center>
+            {/* <Center w="100%" h="100%" bg="blue.1" opacity={0.1}> */}
+            <Inventory />
+            {/* </Center> */}
           </Stack>
         </Grid.Col>
         <Grid.Col span={3}>
@@ -156,28 +173,17 @@ export const Controller = ({ setMenu }: Props) => {
               >
                 Reload
               </Button>
-              <HoldableButton
-                mt="lg"
-                fullWidth
-                variant="light"
-                size="xl"
-                onPressed={() => {
-                  console.log("active");
-                  sendMsg({
-                    t: "shoot",
-                    state: "active",
-                  });
-                }}
-                onReleased={() => {
-                  console.log("release");
-                  sendMsg({
-                    t: "shoot",
-                    state: "release",
-                  });
-                }}
-              >
-                Shoot
-              </HoldableButton>
+              <DndContext sensors={sensors}>
+                <HoldableButton
+                  w="100%"
+                  mt="lg"
+                  variant="light"
+                  onPressed={activePressed}
+                  onReleased={releasePressed}
+                >
+                  Shoot
+                </HoldableButton>
+              </DndContext>
             </Group>
             <Stack align="center">
               <ThemedJoystick

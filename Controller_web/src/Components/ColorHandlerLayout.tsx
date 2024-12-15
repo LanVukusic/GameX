@@ -10,6 +10,7 @@ export const ColorLayout = () => {
   const theme = useMemo(() => {
     return createTheme({
       primaryColor: player.color,
+      defaultRadius: "xs",
       /** Put your mantine theme override here */
     });
   }, [player.color]);

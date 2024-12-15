@@ -1,8 +1,8 @@
 import { useDraggable } from "@dnd-kit/core";
-import { Button, ButtonProps } from "@mantine/core";
+import { Alert, AlertProps, Group } from "@mantine/core";
 import { useEffect } from "react";
 
-export interface IHoldableButtonProps extends ButtonProps {
+export interface IHoldableButtonProps extends AlertProps {
   onPressed: () => void;
   onReleased: () => void;
 }
@@ -14,7 +14,7 @@ export function HoldableButton({
   ...other
 }: IHoldableButtonProps) {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
-    id: "ojla",
+    id: "button",
   });
 
   // handle stopping
@@ -27,8 +27,17 @@ export function HoldableButton({
   }, [isDragging]);
 
   return (
-    <Button ref={setNodeRef} {...listeners} {...attributes} {...other}>
-      {children}
-    </Button>
+    <Alert
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      {...other}
+      variant={isDragging ? "filled" : "light"}
+      style={{
+        touchAction: "manipulation",
+      }}
+    >
+      <Group justify="center">{children}</Group>
+    </Alert>
   );
 }

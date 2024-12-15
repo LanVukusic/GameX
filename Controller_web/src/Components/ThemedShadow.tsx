@@ -5,8 +5,8 @@ export const ThemedShadow = () => {
   const parsedColor = parseThemeColor({ color: theme.primaryColor, theme });
   return (
     <Box
-      mt="-20px"
-      h="15px"
+      mt="-25px"
+      h="10px"
       w="100%"
       style={{
         boxShadow: `0px 1px 30px ${parsedColor.value}`,
