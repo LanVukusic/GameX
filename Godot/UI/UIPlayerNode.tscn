@@ -1,0 +1,123 @@
+[gd_scene load_steps=4 format=3 uid="uid://blol2ovqttua8"]
+
+[ext_resource type="Texture2D" uid="uid://cgk5i7qqvjqs1" path="res://icon.png" id="1_0ib43"]
+[ext_resource type="Script" path="res://UI/UIPlayerNode.gd" id="2_v5ovk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_632t8"]
+bg_color = Color(0.92, 0.7544, 0.8096, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.698335, 0, 0.18187, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PlayerPannel" type="PanelContainer"]
+offset_right = 378.0
+offset_bottom = 148.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_632t8")
+script = ExtResource("2_v5ovk")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+
+[node name="MainGridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/MainGridContainer"]
+layout_mode = 2
+
+[node name="PlayerSpriteTexture" type="TextureRect" parent="MarginContainer/MainGridContainer/MarginContainer"]
+modulate = Color(0.894827, 0.572637, 0.590951, 1)
+layout_mode = 2
+texture = ExtResource("1_0ib43")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="OverallPlayerContainer" type="VBoxContainer" parent="MarginContainer/MainGridContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PlayerInfoContainer" type="HBoxContainer" parent="MarginContainer/MainGridContainer/OverallPlayerContainer"]
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/PlayerInfoContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Lanzy"
+
+[node name="HPContainer" type="HBoxContainer" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/PlayerInfoContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+alignment = 2
+
+[node name="HPValue" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/PlayerInfoContainer/HPContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "95"
+
+[node name="HPLabel" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/PlayerInfoContainer/HPContainer"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "hp"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/MainGridContainer/OverallPlayerContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(0.781938, 0, 0.316684, 1)
+
+[node name="WeaponInfo" type="HBoxContainer" parent="MarginContainer/MainGridContainer/OverallPlayerContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="AmmoBox" type="VBoxContainer" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AmmoLabel" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo/AmmoBox"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Ammo
+"
+
+[node name="AmmoValue" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo/AmmoBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "180"
+
+[node name="MagBox" type="VBoxContainer" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="MagText" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo/MagBox"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Magazines"
+
+[node name="MagValue" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo/MagBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "15"
+
+[node name="TBD" type="VBoxContainer" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TBDText" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo/TBD"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Nekaj"
+
+[node name="TBDValue" type="Label" parent="MarginContainer/MainGridContainer/OverallPlayerContainer/WeaponInfo/TBD"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "5"

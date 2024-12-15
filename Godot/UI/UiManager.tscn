@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj6py650hlmmx"]
+
+[ext_resource type="Theme" uid="uid://ceocg1w7yon5p" path="res://UI/ingame_ui_theme.tres" id="1_4fv8n"]
+[ext_resource type="Script" path="res://UI/UiManager.gd" id="1_awckq"]
+[ext_resource type="PackedScene" uid="uid://blol2ovqttua8" path="res://UI/UIPlayerNode.tscn" id="2_xax5r"]
+
+[node name="UiManager" type="CanvasLayer"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_4fv8n")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_4fv8n")
+script = ExtResource("1_awckq")
+PlayerUIScene = ExtResource("2_xax5r")

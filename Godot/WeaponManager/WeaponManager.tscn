@@ -8,4 +8,4 @@
 [node name="WeaponManager" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_w2u53")
-avaliable_weapons = Array[PackedScene]([ExtResource("3_3em6w"), ExtResource("4_a5gc4"), ExtResource("5_rhlds")])
+avaliable_weapons = Array[PackedScene]([ExtResource("4_a5gc4"), ExtResource("5_rhlds"), ExtResource("3_3em6w")])

@@ -4,8 +4,8 @@ class_name Weapon
 signal shoot_pressed
 signal shoot_released
 signal reload_active
-signal current_ammo
-signal mags_left
+signal current_ammo(ammo_count: int)
+signal current_magazines(mag_count: int)
 
 @export var WEAPON: WeaponResource
 
@@ -40,6 +40,11 @@ func _ready() -> void:
 	reload_timer.one_shot = true
 	reload_timer.timeout.connect(_on_reload_timeout)
 	add_child(reload_timer)
+	
+	#singal how much ammo in mag
+	current_ammo.emit(WEAPON.current_mag_ammo)
+	#signal how much mags left
+	current_magazines.emit(WEAPON.current_mags)
 
 func _process(_delta: float) -> void:
 	pass
@@ -77,7 +82,7 @@ func fire():
 		fire_timer.start(WEAPON.fire_rate)
 		WEAPON.current_mag_ammo -= 1
 		print("Ammo left:", WEAPON.current_mag_ammo)
-		emit_signal("current_ammo")
+		current_ammo.emit(WEAPON.current_mag_ammo)
 
 func reload():
 	if current_weapon_state == weapon_state.RELOADING:
@@ -96,4 +101,6 @@ func _on_reload_timeout():
 	WEAPON.current_mags -= 1
 	WEAPON.current_mag_ammo = WEAPON.magazine_capacity
 	current_weapon_state = weapon_state.READY
+	current_ammo.emit(WEAPON.current_mag_ammo)
+	current_magazines.emit(WEAPON.current_mags)
 	print("Reload complete. Magazines left:", WEAPON.current_mags)

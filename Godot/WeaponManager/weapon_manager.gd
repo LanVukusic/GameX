@@ -1,6 +1,8 @@
 extends Node2D
 class_name WeaponManager
 
+signal weapon_switched
+
 #@export var current_bullet: PackedScene
 @export var avaliable_weapons: Array[PackedScene]
 var weapon_stack: Array[Weapon] = []  # To hold instantiated Weapon nodes
@@ -14,17 +16,14 @@ func _ready() -> void:
 		weapon_stack.append(weapon)
 		switch_weapon()
 
-
 func switch_weapon():
 	if weapon_stack.size() == 0:
 		print("No weapons available to switch.")
 		return
 
-
 	# Find the next weapon index in a circular fashion
 	var current_index = weapon_stack.find(current_weapon)
 	var next_index = (current_index + 1) % weapon_stack.size()
-
 
 	# Only keep the current weapon visible
 	for w in weapon_stack:
@@ -32,11 +31,14 @@ func switch_weapon():
 			remove_child(w)
 			print("brisem ", w,w.get_parent())
 
-
 	# Switch visibility and set the new weapon
 	current_weapon = weapon_stack[next_index]
 	add_child(current_weapon)
 
+	#update ammo and magazine count
+	current_weapon.current_ammo.emit(current_weapon.WEAPON.current_mag_ammo)
+	current_weapon.current_magazines.emit(current_weapon.WEAPON.current_mags)
+	weapon_switched.emit()
 	print("Switched to weapon:", current_weapon.name)
 
 func _input(event: InputEvent) -> void:
