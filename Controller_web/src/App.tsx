@@ -25,13 +25,13 @@ export function App() {
     );
   }
 
-  // if (view == "controller") {
-  return (
-    <Controller
-      setMenu={() => {
-        setView("main");
-      }}
-    />
-  );
-  // }
+  if (view == "controller") {
+    return (
+      <Controller
+        setMenu={() => {
+          setView("main");
+        }}
+      />
+    );
+  }
 }

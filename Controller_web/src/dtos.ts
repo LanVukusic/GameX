@@ -33,10 +33,15 @@ export interface JoinMessage extends ControllerMessage {
   color: string;
 }
 
+export interface SwitchWeapon extends ControllerMessage {
+  t: "switch_w";
+}
+
 export type MSG =
   | MoveMessage
   | LookMessage
   | LightMessage
   | JoinMessage
   | ShootMessage
-  | ReloadMessage;
+  | ReloadMessage
+  | SwitchWeapon;

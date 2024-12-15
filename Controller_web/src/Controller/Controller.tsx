@@ -3,6 +3,7 @@ import {
   Button,
   Grid,
   Group,
+  LoadingOverlay,
   Stack,
   useMantineTheme,
 } from "@mantine/core";
@@ -25,6 +26,7 @@ import { useGameSocket } from "../WebsocketLogic";
 import { $player } from "../store/player";
 import { DndContext } from "@dnd-kit/core";
 import { useSensorsSettings } from "../Components/DnD/UseSensors";
+import { LoaderContent } from "./Loader";
 
 const THROTTLE = 10; // ms for debounce
 
@@ -43,7 +45,7 @@ export const Controller = ({ setMenu }: Props) => {
   const hex = theme.colors[player.color];
 
   const activePressed = useCallback(() => {
-    console.count("active");
+    // console.count("active");
     sendMsg({
       t: "shoot",
       state: "active",
@@ -51,7 +53,7 @@ export const Controller = ({ setMenu }: Props) => {
   }, [sendMsg]);
 
   const releasePressed = useCallback(() => {
-    console.count("released");
+    // console.count("released");
     sendMsg({
       t: "shoot",
       state: "release",
@@ -81,14 +83,14 @@ export const Controller = ({ setMenu }: Props) => {
       }}
       pos="relative"
     >
-      {/* <LoadingOverlay
+      <LoadingOverlay
         visible={readyState != ReadyState.OPEN}
         overlayProps={{
           blur: 15,
           opacity: 0.9,
         }}
         loaderProps={{ children: <LoaderContent setMenu={setMenu} /> }}
-      /> */}
+      />
       {/* <ThemedShadow /> */}
 
       <Grid
@@ -136,6 +138,13 @@ export const Controller = ({ setMenu }: Props) => {
                     t: "move",
                     x: data.x || 0,
                     y: data.y || 0,
+                  });
+                }}
+                stop={() => {
+                  sendMsg({
+                    t: "move",
+                    x: 0,
+                    y: 0,
                   });
                 }}
               />
