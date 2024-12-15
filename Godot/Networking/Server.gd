@@ -1,19 +1,25 @@
 # @tool
 extends Node
 
+
+@export_category("UI")
+@export var uIManager: UIManager
+
+@export_category("Positioning and players")
 @export var players: Dictionary = {}
-
-# The port we will listen to
-const PORT = 9999
-
 @export var player_root: Node2D
+
+
+@export_category("NETWORK")
+# The port we will listen to
+var PORT = 9999
+
 # Our WebSocketServer instance
 var _server = WebSocketMultiplayerPeer.new()
 var playerScene = preload("res://Entities/Player/Player.tscn")
 
 
 func _ready():
-	
 	# Connect base signals to get notified of new client connections,
 	# disconnections, and disconnect requests.
 	_server.peer_connected.connect(_connected)
@@ -57,6 +63,7 @@ func _disconnected(id, was_clean = false):
 	if (players.has(id)):
 		players[id].queue_free()
 		players.erase(id)
+		uIManager.remove_UIPlayerNode(id)
 
 
 func handle_packet(data: Variant, peerId: int):
@@ -76,6 +83,9 @@ func handle_packet(data: Variant, peerId: int):
 		player_root.add_child(player_inst)
 		player_inst.connect.emit(Color(data["color"]), data["name"])
 		players[peerId] = player_inst
+
+		# init player UI
+		uIManager.init_UIPlayerNode(player_inst, peerId)
 		return
 
 	# Find the instantiated player associated with the current peerId

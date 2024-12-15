@@ -5,14 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://blol2ovqttua8" path="res://UI/UIPlayerNode.tscn" id="2_xax5r"]
 
 [node name="UiManager" type="CanvasLayer"]
+script = ExtResource("1_awckq")
+PlayerUIScene = ExtResource("2_xax5r")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 theme = ExtResource("1_4fv8n")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="UIRoot" type="HBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("1_4fv8n")
-script = ExtResource("1_awckq")
-PlayerUIScene = ExtResource("2_xax5r")
