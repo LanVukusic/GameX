@@ -81,7 +81,7 @@ func handle_packet(data: Variant, peerId: int):
 		player_inst.visible = true
 		player_inst.multiplayerId = peerId
 		player_root.add_child(player_inst)
-		player_inst.connect.emit(Color(data["color"]), data["name"])
+		player_inst.joined.emit(Color(data["color"]), data["name"])
 		players[peerId] = player_inst
 
 		# init player UI

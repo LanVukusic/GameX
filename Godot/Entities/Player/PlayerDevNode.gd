@@ -4,9 +4,14 @@ class_name PlayerDevNode
 var player: Player
 
 @export_category("THIS IS AN OVERRIDE FOR NETWORKED CONTROLLS")
+@export var player_name: String
+@export var color: Color
+@export var uIManager: UIManager
 
 func _ready() -> void:
 	player = get_parent()
+	uIManager.init_UIPlayerNode(player, 0)
+	player.joined.emit(color, player_name)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
