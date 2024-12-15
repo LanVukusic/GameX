@@ -5,6 +5,8 @@ class_name UIPlayerNode
 
 @onready var ammo: Label = %AmmoValue
 @onready var mag: Label = %MagValue
+@onready var player_name: Label = %PlayerName
+@onready var color_rect: ColorRect = %Divider
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +26,19 @@ func set_curr_ammo_count(ammo_count: int):
 func set_curr_mag_count(mag_count: int):
 	mag.text = str(mag_count)
 
+func set_player_color_name(color: Color, name: String):
+	player_name.text = str(name)
+	var new_style = StyleBoxFlat.new()
+	new_style.border_color = color
+	new_style.border_width_bottom = 8
+	new_style.border_width_top = 8
+	new_style.border_width_left = 8
+	new_style.border_width_right = 8
+	self.add_theme_stylebox_override("panel", new_style)
+	color_rect.color = color
+
+
 func connect_singals():
 	connected_player.weapon_manager.current_weapon.current_ammo.connect(set_curr_ammo_count)
 	connected_player.weapon_manager.current_weapon.current_magazines.connect(set_curr_mag_count)
+	connected_player.joined.connect(set_player_color_name)

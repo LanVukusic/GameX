@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://btda7ax5atic7"]
+[gd_scene load_steps=7 format=3 uid="uid://btda7ax5atic7"]
 
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="2_oifng"]
 [ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="3_i0f0g"]
 [ext_resource type="PackedScene" uid="uid://cb4lh3a0xlxc" path="res://Networking/socket_server.tscn" id="4_5k5dy"]
 [ext_resource type="PackedScene" uid="uid://cj6py650hlmmx" path="res://UI/UiManager.tscn" id="5_164ts"]
+[ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="5_fx4rq"]
+[ext_resource type="Script" path="res://Entities/Player/PlayerDevNode.gd" id="6_t3xy7"]
 
 [node name="Test" type="Node2D"]
 
@@ -20,4 +22,14 @@ min_zoom = 0.465
 
 [node name="SocketServer" parent="." node_paths=PackedStringArray("uIManager", "player_root") instance=ExtResource("4_5k5dy")]
 uIManager = NodePath("../UiManager")
+players = {}
 player_root = NodePath("..")
+
+[node name="Player" parent="." instance=ExtResource("5_fx4rq")]
+color = Color(6.73831e-07, 0.416694, 0.661711, 1)
+
+[node name="PlayerDevNode" type="Node2D" parent="Player" node_paths=PackedStringArray("uIManager")]
+script = ExtResource("6_t3xy7")
+player_name = "Pokahontas mlajši"
+color = Color(0.885803, 3.36915e-07, 0.446758, 1)
+uIManager = NodePath("../../UiManager")
