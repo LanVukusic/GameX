@@ -26,7 +26,7 @@ import { $player } from "../store/player";
 import { DndContext } from "@dnd-kit/core";
 import { useSensorsSettings } from "../Components/DnD/UseSensors";
 
-const THROTTLE = 200; // ms for debounce
+const THROTTLE = 10; // ms for debounce
 
 interface Props {
   setMenu: () => void;
@@ -191,6 +191,8 @@ export const Controller = ({ setMenu }: Props) => {
                 radius={80}
                 reportDebounce={THROTTLE}
                 move={(x, y) => {
+                  console.log(x, y);
+
                   sendMsg({
                     t: "look",
                     x: x,

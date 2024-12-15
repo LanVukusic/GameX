@@ -12,7 +12,7 @@ export const Inventory = () => {
       <Flex
         direction="column"
         h="100vh"
-        p="xs"
+        py="md"
         gap="sm"
         style={{
           touchAction: "manipulation",
@@ -21,7 +21,7 @@ export const Inventory = () => {
         <WeaponInventory name="Jansa Cannon" />
         <DragOverlay>
           <DraggableItem key={0} name={"0"}>
-            <img src="/vite.svg" width="100%"></img>
+            {/* <img src="/vite.svg" width="100%"></img> */}
           </DraggableItem>
         </DragOverlay>
         <ScrollArea
@@ -30,13 +30,12 @@ export const Inventory = () => {
           scrollbarSize={26}
           style={{
             overflowX: "hidden",
-            // overflowY: "scroll",
             flex: 1,
           }}
         >
           <SimpleGrid cols={5} pr="xl">
             {[1, 23, 4, 1, 2, 3, 1, 2, 3, 4, 1, 2, 3, 1, 2, 3, 4, 1, 3].map(
-              (val, i) => (
+              (_, i) => (
                 <DraggableItem key={i} name={i.toString()}>
                   <img
                     src={`/game_exports/bullet_${(i % 3) + 1}.png`}

@@ -1,0 +1,8 @@
+html,
+body {
+  touch-action: none; /* Disable default touch behaviors */
+  overscroll-behavior: none; /* Prevent pull-to-refresh or overscroll effects */
+  user-select: none; /* Prevent text selection */
+  -webkit-user-drag: none; /* Disable dragging */
+  -webkit-touch-callout: none; /* Disable touch menu */
+}
