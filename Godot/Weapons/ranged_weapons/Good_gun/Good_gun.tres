@@ -5,9 +5,9 @@
 [resource]
 script = ExtResource("1_t3svt")
 name = "Good_gun"
-current_mags = 5
-magazine_capacity = 30
-current_mag_ammo = 30
+current_mags = 11
+magazine_capacity = 111
+current_mag_ammo = 111
 reload_time = 0.5
 fire_rate = 0.5
 is_automatic = true

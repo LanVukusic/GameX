@@ -12,6 +12,7 @@ func _ready() -> void:
 	player = get_parent()
 	uIManager.init_UIPlayerNode(player, 0)
 	player.joined.emit(color, player_name)
+	player.weapon_manager.update_ui()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

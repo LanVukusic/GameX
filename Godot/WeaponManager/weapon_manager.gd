@@ -15,10 +15,14 @@ func _ready() -> void:
 		var weapon = w.instantiate() as Weapon
 		add_child(weapon)
 		weapon_stack.append(weapon)
-		switch_weapon()
-
+	
 	switch_weapons_pressed.connect(switch_weapon)
+	switch_weapon()
 
+func update_ui():
+		#update ammo and magazine count
+	current_weapon.current_ammo.emit(current_weapon.WEAPON.current_mag_ammo)
+	current_weapon.current_magazines.emit(current_weapon.WEAPON.current_mags)
 
 func switch_weapon():
 	if weapon_stack.size() == 0:
@@ -39,10 +43,8 @@ func switch_weapon():
 	current_weapon = weapon_stack[next_index]
 	add_child(current_weapon)
 
-	#update ammo and magazine count
-	current_weapon.current_ammo.emit(current_weapon.WEAPON.current_mag_ammo)
-	current_weapon.current_magazines.emit(current_weapon.WEAPON.current_mags)
 	weapon_switched.emit()
+	update_ui()
 	print("Switched to weapon:", current_weapon.name)
 
 func _input(event: InputEvent) -> void:
