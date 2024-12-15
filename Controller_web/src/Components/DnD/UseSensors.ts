@@ -1,8 +1,9 @@
-import { useSensor, MouseSensor, TouchSensor, useSensors } from "@dnd-kit/core";
+import { useSensor, MouseSensor, useSensors } from "@dnd-kit/core";
+import { MultiTouchSensor } from "./TouchSensor";
 
 export const useSensorsSettings = () => {
   const mouseSensor = useSensor(MouseSensor);
-  const touchSensor = useSensor(TouchSensor, {
+  const touchSensor = useSensor(MultiTouchSensor, {
     activationConstraint: {
       delay: 0,
       tolerance: 500,

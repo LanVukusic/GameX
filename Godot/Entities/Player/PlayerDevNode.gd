@@ -34,7 +34,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Lamp"):
 		player.lamp.emit()
 	
-
+	if event.is_action_pressed("WeaponSwitch"):
+		player.weapon_manager.switch_weapons_pressed.emit()
+	
 
 # only allow to be a parent of th player
 func _get_configuration_warnings() -> PackedStringArray:
