@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://b4webqe3ocltu"]
+
+[ext_resource type="Script" path="res://weapon_resource.gd" id="1_dptjn"]
+
+[resource]
+script = ExtResource("1_dptjn")
+name = "Placeholder_gun"
+current_mags = 5
+magazine_capacity = 30
+current_mag_ammo = 30
+reload_time = 1.0
+fire_rate = 0.1
+is_automatic = true
+damage_per_shot = 0.0
+weapon_range = 0.0
+bullet_spread = 0.0

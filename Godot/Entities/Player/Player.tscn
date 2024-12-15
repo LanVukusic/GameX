@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
-[ext_resource type="PackedScene" uid="uid://cq03uiuupo6ef" path="res://Weapon/Weapon.tscn" id="2_t0cl3"]
-[ext_resource type="Script" path="res://Entities/HUD_test.gd" id="3_u85e4"]
+[ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
 [ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="4_64k0y"]
+[ext_resource type="Script" path="res://Entities/Player/PlayerDevNode.gd" id="6_6fham"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 33.99
@@ -26,9 +26,8 @@ up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
 weapon_manager = NodePath("WeaponManager")
 
-[node name="WeaponManager" parent="." instance=ExtResource("2_t0cl3")]
+[node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]
 position = Vector2(-30, 0)
-scale = Vector2(0.165, 0.165)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
@@ -45,45 +44,12 @@ texture = SubResource("GradientTexture2D_kwrs8")
 shape = SubResource("CircleShape2D_kpki2")
 debug_color = Color(0.968627, 0, 0, 0.419608)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-script = ExtResource("3_u85e4")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-text = "Weapon:"
-
-[node name="CurrentWeapon" type="Label" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-text = "Ammo:"
-
-[node name="Ammo" type="Label" parent="CanvasLayer/VBoxContainer"]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer2"]
-layout_mode = 2
-text = "Mag:"
-
-[node name="Magasine" type="Label" parent="CanvasLayer/HBoxContainer2"]
-layout_mode = 2
-
 [node name="ModulatableSprite" type="Sprite2D" parent="."]
 z_index = 1
 scale = Vector2(0.157182, 0.148918)
 texture = ExtResource("4_64k0y")
+
+[node name="PlayerDevNode" type="Node2D" parent="."]
+script = ExtResource("6_6fham")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

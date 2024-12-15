@@ -16,7 +16,7 @@ size = Vector2(64, 248)
 
 [node name="ProjectileTester" type="Node2D" node_paths=PackedStringArray("projectile_transform")]
 script = ExtResource("1_ggvl1")
-fire_rate_sec = 2.0
+fire_rate_sec = 0.3
 projectile_speed = 600.0
 projectile_transform = NodePath("RayCast2D")
 projectile_stack = Array[PackedScene]([ExtResource("2_4xljp"), ExtResource("2_ck1bx"), ExtResource("3_3fpng"), ExtResource("3_3fpng"), ExtResource("2_4xljp"), ExtResource("3_3fpng")])

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://cr8topnu8vra5"]
+
+[ext_resource type="Script" path="res://weapon_resource.gd" id="1_c2kmi"]
+
+[resource]
+script = ExtResource("1_c2kmi")
+name = "Jansa Gun"
+current_mags = 2
+magazine_capacity = 500
+current_mag_ammo = 500
+reload_time = 0.1
+fire_rate = 0.01
+is_automatic = true
+damage_per_shot = 0.0
+weapon_range = 0.0
+bullet_spread = 0.0
