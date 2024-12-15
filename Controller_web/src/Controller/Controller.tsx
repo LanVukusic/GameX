@@ -128,21 +128,14 @@ export const Controller = ({ setMenu }: Props) => {
             </Button>
             <Stack align="center">
               <ThemedJoystick
-                id="move"
-                radius={80}
-                stop={() => {
+                size={180}
+                stickSize={40}
+                throttle={THROTTLE}
+                move={(data) => {
                   sendMsg({
                     t: "move",
-                    x: 0.0,
-                    y: 0.0,
-                  });
-                }}
-                reportDebounce={THROTTLE}
-                move={(x, y) => {
-                  sendMsg({
-                    t: "move",
-                    x: x,
-                    y: y,
+                    x: data.x || 0,
+                    y: data.y || 0,
                   });
                 }}
               />
@@ -187,16 +180,14 @@ export const Controller = ({ setMenu }: Props) => {
             </Group>
             <Stack align="center">
               <ThemedJoystick
-                id="look"
-                radius={80}
-                reportDebounce={THROTTLE}
-                move={(x, y) => {
-                  console.log(x, y);
-
+                size={180}
+                stickSize={40}
+                throttle={THROTTLE}
+                move={(data) => {
                   sendMsg({
                     t: "look",
-                    x: x,
-                    y: y,
+                    x: data.x || 0,
+                    y: data.y || 0,
                   });
                 }}
               />
