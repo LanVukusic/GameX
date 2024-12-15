@@ -26,4 +26,3 @@ player_root = NodePath("..")
 [node name="Player" parent="." instance=ExtResource("4_ts4xw")]
 
 [node name="Ui" parent="." instance=ExtResource("5_d60vu")]
-offset_right = 10.0

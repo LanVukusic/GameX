@@ -1,31 +1,127 @@
-[gd_scene format=3 uid="uid://blol2ovqttua8"]
+[gd_scene load_steps=4 format=3 uid="uid://blol2ovqttua8"]
 
-[node name="Ui" type="Control"]
+[ext_resource type="Texture2D" uid="uid://cgk5i7qqvjqs1" path="res://icon.png" id="1_0ib43"]
+[ext_resource type="Theme" uid="uid://ceocg1w7yon5p" path="res://UI/ingame_ui_theme.tres" id="1_f6xfl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_632t8"]
+bg_color = Color(0.92, 0.7544, 0.8096, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.698335, 0, 0.18187, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Container" type="Control"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_f6xfl")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 378.0
+offset_bottom = 148.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_632t8")
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_right = 15
-
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/PanelContainer/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
 layout_mode = 2
 
-[node name="Ammo" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="GridContainer" type="GridContainer" parent="Panel/MarginContainer"]
 layout_mode = 2
-text = "Ammo:"
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 2
 
-[node name="Magazines" type="Label" parent="CanvasLayer/PanelContainer/MarginContainer/GridContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/GridContainer"]
 layout_mode = 2
-text = "Magazines:"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/GridContainer/MarginContainer"]
+modulate = Color(0.894827, 0.572637, 0.590951, 1)
+layout_mode = 2
+texture = ExtResource("1_0ib43")
+expand_mode = 2
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "Lanzy"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+alignment = 2
+
+[node name="HPValue" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "95"
+
+[node name="HPLabel" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer/HBoxContainer3"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "hp"
+
+[node name="ColorRect" type="ColorRect" parent="Panel/MarginContainer/GridContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(0.781938, 0, 0.316684, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/GridContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="AmmoBox" type="VBoxContainer" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AmmoLabel" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2/AmmoBox"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Ammo
+"
+
+[node name="AmmoValue" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2/AmmoBox"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "180"
+
+[node name="AmmoBox2" type="VBoxContainer" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AmmoLabel" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2/AmmoBox2"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Magazines"
+
+[node name="AmmoValue" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2/AmmoBox2"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "15"
+
+[node name="AmmoBox3" type="VBoxContainer" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="AmmoLabel" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2/AmmoBox3"]
+layout_mode = 2
+theme_type_variation = &"TooltipLabel"
+text = "Nekaj"
+
+[node name="AmmoValue" type="Label" parent="Panel/MarginContainer/GridContainer/VBoxContainer/HBoxContainer2/AmmoBox3"]
+layout_mode = 2
+theme_type_variation = &"HeaderMedium"
+text = "5"
