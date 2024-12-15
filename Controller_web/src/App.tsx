@@ -9,32 +9,6 @@ export function App() {
   const [view, setView] = useState<links>("controller");
   const { toggle, fullscreen } = useFullscreen();
 
-  document.addEventListener(
-    "dblclick",
-    (event) => {
-      event.preventDefault();
-    },
-    { passive: false }
-  );
-
-  // Prevent pinch-zoom
-  document.addEventListener(
-    "gesturestart",
-    (event) => {
-      event.preventDefault();
-    },
-    { passive: false }
-  );
-
-  // Prevent touch scrolling
-  document.addEventListener(
-    "touchmove",
-    (event) => {
-      event.preventDefault();
-    },
-    { passive: false }
-  );
-
   useEffect(() => {
     if (view == "main" && fullscreen) {
       toggle();
