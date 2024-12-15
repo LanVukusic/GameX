@@ -1,9 +1,11 @@
 extends Node2D
 class_name WeaponManager
 
+
+signal switch_weapons_pressed
 #@export var current_bullet: PackedScene
 @export var avaliable_weapons: Array[PackedScene]
-var weapon_stack: Array[Weapon] = []  # To hold instantiated Weapon nodes
+var weapon_stack: Array[Weapon] = [] # To hold instantiated Weapon nodes
 @export var current_weapon: Weapon = null
 
 func _ready() -> void:
@@ -13,6 +15,8 @@ func _ready() -> void:
 		add_child(weapon)
 		weapon_stack.append(weapon)
 		switch_weapon()
+
+	switch_weapons_pressed.connect(switch_weapon)
 
 
 func switch_weapon():
@@ -28,9 +32,9 @@ func switch_weapon():
 
 	# Only keep the current weapon visible
 	for w in weapon_stack:
-		if(w.get_parent() != null):
+		if (w.get_parent() != null):
 			remove_child(w)
-			print("brisem ", w,w.get_parent())
+			print("brisem ", w, w.get_parent())
 
 
 	# Switch visibility and set the new weapon
@@ -41,7 +45,7 @@ func switch_weapon():
 
 func _input(event: InputEvent) -> void:
 	# Listen for input to switch weapons
-	if event.is_action_pressed("WeaponSwitch"):
-		switch_weapon()
+	# if event.is_action_pressed("WeaponSwitch"):
+	# 	switch_weapon()
 	if event.is_action_pressed("CheckTree"):
 		print_tree()

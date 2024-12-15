@@ -94,13 +94,16 @@ func handle_packet(data: Variant, peerId: int):
 			return
 
 		"reload":
-			player_inst.weapon_manager.reload_active.emit()
+			player_inst.weapon_manager.current_weapon.reload_active.emit()
+		
+		"switch_w":
+			player_inst.weapon_manager.switch_weapons_pressed.emit()
 
 		"shoot":
 			if (data["state"] == "active"):
-				player_inst.weapon_manager.shoot_active.emit()
+				player_inst.weapon_manager.current_weapon.shoot_pressed.emit()
 			if (data["state"] == "release"):
-				player_inst.weapon_manager.shoot_release.emit()
+				player_inst.weapon_manager.current_weapon.shoot_released.emit()
 
 		"light":
 			player_inst.lamp.emit()

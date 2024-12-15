@@ -27,3 +27,6 @@ player_root = NodePath("..")
 
 [node name="Ui" parent="." instance=ExtResource("5_d60vu")]
 offset_right = 10.0
+
+[node name="SocketServer2" parent="." instance=ExtResource("4_5k5dy")]
+players = {}
