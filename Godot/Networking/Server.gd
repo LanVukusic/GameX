@@ -18,7 +18,6 @@ var PORT = 9999
 var _server = WebSocketMultiplayerPeer.new()
 var playerScene = preload("res://Entities/Player/Player.tscn")
 
-
 func _ready():
 	# Connect base signals to get notified of new client connections,
 	# disconnections, and disconnect requests.
@@ -81,11 +80,11 @@ func handle_packet(data: Variant, peerId: int):
 		player_inst.visible = true
 		player_inst.multiplayerId = peerId
 		player_root.add_child(player_inst)
-		player_inst.connect.emit(Color(data["color"]), data["name"])
 		players[peerId] = player_inst
 
 		# init player UI
 		uIManager.init_UIPlayerNode(player_inst, peerId)
+		player_inst.joined.emit(Color(data["color"]), data["name"])
 		return
 
 	# Find the instantiated player associated with the current peerId

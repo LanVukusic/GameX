@@ -15,7 +15,7 @@ extends CharacterBody2D
 
 @export var weapon_manager: WeaponManager
 
-signal connect(color: Color, name: String)
+signal joined(color: Color, name: String)
 signal moveVec(vec: Vector2)
 signal lookVec(vec: Vector2)
 signal lamp()
@@ -42,7 +42,7 @@ func _ready() -> void:
 	moveVec.connect(set_input_direction)
 	lookVec.connect(set_look_direction)
 	lamp.connect(toggle_lamp)
-	connect.connect(conn)
+	joined.connect(conn)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
