@@ -17,6 +17,7 @@ func init_UIPlayerNode(player: Player, peerId: int):
 	PlayerUINode.connect_singals()
 	uiRoot.add_child(PlayerUINode)
 	nodesToIds[peerId] = PlayerUINode
+	print("initing playyer ", player.name, " with id ", peerId)
 
 func remove_UIPlayerNode(peerId: int):
 	nodesToIds[peerId].queue_free()

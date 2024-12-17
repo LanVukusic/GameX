@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://CustomResourcesTemplates/weapon_resource.gd" id="1_c2kmi"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_c2kmi")
 name = "Jansa Gun"
 current_mags = 2

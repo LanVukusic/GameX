@@ -4,19 +4,26 @@ class_name PlayerDevNode
 var player: Player
 
 @export_category("THIS IS AN OVERRIDE FOR NETWORKED CONTROLLS")
+@export var disable_controlls: bool = false
+
 @export var player_name: String
 @export var color: Color
 @export var uIManager: UIManager
+@export var peerId:int
 
 func _ready() -> void:
 	player = get_parent()
-	uIManager.init_UIPlayerNode(player, 0)
+	uIManager.init_UIPlayerNode(player, peerId)
 	player.joined.emit(color, player_name)
 	player.weapon_manager.update_ui()
+	print(player.name)
+	print(color, player_name)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
+	if disable_controlls:
+		return
 	# looking
 	var look_dir = get_global_mouse_position() - global_position
 	player.lookVec.emit(look_dir)
@@ -27,6 +34,8 @@ func _physics_process(_delta: float) -> void:
 
 # button events
 func _input(event: InputEvent) -> void:
+	if disable_controlls:
+		return
 	if event.is_action_pressed("Shoot"):
 		player.weapon_manager.current_weapon.shoot_pressed.emit()
 

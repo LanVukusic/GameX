@@ -3,9 +3,9 @@ extends CharacterBody2D
 
 @export_category("DEBUG AND DEV")
 @export var DEBUG_EnemyTest: Node2D
+var multiplayerId: int
 
 @export_category("Movement config")
-@export var multiplayerId: int = 0
 @export var color: Color
 
 
@@ -35,17 +35,24 @@ func toggle_lamp():
 	$PointLight2D.enabled = !$PointLight2D.enabled
 
 func conn(col: Color, _name: String):
+	print("joined")
 	color = col
 	$ModulatableSprite.modulate = col
+	self.name = _name
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+
+func _init() -> void:
 	moveVec.connect(set_input_direction)
 	lookVec.connect(set_look_direction)
 	lamp.connect(toggle_lamp)
 	joined.connect(conn)
+	
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	# stats = GeneralStats.new() # v razmislek
 	stats.death.connect(_on_death)
 	stats.heal(stats.max_health)
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
@@ -58,9 +65,9 @@ func new(id: int):
 
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group("Enemy"):
-		print("Collided")
+		print("Collided", name)
 		var areaDamage = 5
-		stats.health -= areaDamage
+		stats.take_damage(areaDamage)
 	pass # Replace with function body.
 
 func _on_death() -> void:

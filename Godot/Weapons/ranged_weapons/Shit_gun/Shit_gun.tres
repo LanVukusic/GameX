@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://CustomResourcesTemplates/weapon_resource.gd" id="1_8nx3p"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_8nx3p")
 name = "Shit_gun"
 current_mags = 3

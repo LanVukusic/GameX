@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://CustomResourcesTemplates/stats.gd" id="1_37687"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_37687")
 max_health = 255
 move_speed = 300
