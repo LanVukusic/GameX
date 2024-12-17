@@ -19,16 +19,11 @@ func _ready() -> void:
 	switch_weapons_pressed.connect(switch_weapon)
 	switch_weapon()
 
-func update_ui():
-		#update ammo and magazine count
-	current_weapon.WEAPON.magazine_change.emit(current_weapon.WEAPON.current_mag_ammo)
-	current_weapon.WEAPON.ammo_change.emit(current_weapon.WEAPON.current_mags)
 
 func switch_weapon():
 	if weapon_stack.size() == 0:
 		print("No weapons available to switch.")
 		return
-
 	# Find the next weapon index in a circular fashion
 	var current_index = weapon_stack.find(current_weapon)
 	var next_index = (current_index + 1) % weapon_stack.size()
@@ -38,13 +33,14 @@ func switch_weapon():
 		if (w.get_parent() != null):
 			remove_child(w)
 			print("brisem ", w, w.get_parent())
-
 	# Switch visibility and set the new weapon
 	current_weapon = weapon_stack[next_index]
 	add_child(current_weapon)
 
+	current_weapon.is_shoot_pressed = false
 	weapon_switched.emit()
-	update_ui()
+	current_weapon.WEAPON.force_signal()
+	
 	print("Switched to weapon:", current_weapon.name)
 
 func _input(event: InputEvent) -> void:

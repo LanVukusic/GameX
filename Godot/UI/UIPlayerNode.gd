@@ -13,6 +13,7 @@ class_name UIPlayerNode
 func _ready() -> void:
 	connected_player.weapon_manager.weapon_switched.connect(connect_singals)
 	connect_singals()
+	connected_player.weapon_manager.current_weapon.WEAPON.force_signal()
 
 func set_curr_ammo_count(ammo_count: int):
 	ammo.text = str(ammo_count)

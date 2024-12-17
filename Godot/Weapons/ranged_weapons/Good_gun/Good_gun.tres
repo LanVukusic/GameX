@@ -6,7 +6,7 @@
 resource_local_to_scene = true
 script = ExtResource("1_t3svt")
 name = "Good_gun"
-max_magazines = 0
+max_magazines = 5
 magazine_capacity = 30
 reload_time = 0.5
 fire_rate = 0.5

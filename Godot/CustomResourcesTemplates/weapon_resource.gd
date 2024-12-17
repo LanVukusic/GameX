@@ -15,7 +15,6 @@ var resource: Resource
 @export_category("All ammunition")
 @export var max_magazines: int
 
-
 var current_mags: int:
 	set(value):
 		clampi(value, 0, max_magazines)
@@ -46,10 +45,23 @@ var current_mag_ammo: int:
 #The spread of bullets
 @export var bullet_spread: float
 
-func change_ammo(amount: int):
-	current_mag_ammo -= amount
-
 
 func init_weapon_values():
 	current_mag_ammo = magazine_capacity
+	current_mags = max_magazines
 	pass
+
+func change_magazine_count(amount: int):
+	current_mags += amount
+
+func change_ammo_count(amount: int):
+	current_mag_ammo += amount
+
+func replenish_ammo():
+	current_mag_ammo = magazine_capacity
+
+
+func force_signal() -> void:
+	ammo_change.emit(current_mag_ammo)
+	magazine_change.emit(current_mags)
+	print("nahhh dont do it")

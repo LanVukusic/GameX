@@ -25,23 +25,14 @@ func _ready() -> void:
 	reload_active.connect(reload)
 	shoot_pressed.connect(on_shoot_active)
 	shoot_released.connect(on_shoot_relase)
-	
-	#intialise fire_timer
-	fire_timer = Timer.new()
-	fire_timer.name = "FireTimer"
-	fire_timer.one_shot = true
-	fire_timer.timeout.connect(_on_fire_timer_timeout)
-	add_child(fire_timer)
-	
-	#initialise reload_timer
-	reload_timer = Timer.new()
-	reload_timer.name = "ReloadTimer"
-	reload_timer.one_shot = true
-	reload_timer.timeout.connect(_on_reload_timeout)
-	add_child(reload_timer)
-	
 	WEAPON.init_weapon_values()
 	
+	#intialise fire_timer
+	init_fire_timer()
+	#initialise reload_timer
+	init_reload_timer()
+
+
 func _process(_delta: float) -> void:
 	pass
 
@@ -49,10 +40,8 @@ func _physics_process(_delta: float) -> void:
 	if  is_shoot_pressed and WEAPON.is_automatic:
 		fire()
 
-
 func _on_fire_timer_timeout():
 	can_shoot = true
-
 
 #inputs
 func on_shoot_active() -> void:
@@ -62,7 +51,21 @@ func on_shoot_active() -> void:
 func on_shoot_relase() -> void:
 	is_shoot_pressed = false
 
-func fire():
+func init_fire_timer() -> void:
+	fire_timer = Timer.new()
+	fire_timer.name = "FireTimer"
+	fire_timer.one_shot = true
+	fire_timer.timeout.connect(_on_fire_timer_timeout)
+	add_child(fire_timer)
+
+func init_reload_timer() -> void:
+	reload_timer = Timer.new()
+	reload_timer.name = "ReloadTimer"
+	reload_timer.one_shot = true
+	reload_timer.timeout.connect(_on_reload_timeout)
+	add_child(reload_timer)
+
+func fire() -> void:
 	if can_shoot and current_weapon_state == weapon_state.READY:
 		# Decrement ammo and instantiate the bullet
 		if WEAPON.current_mag_ammo <= 0:
@@ -76,10 +79,10 @@ func fire():
 		
 		can_shoot = false
 		fire_timer.start(WEAPON.fire_rate)
-		WEAPON.current_mag_ammo -= 1
+		WEAPON.change_ammo_count(-1)
 		print("Ammo left:", WEAPON.current_mag_ammo)
 
-func reload():
+func reload() -> void: 
 	if current_weapon_state == weapon_state.RELOADING:
 		print("Already reloading.")
 		return
@@ -92,8 +95,8 @@ func reload():
 	reload_timer.start(WEAPON.reload_time)
 	print("Reloading...")
 
-func _on_reload_timeout():
-	WEAPON.current_mags -= 1
-	WEAPON.current_mag_ammo = WEAPON.magazine_capacity
+func _on_reload_timeout() -> void:
+	WEAPON.change_magazine_count(-1)
+	WEAPON.replenish_ammo()
 	current_weapon_state = weapon_state.READY
 	print("Reload complete. Magazines left:", WEAPON.current_mags)
