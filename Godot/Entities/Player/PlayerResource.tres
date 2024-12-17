@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="GeneralStats" load_steps=2 format=3 uid="uid://dy2cmdua6gms6"]
+
+[ext_resource type="Script" path="res://CustomResourcesTemplates/stats.gd" id="1_37687"]
+
+[resource]
+script = ExtResource("1_37687")
+max_health = 255
+move_speed = 300

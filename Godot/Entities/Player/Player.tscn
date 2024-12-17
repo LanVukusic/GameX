@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=9 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
+[ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
 [ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
 [ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="4_64k0y"]
 
@@ -23,6 +24,7 @@ radius = 30.55
 z_index = 10
 up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
+stats = ExtResource("2_dshqb")
 weapon_manager = NodePath("WeaponManager")
 
 [node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]

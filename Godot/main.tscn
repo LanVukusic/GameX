@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=4 uid="uid://beprtmqmivbc"]
+[gd_scene load_steps=21 format=4 uid="uid://beprtmqmivbc"]
 
 [ext_resource type="PackedScene" uid="uid://u15020rsa6mw" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="4_x7123"]
 [ext_resource type="Texture2D" uid="uid://cobuypvovcmdu" path="res://ExternalAssets/RF_Catacombs_v1.0/mainlevbuild.png" id="6_8kioe"]
 [ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Enemies/Zergling.tscn" id="7_hlqnb"]
+[ext_resource type="Script" path="res://CustomResourcesTemplates/stats.gd" id="7_p42fc"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="7_uji80"]
 [ext_resource type="Script" path="res://Entities/Player/PlayerDevNode.gd" id="8_lyedq"]
 [ext_resource type="PackedScene" uid="uid://db6l50gqap81g" path="res://Enemies/Boid.tscn" id="8_xs35m"]
+[ext_resource type="PackedScene" uid="uid://cj6py650hlmmx" path="res://UI/UiManager.tscn" id="9_liyvr"]
 
 [sub_resource type="Environment" id="Environment_r0amb"]
 background_energy_multiplier = 0.0
@@ -1177,6 +1179,11 @@ size = Vector2(999, 405)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_p2p0g"]
 size = Vector2(28, 1)
 
+[sub_resource type="Resource" id="Resource_yemla"]
+script = ExtResource("7_p42fc")
+max_health = 100
+move_speed = 300
+
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_r0amb")
 compositor = SubResource("Compositor_aw3xq")
@@ -1189,6 +1196,8 @@ player_padding = 140
 
 [node name="MapGenerator" parent="." instance=ExtResource("4_bs0r5")]
 position = Vector2(-360.366, -174.572)
+
+[node name="UiManager" parent="." instance=ExtResource("9_liyvr")]
 
 [node name="PlayerRoot" type="Node2D" parent="."]
 show_behind_parent = true
@@ -1295,9 +1304,14 @@ swarmArea = NodePath("../SwarmZone")
 [node name="Player" parent="." node_paths=PackedStringArray("DEBUG_EnemyTest") instance=ExtResource("7_uji80")]
 position = Vector2(1913, 1060)
 DEBUG_EnemyTest = NodePath("../Zergling")
+stats = SubResource("Resource_yemla")
 
-[node name="Node2D" type="Node2D" parent="Player"]
+[node name="PlayerDevNode" type="Node2D" parent="Player" node_paths=PackedStringArray("uIManager")]
+position = Vector2(-1913, -1060)
 script = ExtResource("8_lyedq")
+player_name = "Derpe"
+color = Color(0.775889, 0.109635, 0.499125, 1)
+uIManager = NodePath("../../UiManager")
 
 [node name="Zergling2" parent="." instance=ExtResource("7_hlqnb")]
 position = Vector2(1059, 1174)

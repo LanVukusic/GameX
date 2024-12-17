@@ -1,19 +1,14 @@
 [gd_scene load_steps=4 format=3 uid="uid://begjvnv4pcvft"]
 
-[ext_resource type="Script" path="res://Statuseffect/Speed_buff/speed_buff.gd" id="1_0v7uc"]
-[ext_resource type="Texture2D" uid="uid://c01ec2brart0r" path="res://Statuseffect/Speed_buff/{D58BAC8C-BCC1-4F23-A28F-9138AAD77430}.png" id="1_usc2v"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ftcca"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_iw38u"]
-radius = 42.107
+[sub_resource type="Gradient" id="Gradient_hwfmm"]
 
-[node name="SpeedBuff" type="Area2D"]
-script = ExtResource("1_0v7uc")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_b5b7q"]
+gradient = SubResource("Gradient_hwfmm")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.35124, 0.35124)
-texture = ExtResource("1_usc2v")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_iw38u")
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[node name="SpeedBuff" type="GPUParticles2D"]
+process_material = SubResource("ParticleProcessMaterial_ftcca")
+texture = SubResource("GradientTexture1D_b5b7q")

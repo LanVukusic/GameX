@@ -5,15 +5,16 @@ extends CharacterBody2D
 @export var DEBUG_EnemyTest: Node2D
 
 @export_category("Movement config")
-@export var moveSpeed: float = 400
 @export var multiplayerId: int = 0
 @export var color: Color
 
-@export var maxHealth: int = 100
-@export var curHealth: int = maxHealth
 
-
+@export_category("Systems")
+@export var stats: GeneralStats
 @export var weapon_manager: WeaponManager
+
+@export_category("Status effects")
+@export var current_status_effects: StatusEffect
 
 signal joined(color: Color, name: String)
 signal moveVec(vec: Vector2)
@@ -43,10 +44,12 @@ func _ready() -> void:
 	lookVec.connect(set_look_direction)
 	lamp.connect(toggle_lamp)
 	joined.connect(conn)
+	stats.death.connect(_on_death)
+	stats.heal(stats.max_health)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta: float) -> void:
-	self.velocity = _input_direction * moveSpeed
+	self.velocity = _input_direction * stats.move_speed
 	move_and_slide()
 
 func new(id: int):
@@ -57,8 +60,11 @@ func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group("Enemy"):
 		print("Collided")
 		var areaDamage = 5
-		curHealth -= areaDamage
+		stats.health -= areaDamage
 	pass # Replace with function body.
+
+func _on_death() -> void:
+	self.queue_free()
 
 # Debug for testing pathfinding, goes to player when 'x' is pressed
 func _input(event):
