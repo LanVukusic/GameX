@@ -6,9 +6,8 @@
 resource_local_to_scene = true
 script = ExtResource("1_8nx3p")
 name = "Shit_gun"
-current_mags = 3
+max_magazines = 0
 magazine_capacity = 33
-current_mag_ammo = 33
 reload_time = 1.0
 fire_rate = 0.2
 is_automatic = false

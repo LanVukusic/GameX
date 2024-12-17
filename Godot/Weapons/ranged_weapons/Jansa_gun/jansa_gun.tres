@@ -6,9 +6,8 @@
 resource_local_to_scene = true
 script = ExtResource("1_c2kmi")
 name = "Jansa Gun"
-current_mags = 2
+max_magazines = 0
 magazine_capacity = 500
-current_mag_ammo = 500
 reload_time = 0.1
 fire_rate = 0.01
 is_automatic = true

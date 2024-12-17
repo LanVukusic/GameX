@@ -1,6 +1,8 @@
 extends Resource
 class_name WeaponResource
 
+signal ammo_change(ammo_count: int)
+signal magazine_change(mag_count: int)
 
 @export_category("Description")
 @export var name: String
@@ -11,12 +13,23 @@ var resource: Resource
 
 
 @export_category("All ammunition")
-# Current ammunition the player has available to reload into the weapon
-@export var current_mags: int
+@export var max_magazines: int
+
+
+var current_mags: int:
+	set(value):
+		clampi(value, 0, max_magazines)
+		current_mags = value
+		magazine_change.emit(current_mags)
+
 # Maximum ammo that can fit into the weapon's magazine (clip size)
 @export var magazine_capacity: int
 
-@export var current_mag_ammo: int
+var current_mag_ammo: int:
+	set(value):
+		clampi(value, 0, magazine_capacity)
+		current_mag_ammo = value
+		ammo_change.emit(current_mag_ammo)
 
 
 @export_category("Fire logic")
@@ -32,3 +45,11 @@ var resource: Resource
 @export var weapon_range: float
 #The spread of bullets
 @export var bullet_spread: float
+
+func change_ammo(amount: int):
+	current_mag_ammo -= amount
+
+
+func init_weapon_values():
+	current_mag_ammo = magazine_capacity
+	pass

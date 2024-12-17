@@ -15,7 +15,7 @@ func _ready() -> void:
 	player = get_parent()
 	uIManager.init_UIPlayerNode(player, peerId)
 	player.joined.emit(color, player_name)
-	player.weapon_manager.update_ui()
+	#player.weapon_manager.update_ui()
 	print(player.name)
 	print(color, player_name)
 

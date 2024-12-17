@@ -21,8 +21,8 @@ func _ready() -> void:
 
 func update_ui():
 		#update ammo and magazine count
-	current_weapon.current_ammo.emit(current_weapon.WEAPON.current_mag_ammo)
-	current_weapon.current_magazines.emit(current_weapon.WEAPON.current_mags)
+	current_weapon.WEAPON.magazine_change.emit(current_weapon.WEAPON.current_mag_ammo)
+	current_weapon.WEAPON.ammo_change.emit(current_weapon.WEAPON.current_mags)
 
 func switch_weapon():
 	if weapon_stack.size() == 0:
