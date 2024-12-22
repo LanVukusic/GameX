@@ -66,7 +66,7 @@ func new(id: int):
 func _on_hurt_box_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group("Enemy"):
 		print("Collided", name)
-		var areaDamage = 5
+		var areaDamage = 100
 		stats.take_damage(areaDamage)
 	pass # Replace with function body.
 

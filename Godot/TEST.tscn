@@ -45,7 +45,7 @@ stats = SubResource("Resource_hprkm")
 
 [node name="PlayerDevNode" type="Node2D" parent="Player" node_paths=PackedStringArray("uIManager")]
 script = ExtResource("6_ogjir")
-player_name = "Derpe"
+player_name = "Janez"
 color = Color(0.078991, 0.538643, 0.19221, 1)
 uIManager = NodePath("../../UiManager")
 peerId = 19
@@ -57,7 +57,7 @@ stats = SubResource("Resource_456e6")
 [node name="PlayerDevNode" type="Node2D" parent="Player2" node_paths=PackedStringArray("uIManager")]
 script = ExtResource("6_ogjir")
 disable_controlls = true
-player_name = "špeder"
+player_name = "Andrej"
 color = Color(0.295452, 0.383488, 0.886746, 1)
 uIManager = NodePath("../../UiManager")
 peerId = 22
