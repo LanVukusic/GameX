@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0fhoivkrish5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lem72"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 1.0
+spread = 45.315
+gravity = Vector3(0, 98, 0)
+turbulence_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_g3ifd"]
+colors = PackedColorArray(0.92549, 0.294118, 0, 1, 1, 0.0862745, 0.101961, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nvpb1"]
+gradient = SubResource("Gradient_g3ifd")
+width = 3
+height = 3
+
+[node name="Fire" type="GPUParticles2D"]
+amount = 13
+process_material = SubResource("ParticleProcessMaterial_lem72")
+texture = SubResource("GradientTexture2D_nvpb1")

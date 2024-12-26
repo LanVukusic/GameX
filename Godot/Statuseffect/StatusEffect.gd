@@ -1,10 +1,5 @@
-extends Node2D
-class_name StatusEffectHandler
+extends GPUParticles2D
 
-#keep track of effects
-
-@export var effect_stack: Array[StatusEffectBase]
-@export var player: Player = self.get_parent()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

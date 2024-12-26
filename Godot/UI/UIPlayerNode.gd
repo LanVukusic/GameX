@@ -46,5 +46,5 @@ func connect_singals():
 	if (!connected_player.joined.is_connected(set_player_color_name)):
 		connected_player.joined.connect(set_player_color_name)
 
-	if (!connected_player.stats.health_changed.is_connected(set_curr_health)):
-		connected_player.stats.health_changed.connect(set_curr_health)
+	if (!connected_player.healthcomponent.sig_health_changed.is_connected(set_curr_health)):
+		connected_player.healthcomponent.sig_health_changed.connect(set_curr_health)

@@ -1,13 +1,12 @@
-extends Node
+@tool
+extends Area2D
+
+@export var effect: StatusEffectBase
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var server = HttpServer.new()
-	server.register_router("/", MyExampleRouter.new())
-	add_child(server)	
-	server.enable_cors(["http://localhost:8060"])
-	server.start()
+	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

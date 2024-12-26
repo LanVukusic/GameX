@@ -1,11 +1,7 @@
-extends Node2D
-class_name StatusEffectHandler
+extends Area2D
+class_name HitboxComponent
 
-#keep track of effects
-
-@export var effect_stack: Array[StatusEffectBase]
-@export var player: Player = self.get_parent()
-
+@export var attack: AttackComponent
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -14,3 +10,8 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_area_entered(hurtbox: HurtboxComponent) -> void:
+		print("overlap")
+		hurtbox.relay_damage(attack)

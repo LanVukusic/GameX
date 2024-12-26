@@ -9,12 +9,11 @@ var multiplayerId: int
 @export var color: Color
 
 
-@export_category("Systems")
+@export_category("Components")
 @export var stats: GeneralStats
 @export var weapon_manager: WeaponManager
-
-@export_category("Status effects")
-@export var current_status_effects: StatusEffect
+@export var status_effect_handler: StatusEffectHandler
+@export var healthcomponent: HealthComponent
 
 signal joined(color: Color, name: String)
 signal moveVec(vec: Vector2)
@@ -49,9 +48,7 @@ func _init() -> void:
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# stats = GeneralStats.new() # v razmislek
-	stats.death.connect(_on_death)
-	stats.heal(stats.max_health)
+	healthcomponent.sig_died.connect(on_death)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,14 +60,7 @@ func new(id: int):
 	self.multiplayerId = id
 	return self
 
-func _on_hurt_box_area_entered(area: Area2D) -> void:
-	if area.owner.is_in_group("Enemy"):
-		print("Collided", name)
-		var areaDamage = 100
-		stats.take_damage(areaDamage)
-	pass # Replace with function body.
-
-func _on_death() -> void:
+func on_death() -> void:
 	self.queue_free()
 
 # Debug for testing pathfinding, goes to player when 'x' is pressed

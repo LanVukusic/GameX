@@ -1,12 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=12 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
 [ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
+[ext_resource type="PackedScene" uid="uid://bowfda5ggq87q" path="res://Statuseffect/StatusEffectHandler/StatusEffectHandler.tscn" id="3_dvtnw"]
 [ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="4_64k0y"]
+[ext_resource type="PackedScene" uid="uid://bwxuk3vv7gqr5" path="res://Components/HurtboxComponent.tscn" id="6_00wye"]
+[ext_resource type="PackedScene" uid="uid://bdwwrmef8rgss" path="res://Components/HealthComponent.tscn" id="7_tyi0w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
-radius = 33.99
+radius = 28.0
 
 [sub_resource type="Gradient" id="Gradient_nfeg3"]
 offsets = PackedFloat32Array(0, 0.704587)
@@ -17,18 +20,21 @@ gradient = SubResource("Gradient_nfeg3")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kpki2"]
-radius = 30.55
+[sub_resource type="CircleShape2D" id="CircleShape2D_q831g"]
+radius = 32.0156
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon_manager") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon_manager", "healthcomponent") groups=["Player"]]
 z_index = 10
 up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
 stats = ExtResource("2_dshqb")
 weapon_manager = NodePath("WeaponManager")
+healthcomponent = NodePath("HealthCopomnent")
+
+[node name="StatusEffectHandler" parent="." instance=ExtResource("3_dvtnw")]
 
 [node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]
-position = Vector2(-30, 0)
+position = Vector2(-40, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
@@ -39,15 +45,16 @@ scale = Vector2(18.125, 18.125)
 energy = 1.71
 texture = SubResource("GradientTexture2D_kwrs8")
 
-[node name="HurtBox" type="Area2D" parent="."]
-
-[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox"]
-shape = SubResource("CircleShape2D_kpki2")
-debug_color = Color(0.968627, 0, 0, 0.419608)
-
 [node name="ModulatableSprite" type="Sprite2D" parent="."]
 z_index = 1
 scale = Vector2(0.157182, 0.148918)
 texture = ExtResource("4_64k0y")
 
-[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("6_00wye")]
+health_component = NodePath("../HealthCopomnent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_q831g")
+
+[node name="HealthCopomnent" parent="." instance=ExtResource("7_tyi0w")]
+max_health = 200

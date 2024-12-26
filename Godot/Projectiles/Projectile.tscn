@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://brfnadljnnin1"]
+[gd_scene load_steps=12 format=3 uid="uid://brfnadljnnin1"]
 
 [ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_gwyq8"]
+[ext_resource type="PackedScene" uid="uid://qyue8owbebsh" path="res://Components/AttackComponent.tscn" id="2_rb03b"]
+[ext_resource type="PackedScene" uid="uid://j3qi7ywfh0el" path="res://Components/HitboxComponent.tscn" id="3_dn8d8"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dgaa"]
 friction = 0.5
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_2q5dv"]
-radius = 6.08276
 
 [sub_resource type="Gradient" id="Gradient_t4buc"]
 colors = PackedColorArray(0, 0, 0, 1, 0.712297, 6.16074e-06, 0.465964, 1)
@@ -31,12 +30,18 @@ emission_sphere_radius = 17.89
 angle_min = -45.0
 angle_max = 45.0
 gravity = Vector3(0, 98, 0)
-scale_min = 5.0
-scale_max = 12.0
+scale_min = 4.0
+scale_max = 4.0
 color_ramp = SubResource("GradientTexture1D_g3hco")
 turbulence_enabled = true
 turbulence_noise_strength = 0.3
 turbulence_noise_scale = 6.84
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_avkvs"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_olajc"]
+size = Vector2(10, 10)
 
 [node name="Projectile" type="RigidBody2D"]
 collision_layer = 2
@@ -44,9 +49,6 @@ mass = 0.005
 physics_material_override = SubResource("PhysicsMaterial_7dgaa")
 script = ExtResource("1_gwyq8")
 lifetime = 5.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_2q5dv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.145, 0.145)
@@ -56,3 +58,15 @@ texture = SubResource("GradientTexture2D_w66ve")
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_twyjn")
 lifetime = 0.2
+
+[node name="AttackComponent" parent="." instance=ExtResource("2_rb03b")]
+damage = 20
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("attack") instance=ExtResource("3_dn8d8")]
+attack = NodePath("../AttackComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("RectangleShape2D_avkvs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_olajc")

@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ci5xq2ydve8dd"]
+
+[node name="Poision" type="GPUParticles2D"]

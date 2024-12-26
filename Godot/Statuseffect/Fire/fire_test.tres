@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusEffectBase" load_steps=2 format=3 uid="uid://bwb286v1i3got"]
+
+[ext_resource type="Script" path="res://CustomResourcesTemplates/status_effect_base.gd" id="1_nrlo5"]
+
+[resource]
+script = ExtResource("1_nrlo5")
+name = ""
+duration = 0.0
+damage = 0
+can_expire = false
