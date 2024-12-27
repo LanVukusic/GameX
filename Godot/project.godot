@@ -24,7 +24,6 @@ window/size/viewport_height=1080
 
 Player="group for all the player instances"
 Enemy=""
-Hurtbox="A group for hurtbox and hitbox interaction"
 
 [input]
 

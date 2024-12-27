@@ -63,4 +63,4 @@ uIManager = NodePath("../../UiManager")
 peerId = 22
 
 [node name="Zergling" parent="." instance=ExtResource("8_4gdji")]
-position = Vector2(134, -7)
+position = Vector2(263, 70)

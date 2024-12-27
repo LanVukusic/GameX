@@ -55,7 +55,7 @@ func _input(event: InputEvent) -> void:
 # only allow to be a parent of th player
 func _get_configuration_warnings() -> PackedStringArray:
 	var handler = get_parent()
-	if handler.name != "Player":
+	if !handler is Player:
 		return ["Need to be attached to a player"]
 	
 	return []

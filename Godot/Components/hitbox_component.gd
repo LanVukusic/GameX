@@ -4,6 +4,7 @@ class_name HitboxComponent
 @export var attack: AttackComponent
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	area_entered.connect(_on_area_entered)
 	pass # Replace with function body.
 
 
@@ -12,6 +13,8 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_area_entered(hurtbox: HurtboxComponent) -> void:
-		print("overlap")
-		hurtbox.relay_damage(attack)
+
+func _on_area_entered(area: Area2D) -> void:
+	if area is HurtboxComponent:
+		area.relay_damage(attack)
+	pass # Replace with function body.

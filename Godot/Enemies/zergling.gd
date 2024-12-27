@@ -1,6 +1,7 @@
 extends CharacterBody2D
-
 @onready var nav : NavigationAgent2D = $NavigationAgent2D
+
+@export var health_component: HealthComponent
 
 var moving = false;
 var isAlert = false;
@@ -10,6 +11,7 @@ var lockedOn : Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	health_component.sig_died.connect(on_death)
 	pass # Replace with function body.
 
 
@@ -81,6 +83,9 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 		velocity = safe_velocity
 		move_and_slide()
 	pass # Replace with function body.
+
+func on_death():
+	self.queue_free()
 
 func _on_velocity_computed(safe_velocity: Vector2):
 	print("cumming")
