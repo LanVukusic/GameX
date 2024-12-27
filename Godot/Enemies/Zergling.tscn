@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://c87u2t2spvcmv"]
+[gd_scene load_steps=11 format=3 uid="uid://c87u2t2spvcmv"]
 
 [ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="1_bn2mq"]
 [ext_resource type="Script" path="res://Enemies/zergling.gd" id="1_pas7h"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_lwqof"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="4_n4ic5"]
 [ext_resource type="Script" path="res://Enemies/progress_bar.gd" id="5_odfca"]
+[ext_resource type="Script" path="res://Components/spawner_component.gd" id="6_r7l0g"]
+[ext_resource type="Script" path="res://Components/destroyed_component.gd" id="8_idfac"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r6nu"]
 radius = 16.0
@@ -56,7 +58,17 @@ health_component = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_qc217")
 
-[node name="ProgressBar" type="ProgressBar" parent="HurtboxComponent" node_paths=PackedStringArray("health_component")]
+[node name="SpawnerComponent" type="Node2D" parent="."]
+script = ExtResource("6_r7l0g")
+scene = null
+
+[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "health", "spawn_component")]
+script = ExtResource("8_idfac")
+actor = NodePath("..")
+health = NodePath("../HealthComponent")
+spawn_component = NodePath("../SpawnerComponent")
+
+[node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
 modulate = Color(0.94723, 0, 0.363081, 1)
 offset_left = -26.0
 offset_top = -37.0
@@ -64,6 +76,6 @@ offset_right = 26.0
 offset_bottom = -26.0
 show_percentage = false
 script = ExtResource("5_odfca")
-health_component = NodePath("../../HealthComponent")
+health_component = NodePath("../HealthComponent")
 
 [connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

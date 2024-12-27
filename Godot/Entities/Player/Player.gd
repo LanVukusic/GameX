@@ -48,7 +48,7 @@ func _init() -> void:
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	healthcomponent.sig_died.connect(on_death)
+	healthcomponent.sig_died.connect(queue_free)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,9 +59,6 @@ func _physics_process(_delta: float) -> void:
 func new(id: int):
 	self.multiplayerId = id
 	return self
-
-func on_death() -> void:
-	self.queue_free()
 
 # Debug for testing pathfinding, goes to player when 'x' is pressed
 func _input(event):

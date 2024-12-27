@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_gwyq8"]
 [ext_resource type="Material" uid="uid://dpbgp1wtumxva" path="res://Statuseffect/Fire/fire_settings.tres" id="2_lp7g3"]
-[ext_resource type="PackedScene" uid="uid://cs4g0xrl15blr" path="res://Components/AttackComponent.tscn" id="2_rb03b"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_yqadp"]
+[ext_resource type="Script" path="res://Components/attack_component.gd" id="4_yoay7"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dgaa"]
 friction = 0.5
@@ -41,12 +41,13 @@ texture = SubResource("GradientTexture2D_w66ve")
 amount = 300
 process_material = ExtResource("2_lp7g3")
 
-[node name="AttackComponent" parent="." instance=ExtResource("2_rb03b")]
-damage = 1
-
 [node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack")]
 script = ExtResource("3_yqadp")
 attack = NodePath("../AttackComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_avkvs")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("4_yoay7")
+damage = 10
