@@ -1,19 +1,17 @@
 [gd_scene load_steps=11 format=3 uid="uid://c87u2t2spvcmv"]
 
 [ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="1_bn2mq"]
-[ext_resource type="Script" path="res://Enemies/zergling.gd" id="1_pas7h"]
+[ext_resource type="Script" path="res://Entities/Enemies/zergling.gd" id="1_pas7h"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_lwqof"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="4_n4ic5"]
-[ext_resource type="Script" path="res://Enemies/progress_bar.gd" id="5_odfca"]
+[ext_resource type="Script" path="res://Entities/Enemies/progress_bar.gd" id="5_odfca"]
+[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="6_4hg77"]
 [ext_resource type="Script" path="res://Components/spawner_component.gd" id="6_r7l0g"]
 [ext_resource type="Script" path="res://Components/destroyed_component.gd" id="8_idfac"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r6nu"]
 radius = 16.0
 height = 40.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_p8ph6"]
-radius = 530.589
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qc217"]
 radius = 21.0
@@ -31,22 +29,6 @@ debug_color = Color(0.99712, 0, 0.172832, 0.42)
 scale = Vector2(0.0591002, 0.0591002)
 texture = ExtResource("1_bn2mq")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-avoidance_enabled = true
-radius = 5.0
-max_speed = 300.0
-avoidance_layers = 2
-avoidance_mask = 2
-
-[node name="AlertZone" type="Area2D" parent="."]
-scale = Vector2(0.2, 0.2)
-collision_layer = 4
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AlertZone"]
-position = Vector2(4.76837e-07, -3.8147e-06)
-shape = SubResource("CircleShape2D_p8ph6")
-
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_lwqof")
 max_health = 100
@@ -60,7 +42,7 @@ shape = SubResource("CircleShape2D_qc217")
 
 [node name="SpawnerComponent" type="Node2D" parent="."]
 script = ExtResource("6_r7l0g")
-scene = null
+scene = ExtResource("6_4hg77")
 
 [node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "health", "spawn_component")]
 script = ExtResource("8_idfac")
@@ -77,5 +59,3 @@ offset_bottom = -26.0
 show_percentage = false
 script = ExtResource("5_odfca")
 health_component = NodePath("../HealthComponent")
-
-[connection signal="velocity_computed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_velocity_computed"]

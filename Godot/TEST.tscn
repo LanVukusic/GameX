@@ -1,13 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://btda7ax5atic7"]
+[gd_scene load_steps=12 format=3 uid="uid://btda7ax5atic7"]
 
+[ext_resource type="PackedScene" uid="uid://bbquvmlhydeak" path="res://Entities/Enemies/EnemySpawner.tscn" id="1_s4kvq"]
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="2_oifng"]
-[ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="3_i0f0g"]
+[ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Assets/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="3_i0f0g"]
 [ext_resource type="PackedScene" uid="uid://cb4lh3a0xlxc" path="res://Networking/socket_server.tscn" id="4_5k5dy"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="5_3rete"]
 [ext_resource type="PackedScene" uid="uid://cj6py650hlmmx" path="res://UI/UiManager.tscn" id="5_164ts"]
 [ext_resource type="Script" path="res://CustomResourcesTemplates/stats.gd" id="6_cuhn2"]
 [ext_resource type="Script" path="res://Entities/Player/PlayerDevNode.gd" id="6_ogjir"]
-[ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Enemies/Zergling.tscn" id="8_4gdji"]
+[ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Entities/Enemies/Zergling.tscn" id="8_4gdji"]
 
 [sub_resource type="Resource" id="Resource_hprkm"]
 resource_local_to_scene = true
@@ -23,10 +24,7 @@ move_speed = 300
 
 [node name="Test" type="Node2D"]
 
-[node name="{768b6756-a940-4e02-b0d2-963d91a6511a}" type="Sprite2D" parent="."]
-position = Vector2(11, -11)
-scale = Vector2(2.77703, 2.14167)
-texture = ExtResource("3_i0f0g")
+[node name="EnemySpawner" parent="." instance=ExtResource("1_s4kvq")]
 
 [node name="MainCamera" parent="." instance=ExtResource("2_oifng")]
 player_padding = 260
@@ -38,6 +36,9 @@ min_zoom = 0.465
 uIManager = NodePath("../UiManager")
 players = {}
 player_root = NodePath("..")
+
+[node name="Zergling" parent="." instance=ExtResource("8_4gdji")]
+position = Vector2(253, 36)
 
 [node name="Player" parent="." instance=ExtResource("5_3rete")]
 position = Vector2(-9, -12)
@@ -51,7 +52,7 @@ uIManager = NodePath("../../UiManager")
 peerId = 19
 
 [node name="Player2" parent="." instance=ExtResource("5_3rete")]
-position = Vector2(273, -13)
+position = Vector2(157, -45)
 stats = SubResource("Resource_456e6")
 
 [node name="PlayerDevNode" type="Node2D" parent="Player2" node_paths=PackedStringArray("uIManager")]
@@ -62,5 +63,8 @@ color = Color(0.295452, 0.383488, 0.886746, 1)
 uIManager = NodePath("../../UiManager")
 peerId = 22
 
-[node name="Zergling" parent="." instance=ExtResource("8_4gdji")]
-position = Vector2(263, 70)
+[node name="{768b6756-a940-4e02-b0d2-963d91a6511a}" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-1.52588e-05, 1.90735e-06)
+scale = Vector2(2.77703, 2.14167)
+texture = ExtResource("3_i0f0g")

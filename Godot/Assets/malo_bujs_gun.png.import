@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckdbul8vla5d8"
-path="res://.godot/imported/{768B6756-A940-4E02-B0D2-963D91A6511A}.png-062ba81fe4a6e0d9529bd07f1904e1f7.ctex"
+uid="uid://o7npuoqcema3"
+path="res://.godot/imported/malo_bujs_gun.png-987a23ae6e27a6bf830619e53379be47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/{768B6756-A940-4E02-B0D2-963D91A6511A}.png"
-dest_files=["res://.godot/imported/{768B6756-A940-4E02-B0D2-963D91A6511A}.png-062ba81fe4a6e0d9529bd07f1904e1f7.ctex"]
+source_file="res://Assets/malo_bujs_gun.png"
+dest_files=["res://.godot/imported/malo_bujs_gun.png-987a23ae6e27a6bf830619e53379be47.ctex"]
 
 [params]
 

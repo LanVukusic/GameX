@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://o7npuoqcema3"
-path="res://.godot/imported/malo_bujs_gun.png-7b4bd80a9ab15127f8b7a93c74d4a19c.ctex"
+uid="uid://ckdbul8vla5d8"
+path="res://.godot/imported/{768B6756-A940-4E02-B0D2-963D91A6511A}.png-d92c11d162884f36251a7406ad4c570d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/ranged_weapons/Good_gun/malo_bujs_gun.png"
-dest_files=["res://.godot/imported/malo_bujs_gun.png-7b4bd80a9ab15127f8b7a93c74d4a19c.ctex"]
+source_file="res://Assets/{768B6756-A940-4E02-B0D2-963D91A6511A}.png"
+dest_files=["res://.godot/imported/{768B6756-A940-4E02-B0D2-963D91A6511A}.png-d92c11d162884f36251a7406ad4c570d.ctex"]
 
 [params]
 

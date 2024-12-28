@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvx0udm51bagn"
-path="res://.godot/imported/gun_placeholder.png-5201a411909333e03819c98d04bd2a80.ctex"
+path="res://.godot/imported/gun_placeholder.png-98db026192ae5920578a39dab6d54560.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/ranged_weapons/PlaceholderGun/gun_placeholder.png"
-dest_files=["res://.godot/imported/gun_placeholder.png-5201a411909333e03819c98d04bd2a80.ctex"]
+source_file="res://Assets/gun_placeholder.png"
+dest_files=["res://.godot/imported/gun_placeholder.png-98db026192ae5920578a39dab6d54560.ctex"]
 
 [params]
 

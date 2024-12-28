@@ -2,8 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export_category("DEBUG AND DEV")
-@export var DEBUG_EnemyTest: Node2D
-var multiplayerId: int
+@export var multiplayerId: int
 
 @export_category("Movement config")
 @export var color: Color
@@ -14,21 +13,24 @@ var multiplayerId: int
 @export var weapon_manager: WeaponManager
 @export var status_effect_handler: StatusEffectHandler
 @export var healthcomponent: HealthComponent
+@export var move_input_component: MoveInputComponent
+@export var look_component: LookInputComponent
+
 
 signal joined(color: Color, name: String)
-signal moveVec(vec: Vector2)
-signal lookVec(vec: Vector2)
-signal lamp()
+#signal moveVec(vec: Vector2)
+#signal lookVec(vec: Vector2)
+#signal lamp()
 
 var _input_direction = Vector2(0, 0)
 
 func set_input_direction(vec: Vector2):
 	_input_direction = vec
 
-func set_look_direction(vec: Vector2):
-	var target = vec.angle() + PI / 2
-	var lookSpeed = 0.1
-	self.rotation = lerp_angle(self.rotation, target, lookSpeed)
+#func set_look_direction(vec: Vector2):
+#	var target = vec.angle() + PI / 2
+#	var lookSpeed = 0.1
+#	self.rotation = lerp_angle(self.rotation, target, lookSpeed)
 
 func toggle_lamp():
 	$PointLight2D.enabled = !$PointLight2D.enabled
@@ -41,9 +43,9 @@ func conn(col: Color, _name: String):
 
 
 func _init() -> void:
-	moveVec.connect(set_input_direction)
-	lookVec.connect(set_look_direction)
-	lamp.connect(toggle_lamp)
+#	moveVec.connect(set_input_direction)
+#	lookVec.connect(set_look_direction)
+#	lamp.connect(toggle_lamp)
 	joined.connect(conn)
 	
 # Called when the node enters the scene tree for the first time.
@@ -59,9 +61,3 @@ func _physics_process(_delta: float) -> void:
 func new(id: int):
 	self.multiplayerId = id
 	return self
-
-# Debug for testing pathfinding, goes to player when 'x' is pressed
-func _input(event):
-	if event is InputEventKey and event.pressed and event.keycode == 88:
-		print("[Player.gd] x")
-		DEBUG_EnemyTest.alertTo(self)

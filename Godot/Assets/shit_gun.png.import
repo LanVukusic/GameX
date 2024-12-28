@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tmujhoyrchio"
-path="res://.godot/imported/shit_gun.png-52bb2bebaac836508070e2627e2bf419.ctex"
+path="res://.godot/imported/shit_gun.png-5d670815a401409f661f7114bd170bf7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/ranged_weapons/Shit_gun/shit_gun.png"
-dest_files=["res://.godot/imported/shit_gun.png-52bb2bebaac836508070e2627e2bf419.ctex"]
+source_file="res://Assets/shit_gun.png"
+dest_files=["res://.godot/imported/shit_gun.png-5d670815a401409f661f7114bd170bf7.ctex"]
 
 [params]
 

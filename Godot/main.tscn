@@ -3,11 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://u15020rsa6mw" path="res://MapGenerator/map.tscn" id="4_bs0r5"]
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="4_x7123"]
 [ext_resource type="Texture2D" uid="uid://cobuypvovcmdu" path="res://ExternalAssets/RF_Catacombs_v1.0/mainlevbuild.png" id="6_8kioe"]
-[ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Enemies/Zergling.tscn" id="7_hlqnb"]
+[ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Entities/Enemies/Zergling.tscn" id="7_hlqnb"]
 [ext_resource type="Script" path="res://CustomResourcesTemplates/stats.gd" id="7_p42fc"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="7_uji80"]
 [ext_resource type="Script" path="res://Entities/Player/PlayerDevNode.gd" id="8_lyedq"]
-[ext_resource type="PackedScene" uid="uid://db6l50gqap81g" path="res://Enemies/Boid.tscn" id="8_xs35m"]
+[ext_resource type="PackedScene" uid="uid://db6l50gqap81g" path="res://Entities/Enemies/Boid.tscn" id="8_xs35m"]
 [ext_resource type="PackedScene" uid="uid://cj6py650hlmmx" path="res://UI/UiManager.tscn" id="9_liyvr"]
 
 [sub_resource type="Environment" id="Environment_r0amb"]
