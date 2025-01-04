@@ -1,7 +1,7 @@
 extends Node
 class_name CircularMovementComponent
 
-@export var movement_component: MoveComponent
+@export var movement_component: CharacterMoveComponent
 
 # Parameters for circular mot(ion
 var center: Vector2

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Entities/Enemies/enemy_spawner.gd" id="1_3gf2t"]
 [ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Entities/Enemies/Zergling.tscn" id="2_2ij3a"]
 [ext_resource type="Script" path="res://Components/spawner_component.gd" id="2_6rv5p"]
-[ext_resource type="Script" path="res://Components/move_component.gd" id="4_u8aka"]
+[ext_resource type="Script" path="res://Components/character_move_component.gd" id="4_u8aka"]
 [ext_resource type="Script" path="res://Components/circular_movement_component.gd" id="5_jqvoo"]
 
 [node name="EnemySpawner" type="Node2D"]

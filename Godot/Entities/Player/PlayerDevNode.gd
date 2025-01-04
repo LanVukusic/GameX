@@ -25,11 +25,11 @@ func _physics_process(_delta: float) -> void:
 		return
 	# looking
 	var look_dir = get_global_mouse_position() - global_position
-	player.lookVec.emit(look_dir)
+	player.look_input_component.handle_look_direction(look_dir)
 
 	# movement
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	player.moveVec.emit(input_dir)
+	player.move_input_component.handle_input(input_dir)
 
 # button events
 func _input(event: InputEvent) -> void:
@@ -41,7 +41,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_released("Shoot"):
 		player.weapon_manager.current_weapon.shoot_released.emit()
 	
-
 	if event.is_action_pressed("Reload"):
 		player.weapon_manager.current_weapon.reload_active.emit()
 

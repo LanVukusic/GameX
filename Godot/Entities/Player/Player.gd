@@ -14,7 +14,7 @@ extends CharacterBody2D
 @export var status_effect_handler: StatusEffectHandler
 @export var healthcomponent: HealthComponent
 @export var move_input_component: MoveInputComponent
-@export var look_component: LookInputComponent
+@export var look_input_component: LookInputComponent
 
 
 signal joined(color: Color, name: String)

@@ -1,8 +1,7 @@
 extends Node
 class_name MoveInputComponent
 
-@export var move_component: MoveComponent
-
+@export var move_component: CharacterMoveComponent
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
