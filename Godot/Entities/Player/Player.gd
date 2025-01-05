@@ -11,7 +11,6 @@ extends CharacterBody2D
 @export_category("Components")
 @export var stats: GeneralStats
 @export var weapon_manager: WeaponManager
-@export var status_effect_handler: StatusEffectHandler
 @export var healthcomponent: HealthComponent
 @export var move_input_component: MoveInputComponent
 @export var look_input_component: LookInputComponent

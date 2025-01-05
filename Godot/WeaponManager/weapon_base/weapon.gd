@@ -99,4 +99,4 @@ func _on_reload_timeout() -> void:
 	WEAPON.change_magazine_count(-1)
 	WEAPON.replenish_ammo()
 	current_weapon_state = weapon_state.READY
-	print("Reload complete. Magazines left:", WEAPON.current_mags)
+	#print("Reload complete. Magazines left:", WEAPON.current_mags)

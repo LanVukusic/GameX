@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
 [ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
-[ext_resource type="PackedScene" uid="uid://bowfda5ggq87q" path="res://Statuseffect/StatusEffectHandler/StatusEffectHandler.tscn" id="3_dvtnw"]
 [ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="4_64k0y"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="6_j48yb"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="7_4gix7"]
@@ -11,6 +10,7 @@
 [ext_resource type="Script" path="res://Components/character_move_component.gd" id="9_nm2o8"]
 [ext_resource type="Script" path="res://Components/look_input_component.gd" id="10_mtr7l"]
 [ext_resource type="Script" path="res://Components/look_component.gd" id="11_nkggg"]
+[ext_resource type="Script" path="res://Components/status_effect_handler_component.gd" id="11_qj6mh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 28.0
@@ -27,17 +27,15 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_q831g"]
 radius = 29.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon_manager", "status_effect_handler", "healthcomponent", "move_input_component") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("weapon_manager", "healthcomponent", "move_input_component", "look_input_component") groups=["Player"]]
 z_index = 10
 up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
 stats = ExtResource("2_dshqb")
 weapon_manager = NodePath("WeaponManager")
-status_effect_handler = NodePath("StatusEffectHandler")
 healthcomponent = NodePath("HealthCopomnent")
 move_input_component = NodePath("MoveInputComponent")
-
-[node name="StatusEffectHandler" parent="." instance=ExtResource("3_dvtnw")]
+look_input_component = NodePath("LookInputComponent")
 
 [node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]
 position = Vector2(-30, 0)
@@ -56,9 +54,10 @@ z_index = 1
 scale = Vector2(0.157182, 0.148918)
 texture = ExtResource("4_64k0y")
 
-[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "status_effects_handler")]
 script = ExtResource("6_j48yb")
 health_component = NodePath("../HealthCopomnent")
+status_effects_handler = NodePath("../StatusEffectHandler")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_q831g")
@@ -73,7 +72,7 @@ move_component = NodePath("../CharacterMoveComponent")
 
 [node name="CharacterMoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("9_nm2o8")
-speed = 10
+speed = 500
 actor = NodePath("..")
 
 [node name="LookInputComponent" type="Node" parent="." node_paths=PackedStringArray("look_component")]
@@ -84,3 +83,8 @@ look_component = NodePath("../LookComponent")
 script = ExtResource("11_nkggg")
 actor = NodePath("..")
 look_speed = 10.0
+
+[node name="StatusEffectHandler" type="Node2D" parent="." node_paths=PackedStringArray("health_component", "move_component")]
+script = ExtResource("11_qj6mh")
+health_component = NodePath("../HealthCopomnent")
+move_component = NodePath("../CharacterMoveComponent")

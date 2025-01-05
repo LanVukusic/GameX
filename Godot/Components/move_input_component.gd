@@ -13,4 +13,4 @@ func _process(delta: float) -> void:
 	pass
 
 func handle_input(direction: Vector2):
-	move_component.velocity = direction
+	move_component.move_vector = direction

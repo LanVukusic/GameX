@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://brfnadljnnin1"]
+[gd_scene load_steps=11 format=3 uid="uid://brfnadljnnin1"]
 
 [ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_gwyq8"]
 [ext_resource type="Material" uid="uid://dpbgp1wtumxva" path="res://Statuseffect/Fire/fire_settings.tres" id="2_lp7g3"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="3_yqadp"]
 [ext_resource type="Script" path="res://Components/attack_component.gd" id="4_yoay7"]
+[ext_resource type="Script" path="res://Statuseffect/status_effect_base.gd" id="5_4nwx0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dgaa"]
 friction = 0.5
@@ -41,9 +42,10 @@ texture = SubResource("GradientTexture2D_w66ve")
 amount = 300
 process_material = ExtResource("2_lp7g3")
 
-[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack")]
+[node name="HitboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("attack", "status_effect")]
 script = ExtResource("3_yqadp")
 attack = NodePath("../AttackComponent")
+status_effect = NodePath("../StatusEffectBase")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_avkvs")
@@ -51,3 +53,9 @@ shape = SubResource("RectangleShape2D_avkvs")
 [node name="AttackComponent" type="Node" parent="."]
 script = ExtResource("4_yoay7")
 damage = 10
+
+[node name="StatusEffectBase" type="Node2D" parent="."]
+script = ExtResource("5_4nwx0")
+duration = 10
+damage_per_second = 10
+particle_effect = ExtResource("2_lp7g3")

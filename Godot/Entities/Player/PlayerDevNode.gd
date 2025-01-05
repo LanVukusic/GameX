@@ -25,7 +25,12 @@ func _physics_process(_delta: float) -> void:
 		return
 	# looking
 	var look_dir = get_global_mouse_position() - global_position
-	player.look_input_component.handle_look_direction(look_dir)
+	
+	if player.look_input_component == null:
+		print("look_input_component is null!")
+	else:
+			player.look_input_component.handle_look_direction(look_dir)
+
 
 	# movement
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
