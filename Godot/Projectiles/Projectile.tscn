@@ -56,6 +56,8 @@ damage = 10
 
 [node name="StatusEffectBase" type="Node2D" parent="."]
 script = ExtResource("5_4nwx0")
-duration = 10
-damage_per_second = 10
+type = "Fire"
+duration = 5
+max_stacks = 5
+damage_per_second = 5
 particle_effect = ExtResource("2_lp7g3")

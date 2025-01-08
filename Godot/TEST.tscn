@@ -35,7 +35,7 @@ players = {}
 player_root = NodePath("..")
 
 [node name="Zergling" parent="." instance=ExtResource("8_4gdji")]
-position = Vector2(253, 36)
+position = Vector2(270, 90)
 
 [node name="Player" parent="." instance=ExtResource("5_3rete")]
 position = Vector2(-9, -12)
@@ -49,7 +49,7 @@ uIManager = NodePath("../../UiManager")
 peerId = 19
 
 [node name="Player2" parent="." instance=ExtResource("5_3rete")]
-position = Vector2(157, -45)
+position = Vector2(143, -112)
 stats = SubResource("Resource_456e6")
 
 [node name="PlayerDevNode" type="Node2D" parent="Player2" node_paths=PackedStringArray("uIManager")]

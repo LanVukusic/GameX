@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 @export_category("Components")
 @export var stats: GeneralStats
+@export var status_effect_hander: StatusEffectHandler
 @export var weapon_manager: WeaponManager
 @export var healthcomponent: HealthComponent
 @export var move_input_component: MoveInputComponent
@@ -49,7 +50,7 @@ func _init() -> void:
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	healthcomponent.sig_died.connect(queue_free)
+	healthcomponent.sig_died.connect(die)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -60,3 +61,8 @@ func _physics_process(_delta: float) -> void:
 func new(id: int):
 	self.multiplayerId = id
 	return self
+
+func die():
+	if status_effect_hander:
+		status_effect_hander.clear_effects()
+	queue_free()

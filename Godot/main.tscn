@@ -1301,9 +1301,8 @@ position = Vector2(1438, 631)
 scale = Vector2(0.4, 0.4)
 swarmArea = NodePath("../SwarmZone")
 
-[node name="Player" parent="." node_paths=PackedStringArray("DEBUG_EnemyTest") instance=ExtResource("7_uji80")]
+[node name="Player" parent="." instance=ExtResource("7_uji80")]
 position = Vector2(1913, 1060)
-DEBUG_EnemyTest = NodePath("../Zergling")
 stats = SubResource("Resource_yemla")
 
 [node name="PlayerDevNode" type="Node2D" parent="Player" node_paths=PackedStringArray("uIManager")]

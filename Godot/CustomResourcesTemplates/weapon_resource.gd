@@ -64,4 +64,3 @@ func replenish_ammo():
 func force_signal() -> void:
 	ammo_change.emit(current_mag_ammo)
 	magazine_change.emit(current_mags)
-	print("nahhh dont do it")

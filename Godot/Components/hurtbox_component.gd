@@ -13,4 +13,6 @@ func relay_damage(attack: AttackComponent):
 
 func relay_status_effect(status: StatusEffectBase):
 	if StatusEffectHandler:
-		status_effects_handler.apply_effect(status)
+		status_effects_handler.add_effect(status)
+	else:
+		print("no status effect handler")

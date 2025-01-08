@@ -96,7 +96,6 @@ func handle_packet(data: Variant, peerId: int):
 	
 	match data["t"]:
 		"move":
-			var cum = Player.new()
 			
 			player_inst.move_input_component.handle_input(Vector2(data["x"], -1 * data["y"]))
 			#player_inst.moveVec.emit(Vector2(data["x"], -1 * data["y"]))
