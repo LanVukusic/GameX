@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://c87u2t2spvcmv"]
 
-[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="1_bn2mq"]
+[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://Weapons/ranged_weapons/Jansa_gun/jansa.png" id="1_bn2mq"]
 [ext_resource type="Script" path="res://Entities/Enemies/zergling.gd" id="1_pas7h"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_lwqof"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="4_n4ic5"]

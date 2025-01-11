@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://db6l50gqap81g"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/boid.gd" id="1_i3al8"]
-[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="1_ohjkw"]
+[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://Weapons/ranged_weapons/Jansa_gun/jansa.png" id="1_ohjkw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nwxkx"]
 radius = 25.0
