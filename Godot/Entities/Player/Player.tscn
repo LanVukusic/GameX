@@ -28,7 +28,6 @@ fill_from = Vector2(0.5, 0.5)
 radius = 29.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("status_effect_hander", "weapon_manager", "healthcomponent", "move_input_component", "look_input_component") groups=["Player"]]
-z_index = 10
 up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
 stats = ExtResource("2_dshqb")
@@ -37,6 +36,12 @@ weapon_manager = NodePath("WeaponManager")
 healthcomponent = NodePath("HealthCopomnent")
 move_input_component = NodePath("MoveInputComponent")
 look_input_component = NodePath("LookInputComponent")
+
+[node name="StatusEffectHandler" type="Node2D" parent="." node_paths=PackedStringArray("health_component", "move_component")]
+z_index = 1
+script = ExtResource("11_qj6mh")
+health_component = NodePath("../HealthCopomnent")
+move_component = NodePath("../CharacterMoveComponent")
 
 [node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]
 position = Vector2(-30, 0)
@@ -51,7 +56,6 @@ energy = 1.71
 texture = SubResource("GradientTexture2D_kwrs8")
 
 [node name="ModulatableSprite" type="Sprite2D" parent="."]
-z_index = 1
 scale = Vector2(0.157182, 0.148918)
 texture = ExtResource("4_64k0y")
 
@@ -84,8 +88,3 @@ look_component = NodePath("../LookComponent")
 script = ExtResource("11_nkggg")
 actor = NodePath("..")
 look_speed = 10.0
-
-[node name="StatusEffectHandler" type="Node2D" parent="." node_paths=PackedStringArray("health_component", "move_component")]
-script = ExtResource("11_qj6mh")
-health_component = NodePath("../HealthCopomnent")
-move_component = NodePath("../CharacterMoveComponent")

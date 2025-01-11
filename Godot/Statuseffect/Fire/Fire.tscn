@@ -1,13 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0fhoivkrish5"]
+[gd_scene load_steps=4 format=3 uid="uid://d0fhoivkrish5"]
 
+[ext_resource type="Script" path="res://Components/status/fire_status_effect.gd" id="1_eu3ie"]
 [ext_resource type="Material" uid="uid://dpbgp1wtumxva" path="res://Statuseffect/Fire/fire_settings.tres" id="1_jrby5"]
 [ext_resource type="Script" path="res://Components/attack_component.gd" id="2_mx4nf"]
 
-[node name="Fire" type="Node2D"]
+[node name="Fire" type="Node2D" node_paths=PackedStringArray("tick_timer")]
+script = ExtResource("1_eu3ie")
+type = "Fire"
+max_ticks = 5
+max_stacks = 3
+damage_per_tick = 10
+tick_timer = NodePath("TickTimer")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 500
 process_material = ExtResource("1_jrby5")
+lifetime = 3.0
 
 [node name="AttackComponent" type="Node" parent="."]
 script = ExtResource("2_mx4nf")
-damage = 10
+damage = 5
+
+[node name="TickTimer" type="Timer" parent="."]
+autostart = true

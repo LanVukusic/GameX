@@ -1,13 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://c87u2t2spvcmv"]
+[gd_scene load_steps=9 format=3 uid="uid://c87u2t2spvcmv"]
 
 [ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://ExternalAssets/jansa.png" id="1_bn2mq"]
 [ext_resource type="Script" path="res://Entities/Enemies/zergling.gd" id="1_pas7h"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="3_lwqof"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="4_n4ic5"]
 [ext_resource type="Script" path="res://Entities/Enemies/progress_bar.gd" id="5_odfca"]
-[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="6_4hg77"]
-[ext_resource type="Script" path="res://Components/spawner_component.gd" id="6_r7l0g"]
-[ext_resource type="Script" path="res://Components/destroyed_component.gd" id="8_idfac"]
+[ext_resource type="Script" path="res://Components/status_effect_handler_component.gd" id="9_su5ic"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r6nu"]
 radius = 16.0
@@ -33,22 +31,13 @@ texture = ExtResource("1_bn2mq")
 script = ExtResource("3_lwqof")
 max_health = 100
 
-[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "status_effects_handler")]
 script = ExtResource("4_n4ic5")
 health_component = NodePath("../HealthComponent")
+status_effects_handler = NodePath("../StatusEffectHandler")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_qc217")
-
-[node name="SpawnerComponent" type="Node2D" parent="."]
-script = ExtResource("6_r7l0g")
-scene = ExtResource("6_4hg77")
-
-[node name="DestroyedComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "health", "spawn_component")]
-script = ExtResource("8_idfac")
-actor = NodePath("..")
-health = NodePath("../HealthComponent")
-spawn_component = NodePath("../SpawnerComponent")
 
 [node name="ProgressBar" type="ProgressBar" parent="." node_paths=PackedStringArray("health_component")]
 modulate = Color(0.94723, 0, 0.363081, 1)
@@ -58,4 +47,8 @@ offset_right = 26.0
 offset_bottom = -26.0
 show_percentage = false
 script = ExtResource("5_odfca")
+health_component = NodePath("../HealthComponent")
+
+[node name="StatusEffectHandler" type="Node2D" parent="." node_paths=PackedStringArray("health_component")]
+script = ExtResource("9_su5ic")
 health_component = NodePath("../HealthComponent")

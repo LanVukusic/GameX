@@ -11,8 +11,8 @@ func relay_damage(attack: AttackComponent):
 	if HealthComponent:
 		health_component.take_damage(attack)
 
-func relay_status_effect(status: StatusEffectBase):
-	if StatusEffectHandler:
-		status_effects_handler.add_effect(status)
+func relay_status_effect(status: PackedScene):
+	if status_effects_handler:
+		status_effects_handler.add_effect(status.instantiate())
 	else:
 		print("no status effect handler")

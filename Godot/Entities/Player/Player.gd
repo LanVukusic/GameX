@@ -63,6 +63,4 @@ func new(id: int):
 	return self
 
 func die():
-	if status_effect_hander:
-		status_effect_hander.clear_effects()
 	queue_free()

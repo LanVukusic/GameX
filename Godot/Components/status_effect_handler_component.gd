@@ -28,19 +28,7 @@ func remove_effect(effect_instance: StatusEffectBase):
 		print("Warning: attempted to remove an invalid effect instance.")
 		return
 	
-	if effect_instance.particles and is_instance_valid(effect_instance):
-		effect_instance.particles.queue_free()  # Clean up particles
-	
 	if effect_instance in active_effects:
 		active_effects.erase(effect_instance)
 		print("WORKS PLZ")
 	
-	effect_instance.queue_free()
-	print("effect removed: " + str(effect_instance))
-
-
-func clear_effects():
-	for effect in active_effects:
-		if is_instance_valid(effect):
-			effect.queue_free()
-	active_effects.clear()

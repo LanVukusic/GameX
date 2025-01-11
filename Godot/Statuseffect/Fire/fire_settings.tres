@@ -16,8 +16,10 @@ curve = SubResource("Curve_43ury")
 
 [resource]
 emission_shape = 1
-emission_sphere_radius = 5.3
+emission_sphere_radius = 30.0
 gravity = Vector3(0, -100, 0)
+scale_min = 3.0
+scale_max = 5.0
 scale_curve = SubResource("CurveTexture_m0gra")
 color_ramp = SubResource("GradientTexture1D_52c1r")
 turbulence_enabled = true

@@ -2,7 +2,7 @@ extends Area2D
 class_name HitboxComponent
 
 @export var attack: AttackComponent
-@export var status_effect: StatusEffectBase
+@export var status_effect: PackedScene
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
