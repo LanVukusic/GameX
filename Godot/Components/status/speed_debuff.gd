@@ -1,0 +1,2 @@
+extends StatusEffectBase
+class_name SpeedDebuff
