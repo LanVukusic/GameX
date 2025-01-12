@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://btda7ax5atic7"]
 
-[ext_resource type="PackedScene" path="res://Camera/MainCamera.tscn" id="2_oifng"]
+[ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="2_oifng"]
 [ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Assets/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="3_i0f0g"]
-[ext_resource type="PackedScene" path="res://Networking/socket_server.tscn" id="4_5k5dy"]
+[ext_resource type="PackedScene" uid="uid://cb4lh3a0xlxc" path="res://Networking/socket_server.tscn" id="4_5k5dy"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="5_3rete"]
 [ext_resource type="PackedScene" uid="uid://cj6py650hlmmx" path="res://UI/UiManager.tscn" id="5_164ts"]
 [ext_resource type="Script" path="res://CustomResourcesTemplates/stats.gd" id="6_cuhn2"]

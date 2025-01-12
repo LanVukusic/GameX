@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://df46dyofx3qi2"]
+
+[ext_resource type="Script" path="res://Components/status/posion_status_effect.gd" id="1_ot2bc"]
+[ext_resource type="Script" path="res://Components/attack_component.gd" id="2_dmdfs"]
+[ext_resource type="Material" uid="uid://7acrs1ov8h5q" path="res://Statuseffect/Poison/posion_process_material.tres" id="3_wt7uw"]
+
+[node name="Posion" type="Node2D"]
+script = ExtResource("1_ot2bc")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("2_dmdfs")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 500
+process_material = ExtResource("3_wt7uw")
+
+[node name="TickDuration" type="Timer" parent="."]
