@@ -6,10 +6,10 @@
 
 [node name="Fire" type="Node2D" node_paths=PackedStringArray("tick_timer")]
 script = ExtResource("1_eu3ie")
+damage_per_tick = 5
 type = "Fire"
 max_ticks = 5
 max_stacks = 3
-damage_per_tick = 10
 tick_timer = NodePath("TickTimer")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]

@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyby88e5bhdpk"]
+[gd_scene load_steps=3 format=3 uid="uid://dyby88e5bhdpk"]
 
 [ext_resource type="Script" path="res://Components/status/speed_debuff.gd" id="1_gjke8"]
+[ext_resource type="Material" uid="uid://7acrs1ov8h5q" path="res://Statuseffect/Poison/posion_process_material.tres" id="2_7i7bm"]
 
-[node name="SpeedDebuff" type="Node2D"]
+[node name="SpeedDebuff" type="Node2D" node_paths=PackedStringArray("tick_timer")]
 script = ExtResource("1_gjke8")
+speed_reduction_ratio = 0.9
+type = "Speed_debuff"
+max_ticks = 5
+max_stacks = 5
+tick_timer = NodePath("TickTimer")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = ExtResource("2_7i7bm")
+
+[node name="TickTimer" type="Timer" parent="."]
+one_shot = true

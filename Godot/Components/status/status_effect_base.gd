@@ -14,7 +14,6 @@ var stack_count: int = 0
 @export var max_ticks: int
 @export var max_stacks: int
 @export var can_refresh: bool = true #Whether to refresh duration on stacking
-@export var damage_per_tick: int
 @export_category("Timers")
 #Timers private
 @export var tick_timer: Timer
@@ -36,24 +35,22 @@ func apply(status_effect_handler: StatusEffectHandler):
 	tick_count = 0 # reset status effect duration
 
 
-func damage():
-	print("dmg")
-	var attack = AttackComponent.new()
-	attack.damage = damage_per_tick * stack_count
-	target.health_component.take_damage(attack)
+func process_effect():
+	pass
 
 
 func _on_tick_timer_timeout():
-	damage()
+	process_effect()
 	tick_count += 1
 	print("Removed a tick! Tick count is " + str(tick_count))
+	
 	if tick_count >= max_ticks:
 		print_debug("Effect ended. Cleaing up")
 		_remove_status()
 
 
 func _remove_status():
-	sig_status_end.emit()
+	sig_status_end.emit(self)
 	self.queue_free()
 
 
@@ -64,6 +61,11 @@ func _create_timer(wait_time: float, one_shot: bool, callback: Callable) -> Time
 	target.add_child(timer)
 	timer.start(wait_time)
 	return timer
+
+
+func refresh_duration():
+	add_stack()
+	tick_count = 0 
 
 
 func add_stack():

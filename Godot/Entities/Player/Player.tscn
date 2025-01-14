@@ -77,7 +77,7 @@ move_component = NodePath("../CharacterMoveComponent")
 
 [node name="CharacterMoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("9_nm2o8")
-speed = 500
+speed = 300.0
 actor = NodePath("..")
 
 [node name="LookInputComponent" type="Node" parent="." node_paths=PackedStringArray("look_component")]

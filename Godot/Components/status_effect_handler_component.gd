@@ -14,11 +14,16 @@ func add_effect(effect: StatusEffectBase):
 	
 	for existing_effect in active_effects:
 		if is_instance_valid(existing_effect) and existing_effect.type == effect.type:
-			existing_effect.apply(self)
+			print("already applied")
+			if existing_effect.can_refresh:
+					existing_effect.refresh_duration()
 			return
 	
+	if not effect.sig_status_end.is_connected(remove_effect):
+		effect.sig_status_end.connect(remove_effect)
+
+	
 	active_effects.append(effect)
-	effect.sig_status_end.connect(remove_effect)
 	effect.apply(self)
 	print(active_effects)
 
