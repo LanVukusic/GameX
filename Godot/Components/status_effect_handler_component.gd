@@ -21,7 +21,6 @@ func add_effect(effect: StatusEffectBase):
 	
 	if not effect.sig_status_end.is_connected(remove_effect):
 		effect.sig_status_end.connect(remove_effect)
-
 	
 	active_effects.append(effect)
 	effect.apply(self)

@@ -20,6 +20,8 @@ var stack_count: int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	process_effect()
+	tick_timer.timeout.connect(on_tick_timer_timeout)
 	pass # Replace with function body.
 
 
@@ -28,18 +30,35 @@ func _process(delta: float) -> void:
 	pass
 
 
-func apply(status_effect_handler: StatusEffectHandler):
-	add_stack()
-	target = status_effect_handler
-	target.add_child(self)
-	tick_count = 0 # reset status effect duration
-
-
 func process_effect():
 	pass
 
 
-func _on_tick_timer_timeout():
+func validate_target():
+	pass
+
+
+func apply(status_effect_handler: StatusEffectHandler) -> void:
+	# Ensure the target is valid and meets the requirements for this effect.
+	if not is_instance_valid(status_effect_handler):
+		print("Error: Invalid target for status effect: Type=" + type)
+		queue_free()
+		return
+
+	target = status_effect_handler
+	
+	# Check for specific component requirements.
+	if not validate_target():
+		print("Error: Target does not meet requirements for effect: Type=" + type)
+		queue_free()
+		return
+
+	# Attach the effect to the target.
+	if self.get_parent() != target:
+		target.add_child(self)
+
+
+func on_tick_timer_timeout():
 	process_effect()
 	tick_count += 1
 	print("Removed a tick! Tick count is " + str(tick_count))

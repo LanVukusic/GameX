@@ -14,7 +14,8 @@ func _process(delta: float) -> void:
 		pass
 
 func change_speed(ratio: float) -> void:
-	speed *= ratio
+	speed = default_speed * ratio
 
 func reset_speed():
+	print("halo halo kje je")
 	speed = default_speed

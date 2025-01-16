@@ -1,10 +1,15 @@
 extends StatusEffectBase
-class_name FireStatusEffect
+class_name FireStatus
 
 @export var damage_per_tick: int
 
 func _ready() -> void:
-	tick_timer.timeout.connect(_on_tick_timer_timeout)
+	pass
+
+func validate_target() -> bool:
+	if target and target.health_component:
+		return true
+	return false
 
 func process_effect():
 	print("dmg")
