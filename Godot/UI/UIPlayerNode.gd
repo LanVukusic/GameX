@@ -11,8 +11,8 @@ class_name UIPlayerNode
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	connected_player.weapon_manager.weapon_switched.connect(connect_singals)
 	connect_singals()
+	connected_player.weapon_manager.weapon_switched.connect(connect_singals)
 	connected_player.weapon_manager.current_weapon.weapon_stats.force_signal()
 	connected_player.healthcomponent.force_signal()
 
@@ -36,6 +36,9 @@ func set_player_color_name(color: Color, name_in: String):
 	self.add_theme_stylebox_override("panel", new_style)
 	color_rect.color = color
 
+func _on_player_death():
+	("print ded")
+	self.queue_free()
 
 func connect_singals():
 	if (!connected_player.weapon_manager.current_weapon.weapon_stats.ammo_change.is_connected(set_curr_ammo_count)):
@@ -49,3 +52,7 @@ func connect_singals():
 
 	if (!connected_player.healthcomponent.sig_health_changed.is_connected(set_curr_health)):
 		connected_player.healthcomponent.sig_health_changed.connect(set_curr_health)
+
+	if (!connected_player.healthcomponent.sig_died.is_connected(_on_player_death)):
+		connected_player.healthcomponent.sig_died.is_connected(_on_player_death)
+		print("connectd ded")

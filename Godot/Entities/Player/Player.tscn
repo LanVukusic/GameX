@@ -56,7 +56,7 @@ avaliable_weapons = Array[ExtResource("5_p3x3i")]([ExtResource("6_hh13q"), ExtRe
 shape = SubResource("CircleShape2D_aj4h7")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(-2, 1)
+position = Vector2(15, 1)
 scale = Vector2(8, 8)
 energy = 1.2
 texture = SubResource("GradientTexture2D_kwrs8")
@@ -74,6 +74,9 @@ status_effects_handler = NodePath("../StatusEffectHandler")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_q831g")
+
+[node name="InventoryComponent" type="Node" parent="."]
+script = ExtResource("12_50v3v")
 
 [node name="HealthCopomnent" type="Node" parent="."]
 script = ExtResource("7_4gix7")
@@ -97,6 +100,3 @@ look_component = NodePath("../LookComponent")
 script = ExtResource("11_nkggg")
 actor = NodePath("..")
 look_speed = 10.0
-
-[node name="InventoryComponent" type="Node" parent="."]
-script = ExtResource("12_50v3v")

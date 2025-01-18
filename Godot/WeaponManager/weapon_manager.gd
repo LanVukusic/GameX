@@ -20,6 +20,11 @@ func _ready() -> void:
 	switch_weapon()
 
 
+func add_weapon(weapon_resource: WeaponItem):
+	var instance = weapon_resource.scene.instantiate()
+	weapon_stack.append(instance)
+
+
 func switch_weapon():
 	if weapon_stack.size() == 0:
 		print("No weapons available to switch.")

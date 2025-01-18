@@ -63,4 +63,5 @@ func new(id: int):
 	return self
 
 func die():
+	print("DED!!!")
 	queue_free()
