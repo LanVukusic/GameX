@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://btda7ax5atic7"]
+[gd_scene load_steps=25 format=4 uid="uid://btda7ax5atic7"]
 
 [ext_resource type="PackedScene" path="res://Camera/MainCamera.tscn" id="2_oifng"]
 [ext_resource type="PackedScene" path="res://Networking/socket_server.tscn" id="4_5k5dy"]
@@ -8,10 +8,13 @@
 [ext_resource type="Script" path="res://Entities/Player/PlayerDevNode.gd" id="6_ogjir"]
 [ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Entities/Enemies/Zergling.tscn" id="8_4gdji"]
 [ext_resource type="PackedScene" uid="uid://b5n6tc3kklr8q" path="res://Components/PickUp/PickUp.tscn" id="8_scmed"]
-[ext_resource type="Resource" uid="uid://b3umnknrbbkc1" path="res://Weapons/ranged_weapons/WeaponResources/GoodGun.tres" id="9_saa1f"]
-[ext_resource type="Resource" uid="uid://bgr4e6vws740w" path="res://Weapons/ranged_weapons/WeaponResources/JansaGun.tres" id="11_gc82w"]
-[ext_resource type="Resource" uid="uid://c3mxkg2lv0ige" path="res://Weapons/ranged_weapons/WeaponResources/ShitGun.tres" id="11_u1j2j"]
+[ext_resource type="PackedScene" uid="uid://bkqvwyt2n84pc" path="res://Weapons/ranged_weapons/Good_gun/GoodGun.tscn" id="10_4wmo2"]
+[ext_resource type="Script" path="res://CustomResourcesTemplates/WeaponItem.gd" id="11_6kn73"]
+[ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="12_ifkvc"]
+[ext_resource type="PackedScene" uid="uid://wxeb7vtfni6g" path="res://Weapons/ranged_weapons/Shit_gun/ShitGun.tscn" id="13_3ybem"]
 [ext_resource type="Texture2D" uid="uid://c1arsd44hn5y6" path="res://testmap.jpg" id="13_i64v2"]
+[ext_resource type="Texture2D" uid="uid://tmujhoyrchio" path="res://Assets/shit_gun.png" id="14_a02ip"]
+[ext_resource type="PackedScene" uid="uid://xh18vyvxxyev" path="res://Weapons/ranged_weapons/Jansa_gun/JansaGun.tscn" id="15_jvn6d"]
 
 [sub_resource type="Environment" id="Environment_08ko1"]
 background_energy_multiplier = 0.0
@@ -799,6 +802,30 @@ script = ExtResource("6_cuhn2")
 max_health = 255
 move_speed = 300
 
+[sub_resource type="Resource" id="Resource_caxsu"]
+resource_local_to_scene = true
+script = ExtResource("11_6kn73")
+name = "GoodGun"
+scene = ExtResource("10_4wmo2")
+sprite = ExtResource("12_ifkvc")
+
+[sub_resource type="Resource" id="Resource_0vxsd"]
+resource_local_to_scene = true
+script = ExtResource("11_6kn73")
+name = "ShitGun"
+scene = ExtResource("13_3ybem")
+sprite = ExtResource("14_a02ip")
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1fof6"]
+size = Vector2(40, 40)
+
+[sub_resource type="Resource" id="Resource_7g4q2"]
+resource_local_to_scene = true
+script = ExtResource("11_6kn73")
+name = "JansaGun"
+scene = ExtResource("15_jvn6d")
+sprite = SubResource("PlaceholderTexture2D_1fof6")
+
 [node name="Test" type="WorldEnvironment"]
 environment = SubResource("Environment_08ko1")
 
@@ -851,13 +878,13 @@ uIManager = NodePath("../../UiManager")
 peerId = 22
 
 [node name="PickUp" parent="." instance=ExtResource("8_scmed")]
-position = Vector2(-128, 185)
-item = ExtResource("9_saa1f")
+position = Vector2(-322, -60)
+item = SubResource("Resource_caxsu")
 
 [node name="PickUp2" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(112, 185)
-item = ExtResource("11_u1j2j")
+item = SubResource("Resource_0vxsd")
 
 [node name="PickUp3" parent="." instance=ExtResource("8_scmed")]
-position = Vector2(-18, 190)
-item = ExtResource("11_gc82w")
+position = Vector2(-220, -24)
+item = SubResource("Resource_7g4q2")

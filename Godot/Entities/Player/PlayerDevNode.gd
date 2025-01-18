@@ -29,7 +29,7 @@ func _physics_process(_delta: float) -> void:
 	if player.look_input_component == null:
 		print("look_input_component is null!")
 	else:
-			player.look_input_component.handle_look_direction(look_dir)
+		player.look_input_component.handle_look_direction(look_dir)
 
 
 	# movement

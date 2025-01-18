@@ -14,8 +14,13 @@ func _process(delta: float) -> void:
 
 
 func add_item(item: Item):
+	if item == null:
+		print("Trying to pass a null value!")
+		return
+	
 	if item is WeaponItem:
 		weapon_manager.add_weapon(item)
+		print("Weapon added!")
 	
 	items_held.append(item)
 

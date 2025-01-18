@@ -15,6 +15,7 @@ extends CharacterBody2D
 @export var healthcomponent: HealthComponent
 @export var move_input_component: MoveInputComponent
 @export var look_input_component: LookInputComponent
+@export var inventory: InventoryComponent
 
 
 signal joined(color: Color, name: String)

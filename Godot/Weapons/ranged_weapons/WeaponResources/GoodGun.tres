@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="3_g7tur"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_2p0ed")
 name = "GoodGun"
 scene = ExtResource("1_og5cx")

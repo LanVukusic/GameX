@@ -7,6 +7,7 @@
 size = Vector2(40, 40)
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_hpetx")
 name = "JansaGun"
 scene = ExtResource("1_40jnb")

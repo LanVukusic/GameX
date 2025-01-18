@@ -8,11 +8,11 @@ signal switch_weapons_pressed
 @export var avaliable_weapons: Array[WeaponItem]
 var weapon_stack: Array[WeaponBase] = [] # To hold instantiated Weapon nodes
 @export var current_weapon: WeaponBase = null
-
+	
 func _ready() -> void:
 	# Initialize weapons from available resources
-	for w in avaliable_weapons:
-		var weapon = w.scene.instantiate() as WeaponBase
+	for weapon_resouce in avaliable_weapons:
+		var weapon = weapon_resouce.scene.instantiate() as WeaponBase
 		add_child(weapon)
 		weapon_stack.append(weapon)
 	
@@ -21,8 +21,15 @@ func _ready() -> void:
 
 
 func add_weapon(weapon_resource: WeaponItem):
+	
+	for weapon in weapon_stack:
+		if weapon.name == weapon_resource.name:  # Assuming unique weapon names
+			print("Duplicate weapon detected:", weapon_resource.name)
+			return
+	
 	var instance = weapon_resource.scene.instantiate()
 	weapon_stack.append(instance)
+	switch_weapon()
 
 
 func switch_weapon():

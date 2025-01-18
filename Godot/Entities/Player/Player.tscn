@@ -4,11 +4,10 @@
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
 [ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
 [ext_resource type="Script" path="res://CustomResourcesTemplates/WeaponItem.gd" id="5_p3x3i"]
-[ext_resource type="Resource" uid="uid://b3umnknrbbkc1" path="res://Weapons/ranged_weapons/WeaponResources/GoodGun.tres" id="6_hh13q"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="6_j48yb"]
+[ext_resource type="PackedScene" uid="uid://bkqvwyt2n84pc" path="res://Weapons/ranged_weapons/Good_gun/GoodGun.tscn" id="6_q1eu4"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="7_4gix7"]
-[ext_resource type="Resource" uid="uid://bgr4e6vws740w" path="res://Weapons/ranged_weapons/WeaponResources/JansaGun.tres" id="7_jqk74"]
-[ext_resource type="Resource" uid="uid://c3mxkg2lv0ige" path="res://Weapons/ranged_weapons/WeaponResources/ShitGun.tres" id="8_4gx4o"]
+[ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="7_u8q4w"]
 [ext_resource type="Script" path="res://Components/move_input_component.gd" id="8_vgfwh"]
 [ext_resource type="Texture2D" uid="uid://kl56tnox7818" path="res://klobuk1.png" id="9_63y7d"]
 [ext_resource type="Script" path="res://Components/character_move_component.gd" id="9_nm2o8"]
@@ -16,6 +15,13 @@
 [ext_resource type="Script" path="res://Components/look_component.gd" id="11_nkggg"]
 [ext_resource type="Script" path="res://Components/status_effect_handler_component.gd" id="11_qj6mh"]
 [ext_resource type="Script" path="res://Components/inventory_component.gd" id="12_50v3v"]
+
+[sub_resource type="Resource" id="Resource_rdh82"]
+resource_local_to_scene = true
+script = ExtResource("5_p3x3i")
+name = "GoodGun"
+scene = ExtResource("6_q1eu4")
+sprite = ExtResource("7_u8q4w")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 28.0
@@ -32,7 +38,7 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="CircleShape2D" id="CircleShape2D_q831g"]
 radius = 29.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("status_effect_hander", "weapon_manager", "healthcomponent", "move_input_component", "look_input_component") groups=["Player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("status_effect_hander", "weapon_manager", "healthcomponent", "move_input_component", "look_input_component", "inventory") groups=["Player"]]
 up_direction = Vector2(1, 0)
 script = ExtResource("1_3c7vl")
 stats = ExtResource("2_dshqb")
@@ -41,6 +47,7 @@ weapon_manager = NodePath("WeaponManager")
 healthcomponent = NodePath("HealthCopomnent")
 move_input_component = NodePath("MoveInputComponent")
 look_input_component = NodePath("LookInputComponent")
+inventory = NodePath("InventoryComponent")
 
 [node name="StatusEffectHandler" type="Node2D" parent="." node_paths=PackedStringArray("health_component", "move_component")]
 z_index = 1
@@ -50,7 +57,7 @@ move_component = NodePath("../CharacterMoveComponent")
 
 [node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]
 position = Vector2(-30, 0)
-avaliable_weapons = Array[ExtResource("5_p3x3i")]([ExtResource("6_hh13q"), ExtResource("7_jqk74"), ExtResource("8_4gx4o")])
+avaliable_weapons = Array[ExtResource("5_p3x3i")]([SubResource("Resource_rdh82")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
@@ -75,8 +82,9 @@ status_effects_handler = NodePath("../StatusEffectHandler")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
 shape = SubResource("CircleShape2D_q831g")
 
-[node name="InventoryComponent" type="Node" parent="."]
+[node name="InventoryComponent" type="Node" parent="." node_paths=PackedStringArray("weapon_manager")]
 script = ExtResource("12_50v3v")
+weapon_manager = NodePath("../WeaponManager")
 
 [node name="HealthCopomnent" type="Node" parent="."]
 script = ExtResource("7_4gix7")

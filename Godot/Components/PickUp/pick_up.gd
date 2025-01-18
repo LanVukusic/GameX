@@ -1,6 +1,7 @@
 @tool
 extends Node2D
 
+@onready var pick_up: PickUpComponent = $PickUpComponent
 
 @export var item: Item:
 	set(value):
@@ -13,6 +14,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	_init_item_visuals()
+	pick_up.held_item = item #pass item reference
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
