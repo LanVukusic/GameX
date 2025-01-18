@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brfnadljnnin1"]
+[gd_scene load_steps=13 format=3 uid="uid://brfnadljnnin1"]
 
 [ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_gwyq8"]
 [ext_resource type="Material" uid="uid://dpbgp1wtumxva" path="res://Statuseffect/Fire/fire_settings.tres" id="2_lp7g3"]
@@ -23,6 +23,16 @@ fill_to = Vector2(0.487179, 0.534188)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_au80x"]
 size = Vector2(12, 12)
+
+[sub_resource type="Gradient" id="Gradient_giytf"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.668831, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.0720721, 0.0720721, 0.0720721, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fx41f"]
+gradient = SubResource("Gradient_giytf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [node name="Projectile" type="RigidBody2D"]
 collision_layer = 2
@@ -53,3 +63,8 @@ status_effect = ExtResource("5_qghh3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 shape = SubResource("RectangleShape2D_au80x")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.2
+texture = SubResource("GradientTexture2D_fx41f")
+texture_scale = 5.0
