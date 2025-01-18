@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
 [ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
-[ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="4_64k0y"]
 [ext_resource type="Script" path="res://CustomResourcesTemplates/WeaponItem.gd" id="5_p3x3i"]
 [ext_resource type="Resource" uid="uid://b3umnknrbbkc1" path="res://Weapons/ranged_weapons/WeaponResources/GoodGun.tres" id="6_hh13q"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="6_j48yb"]
@@ -11,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://bgr4e6vws740w" path="res://Weapons/ranged_weapons/WeaponResources/JansaGun.tres" id="7_jqk74"]
 [ext_resource type="Resource" uid="uid://c3mxkg2lv0ige" path="res://Weapons/ranged_weapons/WeaponResources/ShitGun.tres" id="8_4gx4o"]
 [ext_resource type="Script" path="res://Components/move_input_component.gd" id="8_vgfwh"]
+[ext_resource type="Texture2D" uid="uid://kl56tnox7818" path="res://klobuk1.png" id="9_63y7d"]
 [ext_resource type="Script" path="res://Components/character_move_component.gd" id="9_nm2o8"]
 [ext_resource type="Script" path="res://Components/look_input_component.gd" id="10_mtr7l"]
 [ext_resource type="Script" path="res://Components/look_component.gd" id="11_nkggg"]
@@ -62,8 +62,10 @@ energy = 1.2
 texture = SubResource("GradientTexture2D_kwrs8")
 
 [node name="ModulatableSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.157182, 0.148918)
-texture = ExtResource("4_64k0y")
+texture_filter = 1
+position = Vector2(3.57628e-07, -7.15256e-07)
+scale = Vector2(2.125, 2.01328)
+texture = ExtResource("9_63y7d")
 
 [node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "status_effects_handler")]
 script = ExtResource("6_j48yb")
