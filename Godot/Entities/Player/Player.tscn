@@ -1,16 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=21 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
 [ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
 [ext_resource type="Texture2D" uid="uid://duyjd8pucj7cm" path="res://Assets/Hat.png" id="4_64k0y"]
+[ext_resource type="Script" path="res://CustomResourcesTemplates/WeaponItem.gd" id="5_p3x3i"]
+[ext_resource type="Resource" uid="uid://b3umnknrbbkc1" path="res://Weapons/ranged_weapons/WeaponResources/GoodGun.tres" id="6_hh13q"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="6_j48yb"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="7_4gix7"]
+[ext_resource type="Resource" uid="uid://bgr4e6vws740w" path="res://Weapons/ranged_weapons/WeaponResources/JansaGun.tres" id="7_jqk74"]
+[ext_resource type="Resource" uid="uid://c3mxkg2lv0ige" path="res://Weapons/ranged_weapons/WeaponResources/ShitGun.tres" id="8_4gx4o"]
 [ext_resource type="Script" path="res://Components/move_input_component.gd" id="8_vgfwh"]
 [ext_resource type="Script" path="res://Components/character_move_component.gd" id="9_nm2o8"]
 [ext_resource type="Script" path="res://Components/look_input_component.gd" id="10_mtr7l"]
 [ext_resource type="Script" path="res://Components/look_component.gd" id="11_nkggg"]
 [ext_resource type="Script" path="res://Components/status_effect_handler_component.gd" id="11_qj6mh"]
+[ext_resource type="Script" path="res://Components/inventory_component.gd" id="12_50v3v"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 28.0
@@ -45,6 +50,7 @@ move_component = NodePath("../CharacterMoveComponent")
 
 [node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]
 position = Vector2(-30, 0)
+avaliable_weapons = Array[ExtResource("5_p3x3i")]([ExtResource("6_hh13q"), ExtResource("7_jqk74"), ExtResource("8_4gx4o")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
@@ -89,3 +95,6 @@ look_component = NodePath("../LookComponent")
 script = ExtResource("11_nkggg")
 actor = NodePath("..")
 look_speed = 10.0
+
+[node name="InventoryComponent" type="Node" parent="."]
+script = ExtResource("12_50v3v")

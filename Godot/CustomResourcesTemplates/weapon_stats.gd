@@ -1,5 +1,5 @@
 extends Resource
-class_name WeaponResource
+class_name WeaponStats
 
 signal ammo_change(ammo_count: int)
 signal magazine_change(mag_count: int)

@@ -1,12 +1,12 @@
 extends Node2D
-class_name Weapon
+class_name WeaponBase
 
 signal shoot_pressed
 signal shoot_released
 signal reload_active
 
 
-@export var WEAPON: WeaponResource
+@export var weapon_stats: WeaponStats
 
 @export var current_bullet: PackedScene
 var sprite: Sprite2D
@@ -25,7 +25,7 @@ func _ready() -> void:
 	reload_active.connect(reload)
 	shoot_pressed.connect(on_shoot_active)
 	shoot_released.connect(on_shoot_relase)
-	WEAPON.init_weapon_values()
+	weapon_stats.init_weapon_values()
 	
 	#intialise fire_timer
 	init_fire_timer()
@@ -36,8 +36,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
+
 func _physics_process(_delta: float) -> void:
-	if  is_shoot_pressed and WEAPON.is_automatic:
+	if  is_shoot_pressed and weapon_stats.is_automatic:
 		fire()
 
 func _on_fire_timer_timeout():
@@ -48,8 +49,10 @@ func on_shoot_active() -> void:
 	fire()
 	is_shoot_pressed = true
 
+
 func on_shoot_relase() -> void:
 	is_shoot_pressed = false
+
 
 func init_fire_timer() -> void:
 	fire_timer = Timer.new()
@@ -58,6 +61,7 @@ func init_fire_timer() -> void:
 	fire_timer.timeout.connect(_on_fire_timer_timeout)
 	add_child(fire_timer)
 
+
 func init_reload_timer() -> void:
 	reload_timer = Timer.new()
 	reload_timer.name = "ReloadTimer"
@@ -65,10 +69,11 @@ func init_reload_timer() -> void:
 	reload_timer.timeout.connect(_on_reload_timeout)
 	add_child(reload_timer)
 
+
 func fire() -> void:
 	if can_shoot and current_weapon_state == weapon_state.READY:
 		# Decrement ammo and instantiate the bullet
-		if WEAPON.current_mag_ammo <= 0:
+		if weapon_stats.current_mag_ammo <= 0:
 			print("Out of ammo.")
 			return
 
@@ -78,25 +83,27 @@ func fire() -> void:
 		get_tree().get_root().add_child(bullet)
 		
 		can_shoot = false
-		fire_timer.start(WEAPON.fire_rate)
-		WEAPON.change_ammo_count(-1)
-		print("Ammo left:", WEAPON.current_mag_ammo)
+		fire_timer.start(weapon_stats.fire_rate)
+		weapon_stats.change_ammo_count(-1)
+		print("Ammo left:", weapon_stats.current_mag_ammo)
+
 
 func reload() -> void: 
 	if current_weapon_state == weapon_state.RELOADING:
 		print("Already reloading.")
 		return
 
-	if WEAPON.current_mags == 0:
+	if weapon_stats.current_mags == 0:
 		print("No more magazines.")
 		return
 
 	current_weapon_state = weapon_state.RELOADING
-	reload_timer.start(WEAPON.reload_time)
+	reload_timer.start(weapon_stats.reload_time)
 	print("Reloading...")
 
+
 func _on_reload_timeout() -> void:
-	WEAPON.change_magazine_count(-1)
-	WEAPON.replenish_ammo()
+	weapon_stats.change_magazine_count(-1)
+	weapon_stats.replenish_ammo()
 	current_weapon_state = weapon_state.READY
 	#print("Reload complete. Magazines left:", WEAPON.current_mags)

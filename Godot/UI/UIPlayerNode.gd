@@ -13,7 +13,8 @@ class_name UIPlayerNode
 func _ready() -> void:
 	connected_player.weapon_manager.weapon_switched.connect(connect_singals)
 	connect_singals()
-	connected_player.weapon_manager.current_weapon.WEAPON.force_signal()
+	connected_player.weapon_manager.current_weapon.weapon_stats.force_signal()
+	connected_player.healthcomponent.force_signal()
 
 func set_curr_ammo_count(ammo_count: int):
 	ammo.text = str(ammo_count)
@@ -37,11 +38,11 @@ func set_player_color_name(color: Color, name_in: String):
 
 
 func connect_singals():
-	if (!connected_player.weapon_manager.current_weapon.WEAPON.ammo_change.is_connected(set_curr_ammo_count)):
-		connected_player.weapon_manager.current_weapon.WEAPON.ammo_change.connect(set_curr_ammo_count)
+	if (!connected_player.weapon_manager.current_weapon.weapon_stats.ammo_change.is_connected(set_curr_ammo_count)):
+		connected_player.weapon_manager.current_weapon.weapon_stats.ammo_change.connect(set_curr_ammo_count)
 
-	if (!connected_player.weapon_manager.current_weapon.WEAPON.magazine_change.is_connected(set_curr_mag_count)):
-		connected_player.weapon_manager.current_weapon.WEAPON.magazine_change.connect(set_curr_mag_count)
+	if (!connected_player.weapon_manager.current_weapon.weapon_stats.magazine_change.is_connected(set_curr_mag_count)):
+		connected_player.weapon_manager.current_weapon.weapon_stats.magazine_change.connect(set_curr_mag_count)
 
 	if (!connected_player.joined.is_connected(set_player_color_name)):
 		connected_player.joined.connect(set_player_color_name)

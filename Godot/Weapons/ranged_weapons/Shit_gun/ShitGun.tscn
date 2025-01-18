@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://wxeb7vtfni6g"]
 
-[ext_resource type="Script" path="res://WeaponManager/weapon_base/weapon.gd" id="1_gjj3e"]
+[ext_resource type="Script" path="res://WeaponManager/weapon_base/weapon_base.gd" id="1_gjj3e"]
 [ext_resource type="Texture2D" uid="uid://tmujhoyrchio" path="res://Assets/shit_gun.png" id="1_ycq1t"]
 [ext_resource type="Resource" uid="uid://bq8mwxf25o25k" path="res://Weapons/ranged_weapons/Shit_gun/Shit_gun.tres" id="2_4jp1l"]
 [ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="3_w42fv"]
 
 [node name="ShitGun" type="Node2D"]
 script = ExtResource("1_gjj3e")
-WEAPON = ExtResource("2_4jp1l")
+weapon_stats = ExtResource("2_4jp1l")
 current_bullet = ExtResource("3_w42fv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

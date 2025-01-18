@@ -29,3 +29,6 @@ func take_damage(attack: AttackComponent):
 
 func _init_health(value: int):
 	health = value
+
+func force_signal():
+	sig_health_changed.emit(health)

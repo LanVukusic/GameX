@@ -5,14 +5,14 @@ signal weapon_switched
 signal switch_weapons_pressed
 
 #@export var current_bullet: PackedScene
-@export var avaliable_weapons: Array[PackedScene]
-var weapon_stack: Array[Weapon] = [] # To hold instantiated Weapon nodes
-@export var current_weapon: Weapon = null
+@export var avaliable_weapons: Array[WeaponItem]
+var weapon_stack: Array[WeaponBase] = [] # To hold instantiated Weapon nodes
+@export var current_weapon: WeaponBase = null
 
 func _ready() -> void:
 	# Initialize weapons from available resources
 	for w in avaliable_weapons:
-		var weapon = w.instantiate() as Weapon
+		var weapon = w.scene.instantiate() as WeaponBase
 		add_child(weapon)
 		weapon_stack.append(weapon)
 	
@@ -32,18 +32,14 @@ func switch_weapon():
 	for w in weapon_stack:
 		if (w.get_parent() != null):
 			remove_child(w)
-			print("brisem ", w, w.get_parent())
+#			print("brisem ", w, w.get_parent())
 	# Switch visibility and set the new weapon
 	current_weapon = weapon_stack[next_index]
 	add_child(current_weapon)
 
 	current_weapon.is_shoot_pressed = false
 	weapon_switched.emit()
-	current_weapon.WEAPON.force_signal()
+	current_weapon.weapon_stats.force_signal()
 	
 	print("Switched to weapon:", current_weapon.name)
-
-func _input(event: InputEvent) -> void:
-	# Listen for input to switch weapons
-	if event.is_action_pressed("CheckTree"):
-		print_tree()
+	

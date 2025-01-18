@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=2 format=3 uid="uid://bq8mwxf25o25k"]
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=2 format=3 uid="uid://bq8mwxf25o25k"]
 
-[ext_resource type="Script" path="res://CustomResourcesTemplates/weapon_resource.gd" id="1_8nx3p"]
+[ext_resource type="Script" path="res://CustomResourcesTemplates/weapon_stats.gd" id="1_w3cvk"]
 
 [resource]
 resource_local_to_scene = true
-script = ExtResource("1_8nx3p")
-name = "Shit_gun"
+script = ExtResource("1_w3cvk")
+name = "ShitGun"
 max_magazines = 3
 magazine_capacity = 33
 reload_time = 1.0

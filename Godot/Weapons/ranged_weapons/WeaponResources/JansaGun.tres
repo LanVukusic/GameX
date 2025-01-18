@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=4 format=3 uid="uid://bgr4e6vws740w"]
+
+[ext_resource type="PackedScene" uid="uid://xh18vyvxxyev" path="res://Weapons/ranged_weapons/Jansa_gun/JansaGun.tscn" id="1_40jnb"]
+[ext_resource type="Script" path="res://CustomResourcesTemplates/WeaponItem.gd" id="1_hpetx"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1fof6"]
+size = Vector2(40, 40)
+
+[resource]
+script = ExtResource("1_hpetx")
+name = "JansaGun"
+scene = ExtResource("1_40jnb")
+sprite = SubResource("PlaceholderTexture2D_1fof6")

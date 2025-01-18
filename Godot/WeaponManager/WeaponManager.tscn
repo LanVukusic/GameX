@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bajkwgp562ka7"]
+[gd_scene load_steps=2 format=3 uid="uid://bajkwgp562ka7"]
 
 [ext_resource type="Script" path="res://WeaponManager/weapon_manager.gd" id="1_w2u53"]
-[ext_resource type="PackedScene" uid="uid://xh18vyvxxyev" path="res://Weapons/ranged_weapons/Jansa_gun/JansaGun.tscn" id="3_3em6w"]
-[ext_resource type="PackedScene" uid="uid://bkqvwyt2n84pc" path="res://Weapons/ranged_weapons/Good_gun/GoodGun.tscn" id="4_a5gc4"]
-[ext_resource type="PackedScene" uid="uid://wxeb7vtfni6g" path="res://Weapons/ranged_weapons/Shit_gun/ShitGun.tscn" id="5_rhlds"]
 
 [node name="WeaponManager" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_w2u53")
-avaliable_weapons = Array[PackedScene]([ExtResource("4_a5gc4"), ExtResource("5_rhlds"), ExtResource("3_3em6w")])
