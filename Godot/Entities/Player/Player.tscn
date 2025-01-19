@@ -1,13 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=17 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
 [ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
-[ext_resource type="Script" path="res://CustomResourcesTemplates/WeaponItem.gd" id="5_p3x3i"]
 [ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="6_j48yb"]
-[ext_resource type="PackedScene" uid="uid://bkqvwyt2n84pc" path="res://Weapons/ranged_weapons/Good_gun/GoodGun.tscn" id="6_q1eu4"]
 [ext_resource type="Script" path="res://Components/health_component.gd" id="7_4gix7"]
-[ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="7_u8q4w"]
 [ext_resource type="Script" path="res://Components/move_input_component.gd" id="8_vgfwh"]
 [ext_resource type="Texture2D" uid="uid://kl56tnox7818" path="res://klobuk1.png" id="9_63y7d"]
 [ext_resource type="Script" path="res://Components/character_move_component.gd" id="9_nm2o8"]
@@ -15,13 +12,6 @@
 [ext_resource type="Script" path="res://Components/look_component.gd" id="11_nkggg"]
 [ext_resource type="Script" path="res://Components/status_effect_handler_component.gd" id="11_qj6mh"]
 [ext_resource type="Script" path="res://Components/inventory_component.gd" id="12_50v3v"]
-
-[sub_resource type="Resource" id="Resource_rdh82"]
-resource_local_to_scene = true
-script = ExtResource("5_p3x3i")
-name = "GoodGun"
-scene = ExtResource("6_q1eu4")
-sprite = ExtResource("7_u8q4w")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 28.0
@@ -57,7 +47,6 @@ move_component = NodePath("../CharacterMoveComponent")
 
 [node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]
 position = Vector2(-30, 0)
-avaliable_weapons = Array[ExtResource("5_p3x3i")]([SubResource("Resource_rdh82")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")

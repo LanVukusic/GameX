@@ -11,10 +11,14 @@ class_name UIPlayerNode
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	connect_singals()
-#	connected_player.weapon_manager.weapon_switched.connect(connect_singals)
-#	connected_player.weapon_manager.current_weapon.weapon_stats.force_signal()
-	connected_player.healthcomponent.force_signal()
+	connect_health_and_player_signals()
+	
+	# Connect weapon switching signal from the WeaponManager
+	if connected_player and connected_player.weapon_manager:
+		connected_player.weapon_manager.weapon_switched.connect(_on_weapon_switched)
+	
+	# Initialize weapon-related signals for the current weapon
+	_initialize_weapon_signals()
 
 func set_curr_ammo_count(ammo_count: int):
 	ammo.text = str(ammo_count)
@@ -37,21 +41,42 @@ func set_player_color_name(color: Color, name_in: String):
 	color_rect.color = color
 
 func _on_player_death():
-	("print ded")
+	print("Player died")
 	self.queue_free()
 
-func connect_singals():
-#	if (!connected_player.weapon_manager.current_weapon.weapon_stats.ammo_change.is_connected(set_curr_ammo_count)):
-#		connected_player.weapon_manager.current_weapon.weapon_stats.ammo_change.connect(set_curr_ammo_count)
+func connect_health_and_player_signals():
+	# Health-related signals
+	if connected_player and connected_player.healthcomponent:
+		connected_player.healthcomponent.sig_health_changed.connect(set_curr_health)
+		connected_player.healthcomponent.sig_died.connect(_on_player_death)
 
-#	if (!connected_player.weapon_manager.current_weapon.weapon_stats.magazine_change.is_connected(set_curr_mag_count)):
-#		connected_player.weapon_manager.current_weapon.weapon_stats.magazine_change.connect(set_curr_mag_count)
-
-	if (!connected_player.joined.is_connected(set_player_color_name)):
+	# Player-related signals
+	if connected_player:
 		connected_player.joined.connect(set_player_color_name)
 
-	if (!connected_player.healthcomponent.sig_health_changed.is_connected(set_curr_health)):
-		connected_player.healthcomponent.sig_health_changed.connect(set_curr_health)
+func _on_weapon_switched():
+	# Reinitialize weapon-related signals when the weapon switches
+	_initialize_weapon_signals()
 
-	if (!connected_player.healthcomponent.sig_died.is_connected(_on_player_death)):
-		connected_player.healthcomponent.sig_died.is_connected(_on_player_death)
+func _initialize_weapon_signals():
+	if not connected_player or not connected_player.weapon_manager:
+		return
+
+	var current_weapon = connected_player.weapon_manager.get_current_weapon()
+
+	# Skip if there's no current weapon
+	if not current_weapon:
+		return
+
+	# Disconnect existing signals to avoid duplicates
+	if current_weapon.weapon_stats.ammo_change.is_connected(set_curr_ammo_count):
+		current_weapon.weapon_stats.ammo_change.disconnect(set_curr_ammo_count)
+	if current_weapon.weapon_stats.magazine_change.is_connected(set_curr_mag_count):
+		current_weapon.weapon_stats.magazine_change.disconnect(set_curr_mag_count)
+
+	# Connect new signals for the current weapon
+	current_weapon.weapon_stats.ammo_change.connect(set_curr_ammo_count)
+	current_weapon.weapon_stats.magazine_change.connect(set_curr_mag_count)
+
+	# Force a signal update for the current weapon stats
+	current_weapon.weapon_stats.force_signal()

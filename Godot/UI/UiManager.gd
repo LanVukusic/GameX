@@ -14,7 +14,6 @@ func _ready() -> void:
 func init_UIPlayerNode(player: Player, peerId: int):
 	var PlayerUINode = PlayerUIScene.instantiate() as UIPlayerNode
 	PlayerUINode.connected_player = player
-	PlayerUINode.connect_singals()
 	uiRoot.add_child(PlayerUINode)
 	nodesToIds[peerId] = PlayerUINode
 	print("initing playyer ", player.name, " with id ", peerId)

@@ -40,13 +40,13 @@ func _physics_process(_delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if disable_controlls:
 		return
-	if event.is_action_pressed("Shoot"):
+	if event.is_action_pressed("Shoot") and player.weapon_manager.current_weapon:
 		player.weapon_manager.current_weapon.shoot_pressed.emit()
 
-	if event.is_action_released("Shoot"):
+	if event.is_action_released("Shoot") and player.weapon_manager.current_weapon:
 		player.weapon_manager.current_weapon.shoot_released.emit()
 	
-	if event.is_action_pressed("Reload"):
+	if event.is_action_pressed("Reload") and player.weapon_manager.current_weapon:
 		player.weapon_manager.current_weapon.reload_active.emit()
 
 	if event.is_action_pressed("Lamp"):
