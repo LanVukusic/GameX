@@ -1,6 +1,6 @@
 # @tool
 extends Node
-
+class_name SocketServer
 
 @export_category("UI")
 @export var uIManager: UIManager
