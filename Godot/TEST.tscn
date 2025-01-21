@@ -248,14 +248,14 @@ terrain_set_0/terrain_1/name = "water 1"
 terrain_set_0/terrain_1/color = Color(0.298039, 0.498039, 0.984314, 1)
 sources/0 = SubResource("TileSetAtlasSource_2aqlf")
 
-[sub_resource type="Resource" id="Resource_e1ug8"]
+[sub_resource type="Resource" id="Resource_d13mq"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "GoodGun"
 scene = ExtResource("10_4wmo2")
 sprite = ExtResource("12_ifkvc")
 
-[sub_resource type="Resource" id="Resource_80bby"]
+[sub_resource type="Resource" id="Resource_54g3i"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "ShitGun"
@@ -265,7 +265,7 @@ sprite = ExtResource("14_a02ip")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1fof6"]
 size = Vector2(40, 40)
 
-[sub_resource type="Resource" id="Resource_hqkoo"]
+[sub_resource type="Resource" id="Resource_02tfh"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "JansaGun"
@@ -308,19 +308,18 @@ position = Vector2(270, 90)
 
 [node name="PickUp" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-322, -60)
-item = SubResource("Resource_e1ug8")
+item = SubResource("Resource_d13mq")
 
 [node name="PickUp2" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(112, 185)
-item = SubResource("Resource_80bby")
+item = SubResource("Resource_54g3i")
 
 [node name="PickUp3" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-220, -24)
-item = SubResource("Resource_hqkoo")
+item = SubResource("Resource_02tfh")
 
-[node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("uIManager", "player_root")]
+[node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("player_root")]
 script = ExtResource("15_ir7tf")
-uIManager = NodePath("")
 player_root = NodePath("../Players")
 
 [node name="Players" type="Node2D" parent="."]
