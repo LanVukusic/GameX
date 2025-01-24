@@ -2,8 +2,7 @@ import useWebSocket, { ReadyState } from "react-use-websocket";
 import { MSG } from "./dtos";
 import { $gameSocketStore } from "./store/socketStore";
 
-const hostname = "localhost";
-// const hostname = "192.168.1.30";
+const hostname = window.location.hostname;
 
 export type GameSocketType = {
   readyState: ReadyState;
