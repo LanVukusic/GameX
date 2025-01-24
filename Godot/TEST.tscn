@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://btda7ax5atic7"]
+[gd_scene load_steps=29 format=4 uid="uid://btda7ax5atic7"]
 
 [ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="2_oifng"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="5_3rete"]
@@ -248,14 +248,14 @@ terrain_set_0/terrain_1/name = "water 1"
 terrain_set_0/terrain_1/color = Color(0.298039, 0.498039, 0.984314, 1)
 sources/0 = SubResource("TileSetAtlasSource_2aqlf")
 
-[sub_resource type="Resource" id="Resource_d13mq"]
+[sub_resource type="Resource" id="Resource_me33r"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "GoodGun"
 scene = ExtResource("10_4wmo2")
 sprite = ExtResource("12_ifkvc")
 
-[sub_resource type="Resource" id="Resource_54g3i"]
+[sub_resource type="Resource" id="Resource_4bu5g"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "ShitGun"
@@ -265,12 +265,24 @@ sprite = ExtResource("14_a02ip")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1fof6"]
 size = Vector2(40, 40)
 
-[sub_resource type="Resource" id="Resource_02tfh"]
+[sub_resource type="Resource" id="Resource_xy8ps"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "JansaGun"
 scene = ExtResource("15_jvn6d")
 sprite = SubResource("PlaceholderTexture2D_1fof6")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pjl6s"]
+polygon = PackedVector2Array(-404, -238, -407, -159, -376, -162, -376, -240)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tbrnj"]
+polygon = PackedVector2Array(-414, -496, -409, -361, -376, -353, -377, -500)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2cj14"]
+polygon = PackedVector2Array(-390, -295, -397, -296, -396, -290, -391, -290)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_62lkt"]
+polygon = PackedVector2Array(-386, -257, -394, -258, -394, -250, -386, -250)
 
 [sub_resource type="Resource" id="Resource_hprkm"]
 resource_local_to_scene = true
@@ -296,7 +308,7 @@ tile_map_data = PackedByteArray("AAAUAAYAAAACAAEAAAAUAAUAAAACAAEAAAAUAAQAAAACAAE
 tile_set = SubResource("TileSet_dqov3")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-energy = 0.95
+energy = 0.8
 blend_mode = 1
 
 [node name="MainCamera" parent="." instance=ExtResource("2_oifng")]
@@ -308,19 +320,41 @@ position = Vector2(270, 90)
 
 [node name="PickUp" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-322, -60)
-item = SubResource("Resource_d13mq")
+item = SubResource("Resource_me33r")
 
 [node name="PickUp2" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(112, 185)
-item = SubResource("Resource_54g3i")
+item = SubResource("Resource_4bu5g")
 
 [node name="PickUp3" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-220, -24)
-item = SubResource("Resource_02tfh")
+item = SubResource("Resource_xy8ps")
 
 [node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("player_root")]
 script = ExtResource("15_ir7tf")
 player_root = NodePath("../Players")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(288, 228)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Node2D"]
+occluder = SubResource("OccluderPolygon2D_pjl6s")
+
+[node name="LightOccluder2D5" type="LightOccluder2D" parent="Node2D"]
+occluder = SubResource("OccluderPolygon2D_pjl6s")
+
+[node name="LightOccluder2D6" type="LightOccluder2D" parent="Node2D"]
+occluder = SubResource("OccluderPolygon2D_tbrnj")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Node2D"]
+occluder = SubResource("OccluderPolygon2D_2cj14")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Node2D"]
+occluder = SubResource("OccluderPolygon2D_62lkt")
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+color = Color(0.514064, 0.427489, 0.736078, 1)
+polygon = PackedVector2Array(-408, -336, -404, -238, -377, -238, -378, -357, -408, -359)
 
 [node name="Players" type="Node2D" parent="."]
 position = Vector2(270, 90)

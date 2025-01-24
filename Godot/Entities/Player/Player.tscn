@@ -55,6 +55,7 @@ shape = SubResource("CircleShape2D_aj4h7")
 position = Vector2(15, 1)
 scale = Vector2(8, 8)
 energy = 1.2
+shadow_enabled = true
 texture = SubResource("GradientTexture2D_kwrs8")
 
 [node name="ModulatableSprite" type="Sprite2D" parent="."]
