@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=19 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Components/look_component.gd" id="11_nkggg"]
 [ext_resource type="Script" path="res://Components/status_effect_handler_component.gd" id="11_qj6mh"]
 [ext_resource type="Script" path="res://Components/inventory_component.gd" id="12_50v3v"]
-[ext_resource type="Texture2D" uid="uid://cgk5i7qqvjqs1" path="res://icon.png" id="13_tgxc4"]
+[ext_resource type="Script" path="res://aim_indicator.gd" id="13_2ou21"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 28.0
@@ -30,6 +30,9 @@ fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q831g"]
 radius = 29.0
+
+[sub_resource type="Gradient" id="Gradient_uhlgd"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.301961)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("status_effect_hander", "weapon_manager", "healthcomponent", "move_input_component", "look_input_component", "inventory") groups=["Player"]]
 up_direction = Vector2(1, 0)
@@ -105,7 +108,10 @@ script = ExtResource("11_nkggg")
 actor = NodePath("..")
 look_speed = 10.0
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-62, -199)
-scale = Vector2(-0.065, 3.105)
-texture = ExtResource("13_tgxc4")
+[node name="AimIndicator" type="Node2D" parent="."]
+position = Vector2(-62, 0)
+rotation = -1.5708
+script = ExtResource("13_2ou21")
+angle = 0.56
+color_grad = SubResource("Gradient_uhlgd")
+width = 3.0

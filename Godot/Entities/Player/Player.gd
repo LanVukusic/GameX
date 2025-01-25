@@ -19,15 +19,6 @@ extends CharacterBody2D
 
 
 signal joined(color: Color, name: String)
-#signal moveVec(vec: Vector2)
-#signal lookVec(vec: Vector2)
-#signal lamp()
-
-var _input_direction = Vector2(0, 0)
-
-func set_input_direction(vec: Vector2):
-	_input_direction = vec
-
 
 func toggle_lamp():
 	$PointLight2D.enabled = !$PointLight2D.enabled
@@ -40,20 +31,12 @@ func conn(col: Color, _name: String):
 
 
 func _init() -> void:
-#	moveVec.connect(set_input_direction)
-#	lookVec.connect(set_look_direction)
-#	lamp.connect(toggle_lamp)
 	joined.connect(conn)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	healthcomponent.sig_died.connect(die)
 	pass
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(_delta: float) -> void:
-	self.velocity = _input_direction * stats.move_speed
-	move_and_slide()
 
 func new(id: int):
 	self.multiplayerId = id

@@ -1,6 +1,5 @@
 [gd_scene load_steps=31 format=4 uid="uid://btda7ax5atic7"]
 
-[ext_resource type="PackedScene" path="res://Camera/MainCamera.tscn" id="2_oifng"]
 [ext_resource type="Shader" path="res://ScreenFX.gdshader" id="4_fyfdc"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="5_3rete"]
 [ext_resource type="PackedScene" uid="uid://cj6py650hlmmx" path="res://UI/UiManager.tscn" id="5_164ts"]
@@ -16,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://tmujhoyrchio" path="res://Assets/shit_gun.png" id="14_a02ip"]
 [ext_resource type="Script" path="res://Networking/Server.gd" id="15_ir7tf"]
 [ext_resource type="PackedScene" uid="uid://xh18vyvxxyev" path="res://Weapons/ranged_weapons/Jansa_gun/JansaGun.tscn" id="15_jvn6d"]
+[ext_resource type="Script" path="res://Camera/Camera.gd" id="16_5r80f"]
 
 [sub_resource type="Environment" id="Environment_08ko1"]
 background_energy_multiplier = 0.0
@@ -253,14 +253,14 @@ sources/0 = SubResource("TileSetAtlasSource_2aqlf")
 shader = ExtResource("4_fyfdc")
 shader_parameter/pixel_size = 8.562
 
-[sub_resource type="Resource" id="Resource_g2a8v"]
+[sub_resource type="Resource" id="Resource_o7ga3"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "GoodGun"
 scene = ExtResource("10_4wmo2")
 sprite = ExtResource("12_ifkvc")
 
-[sub_resource type="Resource" id="Resource_tphkb"]
+[sub_resource type="Resource" id="Resource_yrw28"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "ShitGun"
@@ -270,7 +270,7 @@ sprite = ExtResource("14_a02ip")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1fof6"]
 size = Vector2(40, 40)
 
-[sub_resource type="Resource" id="Resource_xdwyu"]
+[sub_resource type="Resource" id="Resource_361g3"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "JansaGun"
@@ -317,10 +317,6 @@ tile_set = SubResource("TileSet_dqov3")
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 blend_mode = 1
 
-[node name="MainCamera" parent="." instance=ExtResource("2_oifng")]
-player_padding = 150
-min_zoom = 0.465
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 10
 visible = false
@@ -339,15 +335,15 @@ position = Vector2(270, 90)
 
 [node name="PickUp" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-322, -60)
-item = SubResource("Resource_g2a8v")
+item = SubResource("Resource_o7ga3")
 
 [node name="PickUp2" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(112, 185)
-item = SubResource("Resource_tphkb")
+item = SubResource("Resource_yrw28")
 
 [node name="PickUp3" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-220, -24)
-item = SubResource("Resource_xdwyu")
+item = SubResource("Resource_361g3")
 
 [node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("uIManager")]
 script = ExtResource("15_ir7tf")
@@ -399,3 +395,8 @@ player_name = "Andrej"
 color = Color(0.295452, 0.383488, 0.886746, 1)
 uIManager = NodePath("../../UiManager")
 peerId = 22
+
+[node name="MultiplayerCamera" type="Camera2D" parent="."]
+script = ExtResource("16_5r80f")
+player_padding = 150
+min_zoom = 0.58
