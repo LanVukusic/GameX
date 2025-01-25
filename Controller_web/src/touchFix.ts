@@ -24,4 +24,8 @@ export const touchFix = () => {
     },
     { passive: false }
   );
+
+  document.addEventListener("contextmenu", function () {
+    return false;
+  });
 };

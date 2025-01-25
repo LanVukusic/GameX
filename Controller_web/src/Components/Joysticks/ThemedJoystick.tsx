@@ -4,16 +4,17 @@ import {
   parseThemeColor,
   useMantineTheme,
 } from "@mantine/core";
-import { Joystick, IJoystickProps } from "react-joystick-component";
+import { IJoystickProps, Joystick } from "./Joystick";
 
-export const ThemedJoystick = ({ ...other }: IJoystickProps) => {
+export const ThemedJoystick = ({ ...othr }: IJoystickProps) => {
   const theme = useMantineTheme();
   const parsedColor = parseThemeColor({ color: theme.primaryColor, theme });
+
   return (
     <Joystick
+      {...othr}
       baseColor={alpha(lighten(parsedColor.value, 0.4), 0.2)}
-      stickColor={alpha(lighten(parsedColor.value, 0.1), 0.8)}
-      {...other}
+      thumbColor={alpha(lighten(parsedColor.value, 0.1), 0.8)}
     />
   );
 };

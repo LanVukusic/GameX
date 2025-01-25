@@ -100,9 +100,9 @@ func handle_packet_json(data: Variant, peerId: int):
 
 		"shoot":
 			if (data["state"] == "active"):
-				player_inst.weapon_manager.current_weapon.shoot_pressed.emit()
+				player_inst.weapon_manager.current_weapon.on_shoot_active()
 			if (data["state"] == "release"):
-				player_inst.weapon_manager.current_weapon.shoot_released.emit()
+				player_inst.weapon_manager.current_weapon.on_shoot_relase()
 
 		"light":
 			player_inst.toggle_lamp()

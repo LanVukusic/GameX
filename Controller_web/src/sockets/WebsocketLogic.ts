@@ -2,10 +2,17 @@ import useWebSocket from "react-use-websocket";
 import { MessageTag, MSG } from "./dtos";
 import { $gameSocketStore } from "../store/socketStore";
 import { joinBuffers } from "./utils";
+import { ReadyState } from "react-use-websocket";
 
 const hostname = window.location.hostname;
 
-export const useGameSocket = () => {
+export interface GameSocketType {
+  readyState: ReadyState;
+  sendMsg: (msg: MSG) => void;
+  sendTagged: (x: number, y: number, tag: MessageTag) => void;
+}
+
+export const useGameSocket = (): GameSocketType => {
   const socket = useWebSocket(`ws://${hostname}:9999`);
 
   const sendTagged = (x: number, y: number, tag: MessageTag) => {
@@ -28,6 +35,7 @@ export const useGameSocket = () => {
   $gameSocketStore.set({
     readyState: socket.readyState,
     sendMsg,
+    sendTagged,
   });
 
   return {
