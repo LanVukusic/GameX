@@ -1,4 +1,5 @@
 extends Camera2D
+class_name MultiplayerCamera
 
 @export_category("Camera follow properties")
 @export var player_padding: int = 100
@@ -22,10 +23,11 @@ func _physics_process(_delta: float) -> void:
 
 	for player in players:
 		var p = player as Player
-		max_x = max(max_x, p.position.x)
-		max_y = max(max_y, p.position.y)
-		min_x = min(min_x, p.position.x)
-		min_y = min(min_y, p.position.y)
+		# needs global position because position is wrong when player is parented
+		max_x = max(max_x, p.global_position.x)
+		max_y = max(max_y, p.global_position.y)
+		min_x = min(min_x, p.global_position.x)
+		min_y = min(min_y, p.global_position.y)
 
   
 	# Bounding rect calculation
@@ -34,7 +36,7 @@ func _physics_process(_delta: float) -> void:
 	(max_y + min_y) / 2.0
 	)
 
-	# positio ncamera in the middle of the players bounding rectangle
+	# position camera in the middle of the players bounding rectangle
 	self.position = center
 
 	# zoom calculation
