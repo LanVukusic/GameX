@@ -11,7 +11,7 @@
 friction = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_olajc"]
-size = Vector2(38, 36)
+size = Vector2(8, 8)
 
 [sub_resource type="Gradient" id="Gradient_t4buc"]
 colors = PackedColorArray(0, 0, 0, 1, 0.712297, 6.16074e-06, 0.465964, 1)
@@ -23,7 +23,7 @@ fill_from = Vector2(1, 0.50641)
 fill_to = Vector2(0.487179, 0.534188)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_au80x"]
-size = Vector2(48, 50)
+size = Vector2(9, 9)
 
 [sub_resource type="Gradient" id="Gradient_giytf"]
 interpolation_mode = 2
@@ -39,6 +39,7 @@ fill_from = Vector2(0.5, 0.5)
 collision_layer = 2
 mass = 0.005
 physics_material_override = SubResource("PhysicsMaterial_7dgaa")
+continuous_cd = 1
 script = ExtResource("1_gwyq8")
 lifetime = 5.0
 move_component = NodePath("RigidBodyMoveComponent")
@@ -47,10 +48,11 @@ move_component = NodePath("RigidBodyMoveComponent")
 shape = SubResource("RectangleShape2D_olajc")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.75, 0.78125)
+scale = Vector2(0.096, 0.1)
 texture = SubResource("GradientTexture2D_w66ve")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 amount = 300
 process_material = ExtResource("2_lp7g3")
 
@@ -74,4 +76,4 @@ texture_scale = 5.0
 [node name="RigidBodyMoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("6_un6ev")
 actor = NodePath("..")
-force = 1000.0
+force = 100.0

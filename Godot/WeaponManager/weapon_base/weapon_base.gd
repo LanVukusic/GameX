@@ -76,12 +76,7 @@ func fire() -> void:
 		if weapon_stats.current_mag_ammo <= 0:
 			print("Out of ammo.")
 			return
-
-		var bullet = current_bullet.instantiate() as Projectile
-		bullet.global_position = raycast.global_position
-		bullet.rotation = self.global_rotation + raycast.target_position.angle()
-		bullet.move_component.one_time_move_impulse(Vector2.from_angle(bullet.rotation))
-		get_tree().get_root().add_child(bullet)
+		spawn_bullet()
 		
 		can_shoot = false
 		fire_timer.start(weapon_stats.fire_rate)
@@ -101,6 +96,14 @@ func reload() -> void:
 	current_weapon_state = weapon_state.RELOADING
 	reload_timer.start(weapon_stats.reload_time)
 	print("Reloading...")
+
+
+func spawn_bullet() -> void:
+	var bullet = current_bullet.instantiate() as Projectile
+	bullet.global_position = raycast.global_position
+	bullet.rotation = self.global_rotation + raycast.target_position.angle()
+	bullet.move_component.one_time_move_impulse(Vector2.from_angle(bullet.rotation))
+	get_tree().get_root().add_child(bullet)
 
 
 func _on_reload_timeout() -> void:

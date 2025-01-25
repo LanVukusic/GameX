@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://dtqlo647bwriy"]
+
+[ext_resource type="Script" path="res://TESTING/gun_stand.gd" id="1_sqfo0"]
+[ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="2_x63lm"]
+[ext_resource type="Script" path="res://TESTING/Comps/barrel_component.gd" id="3_xnlwp"]
+[ext_resource type="Script" path="res://TESTING/Comps/magazine_component.gd" id="4_755tt"]
+[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="5_y4d6n"]
+
+[node name="Weapon" type="Node2D" node_paths=PackedStringArray("barrel", "magazine")]
+script = ExtResource("1_sqfo0")
+barrel = NodePath("BarrelComponent")
+magazine = NodePath("MagazineComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("2_x63lm")
+
+[node name="BarrelComponent" type="Node2D" parent="."]
+script = ExtResource("3_xnlwp")
+
+[node name="RayCast2D5" type="RayCast2D" parent="BarrelComponent"]
+position = Vector2(0, -27)
+target_position = Vector2(2, -10)
+
+[node name="RayCast2D" type="RayCast2D" parent="BarrelComponent"]
+position = Vector2(0, -27)
+target_position = Vector2(0, -10)
+
+[node name="RayCast2D2" type="RayCast2D" parent="BarrelComponent"]
+position = Vector2(0, -27)
+target_position = Vector2(3, -10)
+
+[node name="RayCast2D3" type="RayCast2D" parent="BarrelComponent"]
+position = Vector2(0, -27)
+target_position = Vector2(-5, -10)
+
+[node name="RayCast2D4" type="RayCast2D" parent="BarrelComponent"]
+position = Vector2(0, -27)
+target_position = Vector2(-2, -10)
+
+[node name="MagazineComponent" type="Node" parent="." node_paths=PackedStringArray("reload_timer")]
+script = ExtResource("4_755tt")
+projectile = ExtResource("5_y4d6n")
+capacity = 50
+magazines = 5
+reload_timer = NodePath("../ReloadCooldownTimer")
+
+[node name="FireRateTimer" type="Timer" parent="."]
+
+[node name="ReloadCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-10, 1)
