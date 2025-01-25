@@ -146,7 +146,6 @@ func _process(_delta):
 			var json = JSON.new()
 			var json_str = bytes.slice(1).get_string_from_ascii()
 			var error = json.parse(json_str)
-			print(json.data)
 			if error:
 				print("ERROR")
 			else:

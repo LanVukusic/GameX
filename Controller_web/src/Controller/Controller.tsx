@@ -82,14 +82,14 @@ export const Controller = ({ setMenu }: Props) => {
       }}
       pos="relative"
     >
-      {/* <LoadingOverlay
+      <LoadingOverlay
         visible={readyState != ReadyState.OPEN}
         overlayProps={{
           blur: 15,
           opacity: 0.9,
         }}
         loaderProps={{ children: <LoaderContent setMenu={setMenu} /> }}
-      /> */}
+      />
       {/* <ThemedShadow /> */}
 
       <Grid

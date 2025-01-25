@@ -253,14 +253,14 @@ sources/0 = SubResource("TileSetAtlasSource_2aqlf")
 shader = ExtResource("4_fyfdc")
 shader_parameter/pixel_size = 8.562
 
-[sub_resource type="Resource" id="Resource_psbnh"]
+[sub_resource type="Resource" id="Resource_awhr1"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "GoodGun"
 scene = ExtResource("10_4wmo2")
 sprite = ExtResource("12_ifkvc")
 
-[sub_resource type="Resource" id="Resource_ooga6"]
+[sub_resource type="Resource" id="Resource_4m2j8"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "ShitGun"
@@ -270,7 +270,7 @@ sprite = ExtResource("14_a02ip")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1fof6"]
 size = Vector2(40, 40)
 
-[sub_resource type="Resource" id="Resource_7foqb"]
+[sub_resource type="Resource" id="Resource_k6b26"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "JansaGun"
@@ -335,15 +335,15 @@ position = Vector2(270, 90)
 
 [node name="PickUp" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-322, -60)
-item = SubResource("Resource_psbnh")
+item = SubResource("Resource_awhr1")
 
 [node name="PickUp2" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(112, 185)
-item = SubResource("Resource_ooga6")
+item = SubResource("Resource_4m2j8")
 
 [node name="PickUp3" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-220, -24)
-item = SubResource("Resource_7foqb")
+item = SubResource("Resource_k6b26")
 
 [node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("uIManager", "player_root")]
 script = ExtResource("15_ir7tf")
