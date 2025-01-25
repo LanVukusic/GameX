@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqa21rbrui6si"
-path="res://.godot/imported/vite.svg-06e54f49cb71b74208536b8449c6c2ac.ctex"
+uid="uid://ccpgo80y3t4at"
+path="res://.godot/imported/bullet_2.png-b187a23d8f75b10a4373a0e622365695.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Networking/HTTP/dist/vite.svg"
-dest_files=["res://.godot/imported/vite.svg-06e54f49cb71b74208536b8449c6c2ac.ctex"]
+source_file="res://Networking/HTTP/dist/game_exports/bullet_2.png"
+dest_files=["res://.godot/imported/bullet_2.png-b187a23d8f75b10a4373a0e622365695.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -37,10 +37,10 @@ export const Joystick = ({
         return;
       }
       // if it is a new touch, start tracking it
-      setTouch(event.touches[0]);
+      setTouch(event.changedTouches[0]);
       setJoyPos({
-        x: event.touches[0].clientX,
-        y: event.touches[0].clientY,
+        x: event.changedTouches[0].clientX,
+        y: event.changedTouches[0].clientY,
       });
     },
     [touch]

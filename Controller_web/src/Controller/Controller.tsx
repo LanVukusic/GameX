@@ -82,14 +82,14 @@ export const Controller = ({ setMenu }: Props) => {
       }}
       pos="relative"
     >
-      <LoadingOverlay
+      {/* <LoadingOverlay
         visible={readyState != ReadyState.OPEN}
         overlayProps={{
           blur: 15,
           opacity: 0.9,
         }}
         loaderProps={{ children: <LoaderContent setMenu={setMenu} /> }}
-      />
+      /> */}
       {/* <ThemedShadow /> */}
 
       <Grid
@@ -172,8 +172,10 @@ export const Controller = ({ setMenu }: Props) => {
                 onStop={releasePressed}
                 onChange={(vec) => {
                   sendTagged(vec.x, vec.y, MessageTag.LOOK);
-                  if (Math.abs(vec.x) > 0.8 || Math.abs(vec.y) > 0.8) {
+                  if (Math.abs(vec.x) > 0.5 || Math.abs(vec.y) > 0.5) {
                     activePressed();
+                  } else {
+                    releasePressed();
                   }
                 }}
               />
