@@ -50,7 +50,7 @@ func _connected(id):
 
 
 func get_player_from_id(id: int):
-	if (players.has(id)):
+	if (players.has(id) && is_instance_valid(players[id])):
 		return players[id] as Player
 	return null
 
@@ -59,21 +59,19 @@ func _disconnected(id, was_clean = false):
 	# disconnecting client, "was_clean" will tell you if the disconnection
 	# was correctly notified by the remote peer before closing the socket.
 	print("Client %d disconnected, clean: %s" % [id, str(was_clean)])
-	if (players.has(id)):
+	if (players.has(id) != null && is_instance_valid(players[id])):
 		players[id].queue_free()
-		players.erase(id)
 		uIManager.remove_UIPlayerNode(id)
+		players.erase(id)
 
 
-func handle_packet(data: Variant, peerId: int):
+func handle_packet_json(data: Variant, peerId: int):
 	var player_inst = get_player_from_id(peerId)
 
 	if (data["t"] == "join"):
 		if (player_inst != null):
 			print("rejoin detected")
 			return
-			# players.erase(peerId)
-			# player_inst.queue_free()
 
 		print("Client %d connected " % [peerId])
 		player_inst = playerScene.instantiate() as Player
@@ -88,24 +86,12 @@ func handle_packet(data: Variant, peerId: int):
 		player_inst.joined.emit(Color(data["color"]), data["name"])
 		return
 
-	# Find the instantiated player associated with the current peerId
 
 	if player_inst == null:
 		print("no player found")
 		return
 	
 	match data["t"]:
-		"move":
-			
-			player_inst.move_input_component.handle_input(Vector2(data["x"], -1 * data["y"]))
-			#player_inst.moveVec.emit(Vector2(data["x"], -1 * data["y"]))
-			return
-
-		"look":
-			player_inst.look_input_component.handle_look_direction(Vector2(data["x"], -1 * data["y"]))
-			#player_inst.lookVec.emit(Vector2(data["x"], -1 * data["y"]))
-			return
-
 		"reload":
 			player_inst.weapon_manager.current_weapon.reload_active.emit()
 		
@@ -119,8 +105,30 @@ func handle_packet(data: Variant, peerId: int):
 				player_inst.weapon_manager.current_weapon.shoot_released.emit()
 
 		"light":
-			player_inst.lamp.emit()
+			player_inst.toggle_lamp()
 			return
+
+func handle_packet_binary(data: PackedByteArray, peerId: int):
+	var player_inst = get_player_from_id(peerId)
+	if (player_inst == null || !is_instance_valid(player_inst)):
+		return
+
+	# we got a byte message : MOVE or LOOK
+	if (data.slice(1, 2).decode_u8(0) == 1):
+		var x = data.slice(2, 6).decode_float(0)
+		var y = data.slice(6, 10).decode_float(0)
+		player_inst.move_input_component.handle_input(Vector2(x, y * -1))
+		# print(x, " ", y, " move")
+		return
+
+	if (data.slice(1, 2).decode_u8(0) == 2):
+		# LOOK
+		var x = data.slice(2, 6).decode_float(0)
+		var y = data.slice(6, 10).decode_float(0)
+		player_inst.look_input_component.handle_look_direction(Vector2(x, -1 * y))
+		# print(x, " ", y, " look")
+		return
+
 
 func _process(_delta):
 	_server.poll()
@@ -128,13 +136,21 @@ func _process(_delta):
 	if state == MultiplayerPeer.CONNECTION_CONNECTED:
 		while _server.get_available_packet_count():
 			var ownerId = _server.get_packet_peer()
+			var bytes: PackedByteArray = _server.get_packet()
+			# byte msg handling for move and look
+			if (bytes.slice(0, 1).decode_u8(0) == 0):
+				handle_packet_binary(bytes, ownerId)
+				return
+
+			# json message
 			var json = JSON.new()
-			var json_str = _server.get_packet().get_string_from_ascii()
+			var json_str = bytes.slice(1).get_string_from_ascii()
 			var error = json.parse(json_str)
+			print(json.data)
 			if error:
 				print("ERROR")
 			else:
-				handle_packet(json.data, ownerId)
+				handle_packet_json(json.data, ownerId)
 
 	elif state == MultiplayerPeer.CONNECTION_DISCONNECTED:
 		var code = _server.get_close_code()

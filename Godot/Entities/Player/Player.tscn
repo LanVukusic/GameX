@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://lrrmhxf8p6g3"]
+[gd_scene load_steps=18 format=3 uid="uid://lrrmhxf8p6g3"]
 
 [ext_resource type="Script" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
@@ -12,16 +12,19 @@
 [ext_resource type="Script" path="res://Components/look_component.gd" id="11_nkggg"]
 [ext_resource type="Script" path="res://Components/status_effect_handler_component.gd" id="11_qj6mh"]
 [ext_resource type="Script" path="res://Components/inventory_component.gd" id="12_50v3v"]
+[ext_resource type="Texture2D" uid="uid://cgk5i7qqvjqs1" path="res://icon.png" id="13_tgxc4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
 radius = 28.0
 
 [sub_resource type="Gradient" id="Gradient_nfeg3"]
-offsets = PackedFloat32Array(0, 0.704587)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.688312)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kwrs8"]
 gradient = SubResource("Gradient_nfeg3")
+width = 128
+height = 128
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
@@ -46,17 +49,20 @@ health_component = NodePath("../HealthCopomnent")
 move_component = NodePath("../CharacterMoveComponent")
 
 [node name="WeaponManager" parent="." instance=ExtResource("2_y2jhs")]
-position = Vector2(-30, 0)
+position = Vector2(-62, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_aj4h7")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(15, 1)
-scale = Vector2(8, 8)
 energy = 1.2
+blend_mode = 2
 shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 0.1
 texture = SubResource("GradientTexture2D_kwrs8")
+texture_scale = 4.0
 
 [node name="ModulatableSprite" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -98,3 +104,8 @@ look_component = NodePath("../LookComponent")
 script = ExtResource("11_nkggg")
 actor = NodePath("..")
 look_speed = 10.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-62, -199)
+scale = Vector2(-0.065, 3.105)
+texture = ExtResource("13_tgxc4")

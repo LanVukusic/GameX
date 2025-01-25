@@ -45,3 +45,9 @@ export type MSG =
   | ShootMessage
   | ReloadMessage
   | SwitchWeapon;
+
+// BUFFER LOGIC
+export enum MessageTag {
+  MOVE = 1,
+  LOOK = 2,
+}

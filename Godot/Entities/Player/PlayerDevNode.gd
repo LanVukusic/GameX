@@ -50,7 +50,7 @@ func _input(event: InputEvent) -> void:
 		player.weapon_manager.current_weapon.reload_active.emit()
 
 	if event.is_action_pressed("Lamp"):
-		player.lamp.emit()
+		player.toggle_lamp()
 	
 	if event.is_action_pressed("WeaponSwitch"):
 		player.weapon_manager.switch_weapons_pressed.emit()

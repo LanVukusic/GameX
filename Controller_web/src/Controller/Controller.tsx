@@ -22,11 +22,12 @@ import { ReadyState } from "react-use-websocket";
 import { HoldableButton } from "../Components/HoldableButton/HoldableButton";
 import { Inventory } from "../Components/Inventory/Inventory";
 import { ThemedJoystick } from "../Components/Joysticks/ThemedJoystick";
-import { useGameSocket } from "../WebsocketLogic";
+import { useGameSocket } from "../sockets/WebsocketLogic";
 import { $player } from "../store/player";
 import { DndContext } from "@dnd-kit/core";
 import { useSensorsSettings } from "../Components/DnD/UseSensors";
 import { LoaderContent } from "./Loader";
+import { MessageTag } from "../sockets/dtos";
 
 const THROTTLE = 10; // ms for debounce
 
@@ -36,7 +37,7 @@ interface Props {
 
 export const Controller = ({ setMenu }: Props) => {
   const { toggle, fullscreen } = useFullscreen();
-  const { sendMsg, readyState } = useGameSocket();
+  const { sendMsg, readyState, sendTagged } = useGameSocket();
   const sensors = useSensorsSettings();
   // const readyState = ReadyState.OPEN;
 
@@ -134,18 +135,10 @@ export const Controller = ({ setMenu }: Props) => {
                 stickSize={40}
                 throttle={THROTTLE}
                 move={(data) => {
-                  sendMsg({
-                    t: "move",
-                    x: data.x || 0,
-                    y: data.y || 0,
-                  });
+                  sendTagged(data.x || 0.0, data.y || 0.0, MessageTag.MOVE);
                 }}
                 stop={() => {
-                  sendMsg({
-                    t: "move",
-                    x: 0,
-                    y: 0,
-                  });
+                  sendTagged(0.0, 0.0, MessageTag.MOVE);
                 }}
               />
             </Stack>
@@ -193,11 +186,7 @@ export const Controller = ({ setMenu }: Props) => {
                 stickSize={40}
                 throttle={THROTTLE}
                 move={(data) => {
-                  sendMsg({
-                    t: "look",
-                    x: data.x || 0,
-                    y: data.y || 0,
-                  });
+                  sendTagged(data.x || 0, data.y || 0, MessageTag.LOOK);
                 }}
               />
             </Stack>

@@ -28,10 +28,6 @@ var _input_direction = Vector2(0, 0)
 func set_input_direction(vec: Vector2):
 	_input_direction = vec
 
-#func set_look_direction(vec: Vector2):
-#	var target = vec.angle() + PI / 2
-#	var lookSpeed = 0.1
-#	self.rotation = lerp_angle(self.rotation, target, lookSpeed)
 
 func toggle_lamp():
 	$PointLight2D.enabled = !$PointLight2D.enabled
