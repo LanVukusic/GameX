@@ -79,7 +79,8 @@ func fire() -> void:
 
 		var bullet = current_bullet.instantiate() as Projectile
 		bullet.global_position = raycast.global_position
-		bullet.rotation = global_rotation + raycast.target_position.angle()
+		bullet.rotation = self.global_rotation + raycast.target_position.angle()
+		bullet.move_component.one_time_move_impulse(Vector2.from_angle(bullet.rotation))
 		get_tree().get_root().add_child(bullet)
 		
 		can_shoot = false

@@ -1,6 +1,6 @@
 [gd_scene load_steps=31 format=4 uid="uid://btda7ax5atic7"]
 
-[ext_resource type="PackedScene" uid="uid://bu1vvd37kb4tn" path="res://Camera/MainCamera.tscn" id="2_oifng"]
+[ext_resource type="PackedScene" path="res://Camera/MainCamera.tscn" id="2_oifng"]
 [ext_resource type="Shader" path="res://ScreenFX.gdshader" id="4_fyfdc"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="5_3rete"]
 [ext_resource type="PackedScene" uid="uid://cj6py650hlmmx" path="res://UI/UiManager.tscn" id="5_164ts"]
@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Entities/Player/PlayerDevNode.gd" id="6_ogjir"]
 [ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Entities/Enemies/Zergling.tscn" id="8_4gdji"]
 [ext_resource type="PackedScene" uid="uid://b5n6tc3kklr8q" path="res://Components/PickUp/PickUp.tscn" id="8_scmed"]
-[ext_resource type="PackedScene" uid="uid://bkqvwyt2n84pc" path="res://Weapons/ranged_weapons/Good_gun/GoodGun.tscn" id="10_4wmo2"]
+[ext_resource type="PackedScene" uid="uid://bkqvwyt2n84pc" path="res://Weapons/ranged_weapons/Shotgun/Shotgun.tscn" id="10_4wmo2"]
 [ext_resource type="Script" path="res://CustomResourcesTemplates/WeaponItem.gd" id="11_6kn73"]
 [ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="12_ifkvc"]
 [ext_resource type="PackedScene" uid="uid://wxeb7vtfni6g" path="res://Weapons/ranged_weapons/Shit_gun/ShitGun.tscn" id="13_3ybem"]
@@ -253,14 +253,14 @@ sources/0 = SubResource("TileSetAtlasSource_2aqlf")
 shader = ExtResource("4_fyfdc")
 shader_parameter/pixel_size = 8.562
 
-[sub_resource type="Resource" id="Resource_d2s4g"]
+[sub_resource type="Resource" id="Resource_g2a8v"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "GoodGun"
 scene = ExtResource("10_4wmo2")
 sprite = ExtResource("12_ifkvc")
 
-[sub_resource type="Resource" id="Resource_5i5v8"]
+[sub_resource type="Resource" id="Resource_tphkb"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "ShitGun"
@@ -270,7 +270,7 @@ sprite = ExtResource("14_a02ip")
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_1fof6"]
 size = Vector2(40, 40)
 
-[sub_resource type="Resource" id="Resource_00ayb"]
+[sub_resource type="Resource" id="Resource_xdwyu"]
 resource_local_to_scene = true
 script = ExtResource("11_6kn73")
 name = "JansaGun"
@@ -339,20 +339,19 @@ position = Vector2(270, 90)
 
 [node name="PickUp" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-322, -60)
-item = SubResource("Resource_d2s4g")
+item = SubResource("Resource_g2a8v")
 
 [node name="PickUp2" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(112, 185)
-item = SubResource("Resource_5i5v8")
+item = SubResource("Resource_tphkb")
 
 [node name="PickUp3" parent="." instance=ExtResource("8_scmed")]
 position = Vector2(-220, -24)
-item = SubResource("Resource_00ayb")
+item = SubResource("Resource_xdwyu")
 
-[node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("uIManager", "player_root")]
+[node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("uIManager")]
 script = ExtResource("15_ir7tf")
 uIManager = NodePath("../UiManager")
-player_root = NodePath("../Players")
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(288, 228)
@@ -376,30 +375,27 @@ occluder = SubResource("OccluderPolygon2D_62lkt")
 color = Color(0.514064, 0.427489, 0.736078, 1)
 polygon = PackedVector2Array(-408, -336, -404, -238, -377, -238, -378, -357, -408, -359)
 
-[node name="Players" type="Node2D" parent="."]
-position = Vector2(270, 90)
-
-[node name="Player" parent="Players" instance=ExtResource("5_3rete")]
-position = Vector2(-279, -102)
+[node name="Player" parent="." instance=ExtResource("5_3rete")]
+position = Vector2(-9, -12)
 collision_layer = 3
 collision_mask = 3
 stats = SubResource("Resource_hprkm")
 
-[node name="PlayerDevNode" type="Node2D" parent="Players/Player" node_paths=PackedStringArray("uIManager")]
+[node name="PlayerDevNode" type="Node2D" parent="Player" node_paths=PackedStringArray("uIManager")]
 script = ExtResource("6_ogjir")
 player_name = "Janez"
 color = Color(0.078991, 0.538643, 0.19221, 1)
-uIManager = NodePath("../../../UiManager")
+uIManager = NodePath("../../UiManager")
 peerId = 19
 
-[node name="Player2" parent="Players" instance=ExtResource("5_3rete")]
-position = Vector2(-127, -202)
+[node name="Player2" parent="." instance=ExtResource("5_3rete")]
+position = Vector2(143, -112)
 stats = SubResource("Resource_456e6")
 
-[node name="PlayerDevNode" type="Node2D" parent="Players/Player2" node_paths=PackedStringArray("uIManager")]
+[node name="PlayerDevNode" type="Node2D" parent="Player2" node_paths=PackedStringArray("uIManager")]
 script = ExtResource("6_ogjir")
 disable_controlls = true
 player_name = "Andrej"
 color = Color(0.295452, 0.383488, 0.886746, 1)
-uIManager = NodePath("../../../UiManager")
+uIManager = NodePath("../../UiManager")
 peerId = 22

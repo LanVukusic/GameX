@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://brfnadljnnin1"]
+[gd_scene load_steps=14 format=3 uid="uid://brfnadljnnin1"]
 
 [ext_resource type="Script" path="res://Projectiles/projectile.gd" id="1_gwyq8"]
 [ext_resource type="Material" uid="uid://dpbgp1wtumxva" path="res://Statuseffect/Fire/fire_settings.tres" id="2_lp7g3"]
 [ext_resource type="Script" path="res://Components/hitbox_component.gd" id="4_ds08m"]
 [ext_resource type="Script" path="res://Components/attack_component.gd" id="4_yoay7"]
 [ext_resource type="PackedScene" uid="uid://dyby88e5bhdpk" path="res://Statuseffect/SpeedDebuff/SpeedDebuff.tscn" id="5_qghh3"]
+[ext_resource type="Script" path="res://Components/rigid_body_move_component.gd" id="6_un6ev"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dgaa"]
 friction = 0.5
@@ -34,12 +35,13 @@ gradient = SubResource("Gradient_giytf")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="Projectile" type="RigidBody2D"]
+[node name="Projectile" type="RigidBody2D" node_paths=PackedStringArray("move_component")]
 collision_layer = 2
 mass = 0.005
 physics_material_override = SubResource("PhysicsMaterial_7dgaa")
 script = ExtResource("1_gwyq8")
 lifetime = 5.0
+move_component = NodePath("RigidBodyMoveComponent")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_olajc")
@@ -68,3 +70,8 @@ shape = SubResource("RectangleShape2D_au80x")
 energy = 0.2
 texture = SubResource("GradientTexture2D_fx41f")
 texture_scale = 5.0
+
+[node name="RigidBodyMoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("6_un6ev")
+actor = NodePath("..")
+force = 1000.0
