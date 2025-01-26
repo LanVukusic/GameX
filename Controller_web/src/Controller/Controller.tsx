@@ -1,3 +1,4 @@
+import { DndContext } from "@dnd-kit/core";
 import {
   ActionIcon,
   Button,
@@ -7,29 +8,25 @@ import {
   Stack,
   useMantineTheme,
 } from "@mantine/core";
-import { useFullscreen } from "@mantine/hooks";
+import { useElementSize, useFullscreen } from "@mantine/hooks";
 import { useStore } from "@nanostores/react";
 import {
   IconBulb,
   IconChevronLeft,
   IconMaximize,
   IconMinimize,
-  IconRepeat,
   IconSettings,
 } from "@tabler/icons-react";
 import { useCallback, useEffect } from "react";
 import { ReadyState } from "react-use-websocket";
+import { useSensorsSettings } from "../Components/DnD/UseSensors";
 import { HoldableButton } from "../Components/HoldableButton/HoldableButton";
-import { Inventory } from "../Components/Inventory/Inventory";
 import { ThemedJoystick } from "../Components/Joysticks/ThemedJoystick";
+import { MessageTag } from "../sockets/dtos";
 import { useGameSocket } from "../sockets/WebsocketLogic";
 import { $player } from "../store/player";
-import { DndContext } from "@dnd-kit/core";
-import { useSensorsSettings } from "../Components/DnD/UseSensors";
 import { LoaderContent } from "./Loader";
-import { MessageTag } from "../sockets/dtos";
-
-const THROTTLE = 10; // ms for debounce
+// const THROTTLE = 10; // ms for debounce
 
 interface Props {
   setMenu: () => void;
@@ -40,6 +37,7 @@ export const Controller = ({ setMenu }: Props) => {
   const { sendMsg, readyState, sendTagged } = useGameSocket();
   const sensors = useSensorsSettings();
   // const readyState = ReadyState.OPEN;
+  const { ref, width } = useElementSize();
 
   const player = useStore($player);
   const theme = useMantineTheme();
@@ -95,6 +93,7 @@ export const Controller = ({ setMenu }: Props) => {
       {/* <ThemedShadow /> */}
 
       <Grid
+        p="xl"
         justify="flex-start"
         align="stretch"
         h="100%"
@@ -104,8 +103,8 @@ export const Controller = ({ setMenu }: Props) => {
           },
         }}
       >
-        <Grid.Col span={3} h="100%">
-          <Stack h="100%" justify="space-around" align="center">
+        <Grid.Col span={4} h="100%">
+          <Stack h="100%" justify="space-between" align="center">
             <Group wrap="nowrap" p="xs" pb="0" w="100%" justify="space-around">
               <ActionIcon variant="subtle" onClick={setMenu}>
                 <IconChevronLeft />
@@ -129,64 +128,55 @@ export const Controller = ({ setMenu }: Props) => {
             >
               Light
             </Button>
-            <Stack align="center">
+            <Stack align="center" w="100%" ref={ref}>
               <ThemedJoystick
-                size={180}
-                stickSize={40}
-                throttle={THROTTLE}
-                move={(data) => {
-                  sendTagged(data.x || 0.0, data.y || 0.0, MessageTag.MOVE);
-                }}
-                stop={() => {
-                  sendTagged(0.0, 0.0, MessageTag.MOVE);
+                baseSize={width}
+                onChange={(vec) => {
+                  sendTagged(vec.x, vec.y, MessageTag.MOVE);
                 }}
               />
             </Stack>
           </Stack>
         </Grid.Col>
-        <Grid.Col span={6}>
+        <Grid.Col span={4}>
           <Stack h="100%">
             {/* <SegmentedControl fullWidth data={["Inventory", "Map", "Stats"]} /> */}
             {/* <Center w="100%" h="100%" bg="blue.1" opacity={0.1}> */}
-            <Inventory />
+            {/* <Inventory /> */}
             {/* </Center> */}
           </Stack>
         </Grid.Col>
-        <Grid.Col span={3}>
-          <Stack h="100%" justify="space-around" align="center" py="md">
+        <Grid.Col span={4}>
+          <Stack h="100%" justify="space-between" align="center" py="md">
             <Group w="100%" px="xs">
-              <Button
-                fullWidth
-                leftSection={<IconRepeat />}
-                variant="light"
-                size="xs"
-                onClick={() => {
-                  sendMsg({
-                    t: "reload",
-                  });
-                }}
-              >
-                Reload
-              </Button>
               <DndContext sensors={sensors}>
                 <HoldableButton
                   w="100%"
                   mt="lg"
+                  p="md"
                   variant="light"
-                  onPressed={activePressed}
-                  onReleased={releasePressed}
+                  onPressed={() => {
+                    sendMsg({
+                      t: "reload",
+                    });
+                  }}
+                  onReleased={() => {}}
                 >
-                  Shoot
+                  Reload
                 </HoldableButton>
               </DndContext>
             </Group>
             <Stack align="center">
               <ThemedJoystick
-                size={180}
-                stickSize={40}
-                throttle={THROTTLE}
-                move={(data) => {
-                  sendTagged(data.x || 0, data.y || 0, MessageTag.LOOK);
+                baseSize={width}
+                onStop={releasePressed}
+                onChange={(vec) => {
+                  sendTagged(vec.x, vec.y, MessageTag.LOOK);
+                  if (Math.abs(vec.x) > 0.5 || Math.abs(vec.y) > 0.5) {
+                    activePressed();
+                  } else {
+                    releasePressed();
+                  }
                 }}
               />
             </Stack>

@@ -41,6 +41,7 @@ mass = 0.005
 physics_material_override = SubResource("PhysicsMaterial_7dgaa")
 continuous_cd = 1
 script = ExtResource("1_gwyq8")
+speed = 20000
 lifetime = 5.0
 move_component = NodePath("RigidBodyMoveComponent")
 
@@ -76,4 +77,4 @@ texture_scale = 5.0
 [node name="RigidBodyMoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("6_un6ev")
 actor = NodePath("..")
-force = 1000.0
+force = 7000.0

@@ -313,9 +313,10 @@ item = ExtResource("6_qyk14")
 position = Vector2(100, -105)
 item = ExtResource("7_jolvn")
 
-[node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("uIManager")]
+[node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("uIManager", "player_root")]
 script = ExtResource("15_ir7tf")
 uIManager = NodePath("../UiManager")
+player_root = NodePath("../PlayerRoot")
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2(288, 228)
@@ -339,29 +340,32 @@ occluder = SubResource("OccluderPolygon2D_62lkt")
 color = Color(0.514064, 0.427489, 0.736078, 1)
 polygon = PackedVector2Array(-408, -336, -404, -238, -377, -238, -378, -357, -408, -359)
 
-[node name="Player" parent="." instance=ExtResource("5_3rete")]
-position = Vector2(-9, 34)
+[node name="PlayerRoot" type="Node2D" parent="."]
+position = Vector2(288, 228)
+
+[node name="Player" parent="PlayerRoot" instance=ExtResource("5_3rete")]
+position = Vector2(-297, -240)
 collision_layer = 3
 collision_mask = 3
 stats = SubResource("Resource_hprkm")
 
-[node name="PlayerDevNode" type="Node2D" parent="Player" node_paths=PackedStringArray("uIManager")]
+[node name="PlayerDevNode" type="Node2D" parent="PlayerRoot/Player" node_paths=PackedStringArray("uIManager")]
 script = ExtResource("6_ogjir")
 player_name = "Janez"
 color = Color(0.078991, 0.538643, 0.19221, 1)
-uIManager = NodePath("../../UiManager")
+uIManager = NodePath("../../../UiManager")
 peerId = 19
 
-[node name="Player2" parent="." instance=ExtResource("5_3rete")]
-position = Vector2(235, -194)
+[node name="Player2" parent="PlayerRoot" instance=ExtResource("5_3rete")]
+position = Vector2(-145, -340)
 stats = SubResource("Resource_456e6")
 
-[node name="PlayerDevNode" type="Node2D" parent="Player2" node_paths=PackedStringArray("uIManager")]
+[node name="PlayerDevNode" type="Node2D" parent="PlayerRoot/Player2" node_paths=PackedStringArray("uIManager")]
 script = ExtResource("6_ogjir")
 disable_controlls = true
 player_name = "Andrej"
 color = Color(0.295452, 0.383488, 0.886746, 1)
-uIManager = NodePath("../../UiManager")
+uIManager = NodePath("../../../UiManager")
 peerId = 22
 
 [node name="MultiplayerCamera" type="Camera2D" parent="."]
