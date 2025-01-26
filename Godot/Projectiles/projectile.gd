@@ -1,7 +1,6 @@
 extends RigidBody2D
 class_name Projectile
 # Called when the node enters the scene tree for the first time.
-@export var speed = 1000
 @export var lifetime: float
 @export var move_component: RigidBodyMoveComponent
 

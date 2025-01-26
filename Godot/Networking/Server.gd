@@ -93,16 +93,19 @@ func handle_packet_json(data: Variant, peerId: int):
 	
 	match data["t"]:
 		"reload":
-			player_inst.weapon_manager.current_weapon.reload_active.emit()
+			if player_inst.weapon_manager.current_weapon:
+				player_inst.weapon_manager.current_weapon.magazine.reload()
 		
 		"switch_w":
-			player_inst.weapon_manager.switch_weapons_pressed.emit()
+			if player_inst.weapon_manager.current_weapon != null:
+				player_inst.weapon_manager.switch_weapon()
 
 		"shoot":
-			if (data["state"] == "active"):
-				player_inst.weapon_manager.current_weapon.on_shoot_active()
-			if (data["state"] == "release"):
-				player_inst.weapon_manager.current_weapon.on_shoot_relase()
+			if player_inst.weapon_manager.current_weapon:
+				if (data["state"] == "active"):
+					player_inst.weapon_manager.current_weapon.fire()
+			#if (data["state"] == "release"):
+				#player_inst.weapon_manager.current_weapon.on_shoot_relase()
 
 		"light":
 			player_inst.toggle_lamp()

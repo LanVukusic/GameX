@@ -69,14 +69,15 @@ func _initialize_weapon_signals():
 		return
 
 	# Disconnect existing signals to avoid duplicates
-	if current_weapon.weapon_stats.ammo_change.is_connected(set_curr_ammo_count):
-		current_weapon.weapon_stats.ammo_change.disconnect(set_curr_ammo_count)
-	if current_weapon.weapon_stats.magazine_change.is_connected(set_curr_mag_count):
-		current_weapon.weapon_stats.magazine_change.disconnect(set_curr_mag_count)
+	if current_weapon.magazine.sig_ammo_change.is_connected(set_curr_ammo_count):
+		current_weapon.magazine.sig_ammo_change.disconnect(set_curr_ammo_count)
+
+	if current_weapon.magazine.sig_magazine_change.is_connected(set_curr_mag_count):
+		current_weapon.magazine.sig_magazine_change.disconnect(set_curr_mag_count)
 
 	# Connect new signals for the current weapon
-	current_weapon.weapon_stats.ammo_change.connect(set_curr_ammo_count)
-	current_weapon.weapon_stats.magazine_change.connect(set_curr_mag_count)
+	current_weapon.magazine.sig_ammo_change.connect(set_curr_ammo_count)
+	current_weapon.magazine.sig_magazine_change.connect(set_curr_mag_count)
 
 	# Force a signal update for the current weapon stats
-	current_weapon.weapon_stats.force_signal()
+	#current_weapon.magazine._emit_ui_singnals()

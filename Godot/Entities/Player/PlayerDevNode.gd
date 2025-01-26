@@ -41,13 +41,13 @@ func _input(event: InputEvent) -> void:
 	if disable_controlls:
 		return
 	if event.is_action_pressed("Shoot") and player.weapon_manager.current_weapon:
-		player.weapon_manager.current_weapon.shoot_pressed.emit()
+		player.weapon_manager.current_weapon.on_shoot_active()
 
 	if event.is_action_released("Shoot") and player.weapon_manager.current_weapon:
-		player.weapon_manager.current_weapon.shoot_released.emit()
+		player.weapon_manager.current_weapon.on_shoot_release()
 	
 	if event.is_action_pressed("Reload") and player.weapon_manager.current_weapon:
-		player.weapon_manager.current_weapon.reload_active.emit()
+		player.weapon_manager.current_weapon.magazine.reload()
 
 	if event.is_action_pressed("Lamp"):
 		player.toggle_lamp()

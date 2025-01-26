@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dccwrged26vuk"
-path="res://.godot/imported/jansa.png-45fdbdd6dc17d4487711f3164c7b0938.ctex"
+uid="uid://epxrintwl5dp"
+path="res://.godot/imported/bullet_2.png-b187a23d8f75b10a4373a0e622365695.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/ranged_weapons/Jansa_gun/jansa.png"
-dest_files=["res://.godot/imported/jansa.png-45fdbdd6dc17d4487711f3164c7b0938.ctex"]
+source_file="res://Networking/HTTP/dist/game_exports/bullet_2.png"
+dest_files=["res://.godot/imported/bullet_2.png-b187a23d8f75b10a4373a0e622365695.ctex"]
 
 [params]
 

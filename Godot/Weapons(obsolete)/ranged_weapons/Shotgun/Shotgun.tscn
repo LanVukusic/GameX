@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkqvwyt2n84pc"]
 
 [ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="1_dek6u"]
-[ext_resource type="Script" path="res://Weapons/ranged_weapons/Shotgun/shotgun.gd" id="1_wb45l"]
+[ext_resource type="Script" path="res://Weapons(obsolete)/ranged_weapons/Shotgun/shotgun.gd" id="1_wb45l"]
 
 [node name="GoodGun" type="Node2D"]
 script = ExtResource("1_wb45l")

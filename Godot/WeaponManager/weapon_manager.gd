@@ -59,7 +59,7 @@ func switch_weapon_to(weapon: WeaponBase) -> void:
 	
 	current_weapon.is_shoot_pressed = false  # Reset shooting state
 	weapon_switched.emit()
-	current_weapon.weapon_stats.force_signal()
+	current_weapon.magazine._emit_ui_singnals()
 
 	print("Switched to weapon:", current_weapon.name)
 
