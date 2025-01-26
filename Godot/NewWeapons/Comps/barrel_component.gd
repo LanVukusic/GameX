@@ -1,6 +1,9 @@
 extends Node2D
 class_name BarrelComponent
 
+var rng_gen: RandomNumberGenerator = RandomNumberGenerator.new()
+@export var spread_angle: float
+
 @export var raycasts: Array[RayCast2D]
 # Called when the node enters the scene tree for the first time.
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +20,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _add_spread(vector: Vector2):
+	var rand_angle = rng_gen.randf_range(-spread_angle / 2, spread_angle / 2)
+	var rand_vec = Vector2.from_angle(rand_angle).normalized()
+	return rand_vec
 
 func spawn_bullet(projectile: PackedScene):
 	if projectile == null:
