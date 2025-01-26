@@ -37,7 +37,7 @@ fill_from = Vector2(0.5, 0.5)
 
 [node name="Projectile" type="RigidBody2D" node_paths=PackedStringArray("move_component")]
 collision_layer = 2
-mass = 0.005
+mass = 0.05
 physics_material_override = SubResource("PhysicsMaterial_7dgaa")
 continuous_cd = 1
 script = ExtResource("1_gwyq8")
@@ -52,7 +52,6 @@ scale = Vector2(0.096, 0.1)
 texture = SubResource("GradientTexture2D_w66ve")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
 amount = 300
 process_material = ExtResource("2_lp7g3")
 
@@ -76,4 +75,4 @@ texture_scale = 5.0
 [node name="RigidBodyMoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("6_un6ev")
 actor = NodePath("..")
-force = 7000.0
+force = 5000.0

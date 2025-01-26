@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dccwrged26vuk"
-path="res://.godot/imported/jansa.png-45fdbdd6dc17d4487711f3164c7b0938.ctex"
+path="res://.godot/imported/jansa.png-dadab21d6ae34fc1fd80abc655ba62ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Weapons/ranged_weapons/Jansa_gun/jansa.png"
-dest_files=["res://.godot/imported/jansa.png-45fdbdd6dc17d4487711f3164c7b0938.ctex"]
+source_file="res://Weapons(obsolete)/ranged_weapons/Jansa_gun/jansa.png"
+dest_files=["res://.godot/imported/jansa.png-dadab21d6ae34fc1fd80abc655ba62ab.ctex"]
 
 [params]
 

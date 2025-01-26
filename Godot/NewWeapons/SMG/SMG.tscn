@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bn3bqslcj74q6"]
 
-[ext_resource type="Script" path="res://TESTING/Comps/weaponbase_NEW.gd" id="1_1m5gv"]
-[ext_resource type="Script" path="res://TESTING/Comps/magazine_component.gd" id="2_k4lb5"]
+[ext_resource type="Script" path="res://NewWeapons/Comps/weaponbase_NEW.gd" id="1_1m5gv"]
+[ext_resource type="Script" path="res://NewWeapons/Comps/magazine_component.gd" id="2_k4lb5"]
 [ext_resource type="Texture2D" uid="uid://tmujhoyrchio" path="res://Assets/shit_gun.png" id="2_yi4g7"]
-[ext_resource type="Script" path="res://TESTING/Comps/barrel_component.gd" id="3_5rn80"]
+[ext_resource type="Script" path="res://NewWeapons/Comps/barrel_component.gd" id="3_5rn80"]
 [ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="4_nalfr"]
 
 [node name="SMG" type="Node2D" node_paths=PackedStringArray("barrel", "magazine", "fire_cooldown")]

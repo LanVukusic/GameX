@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://xh18vyvxxyev"]
 
-[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://Weapons/ranged_weapons/Jansa_gun/jansa.png" id="1_hmv2h"]
+[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://Weapons(obsolete)/ranged_weapons/Jansa_gun/jansa.png" id="1_hmv2h"]
 [ext_resource type="Script" path="res://WeaponManager/weapon_base/weapon_base.gd" id="1_ysuf2"]
-[ext_resource type="Resource" uid="uid://cr8topnu8vra5" path="res://Weapons/ranged_weapons/Jansa_gun/jansa_gun.tres" id="2_e0kjw"]
+[ext_resource type="Resource" uid="uid://cr8topnu8vra5" path="res://Weapons(obsolete)/ranged_weapons/Jansa_gun/jansa_gun.tres" id="2_e0kjw"]
 [ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="3_o7l1v"]
 
 [node name="JansaGun" type="Node2D"]

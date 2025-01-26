@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://dtqlo647bwriy"]
 
-[ext_resource type="Script" path="res://TESTING/Comps/weaponbase_NEW.gd" id="1_72uvl"]
+[ext_resource type="Script" path="res://NewWeapons/Comps/weaponbase_NEW.gd" id="1_72uvl"]
 [ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="2_yc4il"]
-[ext_resource type="Script" path="res://TESTING/Comps/barrel_component.gd" id="3_dtgd6"]
-[ext_resource type="Script" path="res://TESTING/Comps/magazine_component.gd" id="4_qe3nk"]
+[ext_resource type="Script" path="res://NewWeapons/Comps/barrel_component.gd" id="3_dtgd6"]
+[ext_resource type="Script" path="res://NewWeapons/Comps/magazine_component.gd" id="4_qe3nk"]
 [ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="5_aqbym"]
 
 [node name="Shotgun" type="Node2D" node_paths=PackedStringArray("barrel", "magazine", "fire_cooldown")]
