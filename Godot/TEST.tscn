@@ -298,7 +298,6 @@ tile_set = SubResource("TileSet_dqov3")
 [node name="DaytimeManager" type="Node2D" parent="." node_paths=PackedStringArray("ambient_light", "dayTimer")]
 script = ExtResource("13_cmpqi")
 time = 1.0
-enable_time_tracking = true
 color_gradient = SubResource("Gradient_2cqgr")
 ambient_light_curve = SubResource("Curve_26155")
 ambient_light = NodePath("AmbientLight")
