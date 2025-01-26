@@ -76,4 +76,4 @@ texture_scale = 5.0
 [node name="RigidBodyMoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("6_un6ev")
 actor = NodePath("..")
-force = 100.0
+force = 1000.0

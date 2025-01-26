@@ -1,5 +1,5 @@
 extends Node2D
-class_name WeaponBase
+#class_name WeaponBase
 
 signal shoot_pressed
 signal shoot_released

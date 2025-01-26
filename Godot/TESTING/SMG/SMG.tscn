@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bn3bqslcj74q6"]
+
+[ext_resource type="Script" path="res://TESTING/Comps/weaponbase_NEW.gd" id="1_1m5gv"]
+[ext_resource type="Script" path="res://TESTING/Comps/magazine_component.gd" id="2_k4lb5"]
+[ext_resource type="Texture2D" uid="uid://tmujhoyrchio" path="res://Assets/shit_gun.png" id="2_yi4g7"]
+[ext_resource type="Script" path="res://TESTING/Comps/barrel_component.gd" id="3_5rn80"]
+[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="4_nalfr"]
+
+[node name="SMG" type="Node2D" node_paths=PackedStringArray("barrel", "magazine", "fire_cooldown")]
+script = ExtResource("1_1m5gv")
+barrel = NodePath("BarrelComponent")
+magazine = NodePath("MagazineComponent")
+fire_rate = 0.1
+fire_cooldown = NodePath("FireRateTimer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("2_yi4g7")
+
+[node name="MagazineComponent" type="Node" parent="." node_paths=PackedStringArray("reload_timer")]
+script = ExtResource("2_k4lb5")
+projectile = ExtResource("4_nalfr")
+capacity = 200
+max_magazines = 10
+time_needed_to_reload = 1.0
+reload_timer = NodePath("../ReloadCooldownTimer")
+
+[node name="BarrelComponent" type="Node2D" parent="."]
+script = ExtResource("3_5rn80")
+
+[node name="RayCast2D" type="RayCast2D" parent="BarrelComponent"]
+position = Vector2(-1, -30)
+target_position = Vector2(0, -10)
+
+[node name="FireRateTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ReloadCooldownTimer" type="Timer" parent="."]
+one_shot = true

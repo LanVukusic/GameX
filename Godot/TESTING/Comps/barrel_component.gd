@@ -3,11 +3,15 @@ class_name BarrelComponent
 
 @export var raycasts: Array[RayCast2D]
 # Called when the node enters the scene tree for the first time.
+# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	# Suggestion: Initialize the raycasts array here to ensure it's an empty array before adding children.
+	raycasts = []
 	for child in self.get_children():
 		if child is RayCast2D:
-			raycasts.append(child)
-	pass # Replace with function body.
+			raycasts.append(child) # Collect all RayCast2D nodes for later use.
+	
+	print("BarrelComponent ready: Raycasts initialized.")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

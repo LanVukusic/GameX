@@ -1,22 +1,24 @@
 [gd_scene load_steps=6 format=3 uid="uid://dtqlo647bwriy"]
 
-[ext_resource type="Script" path="res://TESTING/gun_stand.gd" id="1_sqfo0"]
-[ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="2_x63lm"]
-[ext_resource type="Script" path="res://TESTING/Comps/barrel_component.gd" id="3_xnlwp"]
-[ext_resource type="Script" path="res://TESTING/Comps/magazine_component.gd" id="4_755tt"]
-[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="5_y4d6n"]
+[ext_resource type="Script" path="res://TESTING/Comps/weaponbase_NEW.gd" id="1_72uvl"]
+[ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="2_yc4il"]
+[ext_resource type="Script" path="res://TESTING/Comps/barrel_component.gd" id="3_dtgd6"]
+[ext_resource type="Script" path="res://TESTING/Comps/magazine_component.gd" id="4_qe3nk"]
+[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/Projectile.tscn" id="5_aqbym"]
 
-[node name="Weapon" type="Node2D" node_paths=PackedStringArray("barrel", "magazine")]
-script = ExtResource("1_sqfo0")
+[node name="Shotgun" type="Node2D" node_paths=PackedStringArray("barrel", "magazine", "fire_cooldown")]
+script = ExtResource("1_72uvl")
 barrel = NodePath("BarrelComponent")
 magazine = NodePath("MagazineComponent")
+fire_rate = 0.5
+fire_cooldown = NodePath("FireRateTimer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 rotation = -1.5708
-texture = ExtResource("2_x63lm")
+texture = ExtResource("2_yc4il")
 
 [node name="BarrelComponent" type="Node2D" parent="."]
-script = ExtResource("3_xnlwp")
+script = ExtResource("3_dtgd6")
 
 [node name="RayCast2D5" type="RayCast2D" parent="BarrelComponent"]
 position = Vector2(0, -27)
@@ -39,16 +41,16 @@ position = Vector2(0, -27)
 target_position = Vector2(-2, -10)
 
 [node name="MagazineComponent" type="Node" parent="." node_paths=PackedStringArray("reload_timer")]
-script = ExtResource("4_755tt")
-projectile = ExtResource("5_y4d6n")
-capacity = 50
-magazines = 5
+script = ExtResource("4_qe3nk")
+projectile = ExtResource("5_aqbym")
+capacity = 100
+max_magazines = 10
+time_needed_to_reload = 1.0
 reload_timer = NodePath("../ReloadCooldownTimer")
 
 [node name="FireRateTimer" type="Timer" parent="."]
+process_callback = 0
+one_shot = true
 
 [node name="ReloadCooldownTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(-10, 1)
