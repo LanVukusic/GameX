@@ -52,13 +52,13 @@ export const Joystick = ({
     }
     setTouch(undefined);
     setJoyPos(joyCenter);
-    if (onChange) {
-      onChange(getJoyPosition({ x: 0, y: 0 }));
-    }
+    // if (onChange) {
+    //   onChange(getJoyPosition({ x: 0, y: 0 }));
+    // }
     if (onStop) {
       onStop();
     }
-  }, [joyCenter, onChange, onStop, touch]);
+  }, [joyCenter, onStop, touch]);
 
   const touchMove = useCallback(
     (event: TouchEvent) => {
