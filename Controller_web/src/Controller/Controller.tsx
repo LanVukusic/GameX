@@ -131,6 +131,9 @@ export const Controller = ({ setMenu }: Props) => {
             <Stack align="center" w="100%" ref={ref}>
               <ThemedJoystick
                 baseSize={width}
+                onStop={() => {
+                  sendTagged(0, 0, MessageTag.MOVE);
+                }}
                 onChange={(vec) => {
                   sendTagged(vec.x, vec.y, MessageTag.MOVE);
                 }}
