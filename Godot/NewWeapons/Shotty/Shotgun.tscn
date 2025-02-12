@@ -19,6 +19,7 @@ texture = ExtResource("2_yc4il")
 
 [node name="BarrelComponent" type="Node2D" parent="."]
 script = ExtResource("3_dtgd6")
+spread_angle = 0.7
 
 [node name="RayCast2D5" type="RayCast2D" parent="BarrelComponent"]
 position = Vector2(0, -27)

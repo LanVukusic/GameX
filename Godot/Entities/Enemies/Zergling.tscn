@@ -29,7 +29,6 @@ texture = ExtResource("1_bn2mq")
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_lwqof")
-max_health = 100
 
 [node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "status_effects_handler")]
 script = ExtResource("4_n4ic5")

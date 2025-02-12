@@ -27,6 +27,7 @@ reload_timer = NodePath("../ReloadCooldownTimer")
 
 [node name="BarrelComponent" type="Node2D" parent="."]
 script = ExtResource("3_5rn80")
+spread_angle = 0.3
 
 [node name="RayCast2D" type="RayCast2D" parent="BarrelComponent"]
 position = Vector2(-1, -30)

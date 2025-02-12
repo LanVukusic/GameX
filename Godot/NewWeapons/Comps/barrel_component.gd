@@ -21,10 +21,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _add_spread(vector: Vector2):
+func _add_spread(vector: Vector2) -> Vector2:
 	var rand_angle = rng_gen.randf_range(-spread_angle / 2, spread_angle / 2)
-	var rand_vec = Vector2.from_angle(rand_angle).normalized()
-	return rand_vec
+	#vector = Vector2.from_angle(rand_angle).normalized()
+	return vector.rotated(rand_angle)
 
 func spawn_bullet(projectile: PackedScene):
 	if projectile == null:
@@ -34,5 +34,5 @@ func spawn_bullet(projectile: PackedScene):
 			var bullet = projectile.instantiate() as Projectile
 			bullet.global_position = raycast.global_position
 			bullet.rotation = self.global_rotation + raycast.target_position.angle()
-			bullet.move_component.one_time_move_impulse(Vector2.from_angle(bullet.rotation))
+			bullet.move_component.one_time_move_impulse(_add_spread(Vector2.from_angle(bullet.rotation)))
 			get_tree().get_root().add_child(bullet)
