@@ -52,6 +52,7 @@ scale = Vector2(0.096, 0.1)
 texture = SubResource("GradientTexture2D_w66ve")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
 amount = 300
 process_material = ExtResource("2_lp7g3")
 
@@ -75,4 +76,4 @@ texture_scale = 5.0
 [node name="RigidBodyMoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
 script = ExtResource("6_un6ev")
 actor = NodePath("..")
-force = 2000.0
+force = 50.0
