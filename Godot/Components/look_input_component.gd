@@ -12,6 +12,6 @@ func _process(delta: float) -> void:
 	pass
 
 func handle_look_direction(direction: Vector2):
-	var target = direction.angle() + PI / 2
+	var target = direction.angle()
 	var look_speed = 0.5
 	look_component.actor.rotation = lerp_angle(look_component.actor.rotation, target, look_speed)

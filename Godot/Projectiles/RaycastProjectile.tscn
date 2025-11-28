@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://brfnadljnnin1"]
+
+[ext_resource type="Script" uid="uid://2yqc77xokjpc" path="res://Projectiles/raycast_projectile.gd" id="1_gwyq8"]
+[ext_resource type="Material" uid="uid://dpbgp1wtumxva" path="res://Statuseffect/Fire/fire_settings.tres" id="2_lp7g3"]
+
+[sub_resource type="Gradient" id="Gradient_t4buc"]
+colors = PackedColorArray(0, 0, 0, 1, 0.712297, 6.16074e-06, 0.465964, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w66ve"]
+gradient = SubResource("Gradient_t4buc")
+fill = 1
+fill_from = Vector2(1, 0.50641)
+fill_to = Vector2(0.487179, 0.534188)
+
+[sub_resource type="Gradient" id="Gradient_giytf"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.668831, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.0720721, 0.0720721, 0.0720721, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fx41f"]
+gradient = SubResource("Gradient_giytf")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="RaycastProjectile" type="Node2D"]
+script = ExtResource("1_gwyq8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.096, 0.1)
+texture = SubResource("GradientTexture2D_w66ve")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+amount = 300
+process_material = ExtResource("2_lp7g3")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.2
+texture = SubResource("GradientTexture2D_fx41f")
+texture_scale = 5.0

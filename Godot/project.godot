@@ -19,6 +19,11 @@ config/icon="res://icon.png"
 
 StaticFileServer="*res://Networking/HTTP/StaticServing/static_file_server.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+
 [global_group]
 
 Player="group for all the player instances"

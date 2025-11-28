@@ -17,8 +17,6 @@ func _ready() -> void:
 	pick_up.held_item = item #pass item reference
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 
 func _init_item_visuals():

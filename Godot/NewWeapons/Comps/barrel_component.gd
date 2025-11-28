@@ -1,38 +1,31 @@
+# BarrelComponent.gd
 extends Node2D
 class_name BarrelComponent
 
-var rng_gen: RandomNumberGenerator = RandomNumberGenerator.new()
-@export var spread_angle: float
+@export var muzzle: Marker2D
 
-@export var raycasts: Array[RayCast2D]
-# Called when the node enters the scene tree for the first time.
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	# Suggestion: Initialize the raycasts array here to ensure it's an empty array before adding children.
-	raycasts = []
-	for child in self.get_children():
-		if child is RayCast2D:
-			raycasts.append(child) # Collect all RayCast2D nodes for later use.
-	
-	print("BarrelComponent ready: Raycasts initialized.")
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-func _add_spread(vector: Vector2) -> Vector2:
-	var rand_angle = rng_gen.randf_range(-spread_angle / 2, spread_angle / 2)
-	#vector = Vector2.from_angle(rand_angle).normalized()
-	return vector.rotated(rand_angle)
-
-func spawn_bullet(projectile: PackedScene):
-	if projectile == null:
+func spawn_bullet(weapon_stats: WeaponItem, attack_data: AttackComponent, collision_mask: int):
+	if weapon_stats.projectile_scene == null:
+		print("Error: No projectile scene in WeaponItem resource!")
 		return
-	else:
-		for raycast in raycasts:
-			var bullet = projectile.instantiate() as Projectile
-			bullet.global_position = raycast.global_position
-			bullet.rotation = self.global_rotation + raycast.target_position.angle()
-			bullet.move_component.one_time_move_impulse(_add_spread(Vector2.from_angle(bullet.rotation)))
-			get_tree().get_root().add_child(bullet)
+
+	# FIX: Use the MUZZLE'S global rotation, not the Barrel's local rotation
+	var origin_rot = muzzle.global_rotation
+
+	for i in range(weapon_stats.projectiles_per_shot):
+		var bullet = weapon_stats.projectile_scene.instantiate() as RaycastProjectile
+		get_tree().root.add_child(bullet)
+		
+		# Calculate Spread
+		var spread_deg = randf_range(-weapon_stats.spread_angle / 2.0, weapon_stats.spread_angle / 2.0)
+		
+		# FIX: Create vector starting from the Muzzle's actual facing direction
+		var final_direction = Vector2.RIGHT.rotated(origin_rot + deg_to_rad(spread_deg))
+		
+		bullet.setup(
+			muzzle.global_position,
+			final_direction,
+			weapon_stats.projectile_speed, # You can move this to WeaponItem later if you want speed control
+			attack_data,
+			collision_mask
+		)

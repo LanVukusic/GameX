@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=7 format=3 uid="uid://dl512nbxpgnjr"]
+
+[ext_resource type="Script" uid="uid://bl8mba52dql5" path="res://Components/attack_component.gd" id="1_7ohg2"]
+[ext_resource type="Script" uid="uid://dlwrw4c3y0hrc" path="res://CustomResourcesTemplates/WeaponItem.gd" id="1_biiit"]
+[ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/RaycastProjectile.tscn" id="2_b4shm"]
+[ext_resource type="PackedScene" uid="uid://dtqlo647bwriy" path="res://NewWeapons/Shotty/Shotgun.tscn" id="3_7i1ga"]
+[ext_resource type="Texture2D" uid="uid://o7npuoqcema3" path="res://Assets/malo_bujs_gun.png" id="5_h638j"]
+
+[sub_resource type="Resource" id="Resource_7i1ga"]
+script = ExtResource("1_7ohg2")
+metadata/_custom_type_script = "uid://bl8mba52dql5"
+
+[resource]
+script = ExtResource("1_biiit")
+attack_data = SubResource("Resource_7i1ga")
+projectiles_per_shot = 5
+spread_angle = 30.0
+projectile_speed = 5000.0
+projectile_scene = ExtResource("2_b4shm")
+name = "Shotgun"
+scene = ExtResource("3_7i1ga")
+sprite = ExtResource("5_h638j")
+metadata/_custom_type_script = "uid://dlwrw4c3y0hrc"

@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://c87u2t2spvcmv"]
 
-[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://Weapons(obsolete)/ranged_weapons/Jansa_gun/jansa.png" id="1_bn2mq"]
-[ext_resource type="Script" path="res://Entities/Enemies/zergling.gd" id="1_pas7h"]
-[ext_resource type="Script" path="res://Components/health_component.gd" id="3_lwqof"]
-[ext_resource type="Script" path="res://Components/hurtbox_component.gd" id="4_n4ic5"]
-[ext_resource type="Script" path="res://Entities/Enemies/progress_bar.gd" id="5_odfca"]
-[ext_resource type="Script" path="res://Components/status_effect_handler_component.gd" id="9_su5ic"]
+[ext_resource type="Texture2D" uid="uid://dccwrged26vuk" path="res://jansa.png" id="1_bn2mq"]
+[ext_resource type="Script" uid="uid://g2ti4s75o0v3" path="res://Entities/Enemies/zergling.gd" id="1_pas7h"]
+[ext_resource type="Script" uid="uid://btfu14vinopdh" path="res://Components/health_component.gd" id="3_lwqof"]
+[ext_resource type="Script" uid="uid://briwpik7x17jl" path="res://Components/hurtbox_component.gd" id="4_n4ic5"]
+[ext_resource type="Script" uid="uid://cgfypwwqk60e" path="res://Entities/Enemies/progress_bar.gd" id="5_odfca"]
+[ext_resource type="Script" uid="uid://xj65taaemtnd" path="res://Components/status_effect_handler_component.gd" id="9_su5ic"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0r6nu"]
 radius = 16.0

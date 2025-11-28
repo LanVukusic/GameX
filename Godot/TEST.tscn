@@ -1,18 +1,18 @@
 [gd_scene load_steps=26 format=4 uid="uid://btda7ax5atic7"]
 
-[ext_resource type="Shader" path="res://ScreenFX.gdshader" id="4_fyfdc"]
+[ext_resource type="Shader" uid="uid://mwt12f40ft0j" path="res://ScreenFX.gdshader" id="4_fyfdc"]
 [ext_resource type="PackedScene" uid="uid://lrrmhxf8p6g3" path="res://Entities/Player/Player.tscn" id="5_3rete"]
 [ext_resource type="PackedScene" uid="uid://cj6py650hlmmx" path="res://UI/UiManager.tscn" id="5_164ts"]
-[ext_resource type="Script" path="res://CustomResourcesTemplates/stats.gd" id="6_cuhn2"]
-[ext_resource type="Script" path="res://Entities/Player/PlayerDevNode.gd" id="6_ogjir"]
-[ext_resource type="Resource" uid="uid://br13vqt7rpx67" path="res://NewWeapons/Shotty/ShootyItem.tres" id="6_qyk14"]
-[ext_resource type="Resource" uid="uid://bb2rf0ray1cee" path="res://NewWeapons/SMG/SMG.tres" id="7_jolvn"]
+[ext_resource type="Script" uid="uid://so0ahtghpo0c" path="res://CustomResourcesTemplates/stats.gd" id="6_cuhn2"]
+[ext_resource type="Script" uid="uid://dy4bq2oej644u" path="res://Entities/Player/PlayerDevNode.gd" id="6_ogjir"]
+[ext_resource type="Resource" uid="uid://dl512nbxpgnjr" path="res://NewWeapons/Shotty/Shotgun.tres" id="7_abqjs"]
 [ext_resource type="PackedScene" uid="uid://c87u2t2spvcmv" path="res://Entities/Enemies/Zergling.tscn" id="8_4gdji"]
 [ext_resource type="PackedScene" uid="uid://b5n6tc3kklr8q" path="res://Components/PickUp/PickUp.tscn" id="8_scmed"]
-[ext_resource type="Script" path="res://daytime_manager.gd" id="13_cmpqi"]
+[ext_resource type="Resource" uid="uid://bb2rf0ray1cee" path="res://NewWeapons/SMG/SMG.tres" id="13_63cyx"]
+[ext_resource type="Script" uid="uid://d0y7nevjy0nja" path="res://daytime_manager.gd" id="13_cmpqi"]
 [ext_resource type="Texture2D" uid="uid://c1arsd44hn5y6" path="res://testmap.jpg" id="13_i64v2"]
-[ext_resource type="Script" path="res://Networking/Server.gd" id="15_ir7tf"]
-[ext_resource type="Script" path="res://Camera/Camera.gd" id="16_5r80f"]
+[ext_resource type="Script" uid="uid://doiu0ywr8ypg8" path="res://Networking/Server.gd" id="15_ir7tf"]
+[ext_resource type="Script" uid="uid://cw6vntnj236ud" path="res://Camera/Camera.gd" id="16_5r80f"]
 
 [sub_resource type="Environment" id="Environment_08ko1"]
 background_energy_multiplier = 0.0
@@ -331,14 +331,6 @@ grow_vertical = 2
 [node name="Zergling" parent="." instance=ExtResource("8_4gdji")]
 position = Vector2(270, 90)
 
-[node name="PickUp" parent="." instance=ExtResource("8_scmed")]
-position = Vector2(-18, -105)
-item = ExtResource("6_qyk14")
-
-[node name="PickUp2" parent="." instance=ExtResource("8_scmed")]
-position = Vector2(100, -105)
-item = ExtResource("7_jolvn")
-
 [node name="SocketServer" type="Node" parent="." node_paths=PackedStringArray("uIManager", "player_root")]
 script = ExtResource("15_ir7tf")
 uIManager = NodePath("../UiManager")
@@ -381,7 +373,7 @@ uIManager = NodePath("../../../UiManager")
 peerId = 19
 
 [node name="Player2" parent="PlayerRoot" instance=ExtResource("5_3rete")]
-position = Vector2(-145, -340)
+position = Vector2(68, -250)
 stats = SubResource("Resource_456e6")
 
 [node name="PlayerDevNode" type="Node2D" parent="PlayerRoot/Player2" node_paths=PackedStringArray("uIManager")]
@@ -396,3 +388,11 @@ peerId = 22
 script = ExtResource("16_5r80f")
 player_padding = 150
 min_zoom = 0.58
+
+[node name="PickUp" parent="." instance=ExtResource("8_scmed")]
+position = Vector2(-13, -112)
+item = ExtResource("7_abqjs")
+
+[node name="PickUp2" parent="." instance=ExtResource("8_scmed")]
+position = Vector2(155, -204)
+item = ExtResource("13_63cyx")

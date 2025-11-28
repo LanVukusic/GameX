@@ -24,15 +24,16 @@ func connect_signals() -> void:
 	switch_weapons_pressed.connect(switch_weapon)
 
 func add_weapon(weapon_resource: WeaponItem, switch_to_new: bool = true) -> void:
-	"""Add a weapon to the stack. Optionally switch to it."""
-	for weapon in weapon_stack:
-		if weapon.name == weapon_resource.name:  # Assuming unique weapon names
-			print("Duplicate weapon detected:", weapon_resource.name)
-			return
-
+	# 1. Instantiate the visual model (The Scene from the Resource)
 	var instance = weapon_resource.scene.instantiate() as WeaponBase
+	
+	# 2. INJECT THE DATA (The Critical New Step)
+	# The gun is "dumb" until we give it the stats
+	instance.setup(weapon_resource) 
+	
+	# 3. Add to stack as normal
 	weapon_stack.append(instance)
-
+	
 	if switch_to_new:
 		switch_weapon_to(instance)
 
@@ -57,9 +58,8 @@ func switch_weapon_to(weapon: WeaponBase) -> void:
 	current_weapon = weapon
 	add_child(current_weapon)
 	
-	current_weapon.is_shoot_pressed = false  # Reset shooting state
+	current_weapon.is_trigger_held = false  # Reset shooting state
 	weapon_switched.emit()
-	current_weapon.magazine._emit_ui_singnals()
 
 	print("Switched to weapon:", current_weapon.name)
 

@@ -37,22 +37,35 @@ func _physics_process(_delta: float) -> void:
 	player.move_input_component.handle_input(input_dir)
 
 # button events
+# button events
 func _input(event: InputEvent) -> void:
 	if disable_controlls:
 		return
+		
+	# 1. SHOOTING (Updated names)
+	# Changed 'on_shoot_active' -> 'start_shooting'
 	if event.is_action_pressed("Shoot") and player.weapon_manager.current_weapon:
-		player.weapon_manager.current_weapon.on_shoot_active()
+		player.weapon_manager.current_weapon.start_shooting()
 
+	# Changed 'on_shoot_release' -> 'stop_shooting'
 	if event.is_action_released("Shoot") and player.weapon_manager.current_weapon:
-		player.weapon_manager.current_weapon.on_shoot_release()
+		player.weapon_manager.current_weapon.stop_shooting()
 	
+	# 2. RELOADING (Added Safety Check)
 	if event.is_action_pressed("Reload") and player.weapon_manager.current_weapon:
-		player.weapon_manager.current_weapon.magazine.reload()
+		# CRASH FIX: We must check if the weapon actually HAS a magazine before reloading!
+		var weapon = player.weapon_manager.current_weapon
+		if weapon.magazine != null:
+			weapon.magazine.reload()
+		else:
+			print("This weapon cannot be reloaded.")
 
+	# 3. UTILITY
 	if event.is_action_pressed("Lamp"):
 		player.toggle_lamp()
 	
 	if event.is_action_pressed("WeaponSwitch"):
+		# This is fine, provided your WeaponManager signal is connected.
 		player.weapon_manager.switch_weapons_pressed.emit()
 	
 

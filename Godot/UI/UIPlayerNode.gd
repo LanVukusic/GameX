@@ -9,16 +9,18 @@ class_name UIPlayerNode
 @onready var color_rect: ColorRect = %Divider
 @onready var health: Label = %HPValue
 
-# Called when the node enters the scene tree for the first time.
+# Track the last weapon so we can disconnect it properly
+var last_connected_weapon: WeaponBase = null
+
 func _ready() -> void:
 	connect_health_and_player_signals()
 	
-	# Connect weapon switching signal from the WeaponManager
 	if connected_player and connected_player.weapon_manager:
 		connected_player.weapon_manager.weapon_switched.connect(_on_weapon_switched)
-	
-	# Initialize weapon-related signals for the current weapon
-	_initialize_weapon_signals()
+		# Initialize immediately if a weapon is already equipped
+		_on_weapon_switched()
+
+# --- UI SETTERS ---
 
 func set_curr_ammo_count(ammo_count: int):
 	ammo.text = str(ammo_count)
@@ -44,40 +46,49 @@ func _on_player_death():
 	print("Player died")
 	self.queue_free()
 
+# --- SIGNAL CONNECTIONS ---
+
 func connect_health_and_player_signals():
-	# Health-related signals
 	if connected_player and connected_player.healthcomponent:
 		connected_player.healthcomponent.sig_health_changed.connect(set_curr_health)
 		connected_player.healthcomponent.sig_died.connect(_on_player_death)
 
-	# Player-related signals
 	if connected_player:
 		connected_player.joined.connect(set_player_color_name)
 
 func _on_weapon_switched():
-	# Reinitialize weapon-related signals when the weapon switches
-	_initialize_weapon_signals()
+	# 1. DISCONNECT OLD WEAPON
+	if last_connected_weapon and is_instance_valid(last_connected_weapon):
+		if last_connected_weapon.magazine:
+			if last_connected_weapon.magazine.sig_ammo_change.is_connected(set_curr_ammo_count):
+				last_connected_weapon.magazine.sig_ammo_change.disconnect(set_curr_ammo_count)
+			if last_connected_weapon.magazine.sig_magazine_change.is_connected(set_curr_mag_count):
+				last_connected_weapon.magazine.sig_magazine_change.disconnect(set_curr_mag_count)
 
-func _initialize_weapon_signals():
+	# 2. GET NEW WEAPON
 	if not connected_player or not connected_player.weapon_manager:
 		return
 
 	var current_weapon = connected_player.weapon_manager.get_current_weapon()
+	last_connected_weapon = current_weapon # Save for next time
 
-	# Skip if there's no current weapon
+	# 3. SAFETY CHECKS
 	if not current_weapon:
+		# No weapon equipped (Hands empty)
+		ammo.text = ""
+		mag.text = ""
 		return
 
-	# Disconnect existing signals to avoid duplicates
-	if current_weapon.magazine.sig_ammo_change.is_connected(set_curr_ammo_count):
-		current_weapon.magazine.sig_ammo_change.disconnect(set_curr_ammo_count)
+	if current_weapon.magazine == null:
+		# Weapon exists but has no magazine (Sword/Melee)
+		ammo.text = "∞" 
+		mag.text = ""
+		return 
 
-	if current_weapon.magazine.sig_magazine_change.is_connected(set_curr_mag_count):
-		current_weapon.magazine.sig_magazine_change.disconnect(set_curr_mag_count)
-
-	# Connect new signals for the current weapon
+	# 4. CONNECT NEW WEAPON
 	current_weapon.magazine.sig_ammo_change.connect(set_curr_ammo_count)
 	current_weapon.magazine.sig_magazine_change.connect(set_curr_mag_count)
 
-	# Force a signal update for the current weapon stats
-	#current_weapon.magazine._emit_ui_singnals()
+	# 5. INITIAL UPDATE
+	set_curr_ammo_count(current_weapon.magazine.current_ammo)
+	set_curr_mag_count(current_weapon.magazine.current_mags)
