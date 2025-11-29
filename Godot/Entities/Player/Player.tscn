@@ -3,15 +3,15 @@
 [ext_resource type="Script" uid="uid://bi7s36ok1gufx" path="res://Entities/Player/Player.gd" id="1_3c7vl"]
 [ext_resource type="Resource" uid="uid://dy2cmdua6gms6" path="res://Entities/Player/PlayerResource.tres" id="2_dshqb"]
 [ext_resource type="PackedScene" uid="uid://bajkwgp562ka7" path="res://WeaponManager/WeaponManager.tscn" id="2_y2jhs"]
-[ext_resource type="Script" uid="uid://briwpik7x17jl" path="res://Components/hurtbox_component.gd" id="6_j48yb"]
-[ext_resource type="Script" uid="uid://btfu14vinopdh" path="res://Components/health_component.gd" id="7_4gix7"]
-[ext_resource type="Script" uid="uid://ch06gjt1u4pae" path="res://Components/move_input_component.gd" id="8_vgfwh"]
-[ext_resource type="Texture2D" uid="uid://kl56tnox7818" path="res://klobuk1.png" id="9_63y7d"]
-[ext_resource type="Script" uid="uid://cldlht0g1i6s3" path="res://Components/character_move_component.gd" id="9_nm2o8"]
-[ext_resource type="Script" uid="uid://ynjqt7vflkqg" path="res://Components/look_input_component.gd" id="10_mtr7l"]
-[ext_resource type="Script" uid="uid://dfmlk8nro2dp1" path="res://Components/look_component.gd" id="11_nkggg"]
-[ext_resource type="Script" uid="uid://xj65taaemtnd" path="res://Components/status_effect_handler_component.gd" id="11_qj6mh"]
-[ext_resource type="Script" uid="uid://brxd2iy8yfmpm" path="res://Components/inventory_component.gd" id="12_50v3v"]
+[ext_resource type="Script" uid="uid://briwpik7x17jl" path="res://Components/Entities/hurtbox_component.gd" id="6_j48yb"]
+[ext_resource type="Script" uid="uid://btfu14vinopdh" path="res://Components/Entities/health_component.gd" id="7_4gix7"]
+[ext_resource type="Script" uid="uid://ch06gjt1u4pae" path="res://Components/Entities/move_input_component.gd" id="8_vgfwh"]
+[ext_resource type="Texture2D" uid="uid://kl56tnox7818" path="res://Assets/klobuk1.png" id="9_63y7d"]
+[ext_resource type="Script" uid="uid://cldlht0g1i6s3" path="res://Components/Entities/character_move_component.gd" id="9_nm2o8"]
+[ext_resource type="Script" uid="uid://ynjqt7vflkqg" path="res://Components/Entities/look_input_component.gd" id="10_mtr7l"]
+[ext_resource type="Script" uid="uid://dfmlk8nro2dp1" path="res://Components/Entities/look_component.gd" id="11_nkggg"]
+[ext_resource type="Script" uid="uid://xj65taaemtnd" path="res://Components/Entities/status_effect_handler_component.gd" id="11_qj6mh"]
+[ext_resource type="Script" uid="uid://brxd2iy8yfmpm" path="res://Components/Entities/inventory_component.gd" id="12_50v3v"]
 [ext_resource type="Script" uid="uid://cofr4jx0k36gj" path="res://aim_indicator.gd" id="13_2ou21"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aj4h7"]
@@ -76,6 +76,8 @@ scale = Vector2(2.125, 2.01328)
 texture = ExtResource("9_63y7d")
 
 [node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "status_effects_handler")]
+collision_layer = 2
+collision_mask = 0
 script = ExtResource("6_j48yb")
 health_component = NodePath("../HealthCopomnent")
 status_effects_handler = NodePath("../StatusEffectHandler")

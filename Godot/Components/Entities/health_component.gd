@@ -29,8 +29,8 @@ func _ready() -> void:
 	call_deferred("_emit_initial_health")
 
 # Method to handle taking damage
-func take_damage(attack: AttackComponent):
-	health -= attack.damage
+func take_damage(amount: int):
+	health -= amount
 
 # Method to initialize health
 func _init_health(value: int):

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponItem" load_steps=7 format=3 uid="uid://dl512nbxpgnjr"]
 
-[ext_resource type="Script" uid="uid://bl8mba52dql5" path="res://Components/attack_component.gd" id="1_7ohg2"]
+[ext_resource type="Script" uid="uid://bl8mba52dql5" path="res://Components/Entities/attack_component.gd" id="1_7ohg2"]
 [ext_resource type="Script" uid="uid://dlwrw4c3y0hrc" path="res://CustomResourcesTemplates/WeaponItem.gd" id="1_biiit"]
 [ext_resource type="PackedScene" uid="uid://brfnadljnnin1" path="res://Projectiles/RaycastProjectile.tscn" id="2_b4shm"]
 [ext_resource type="PackedScene" uid="uid://dtqlo647bwriy" path="res://NewWeapons/Shotty/Shotgun.tscn" id="3_7i1ga"]

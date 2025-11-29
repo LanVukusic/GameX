@@ -13,7 +13,7 @@ config_version=5
 config/name="GameX"
 run/main_scene="res://TEST.tscn"
 config/features=PackedStringArray("4.5")
-config/icon="res://icon.png"
+config/icon="res://Assets/icon.png"
 
 [autoload]
 
@@ -91,8 +91,9 @@ CheckTree={
 
 [layer_names]
 
-2d_physics/layer_1="Geometry"
-2d_physics/layer_2="Entities"
+2d_physics/layer_1="World"
+2d_physics/layer_2="Players"
+2d_physics/layer_3="Enemies"
 
 [physics]
 

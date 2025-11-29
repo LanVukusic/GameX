@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3mcmrupa1k8k"]
+
+[ext_resource type="Script" uid="uid://muayprtr3jgd" path="res://UI/damage_lable.gd" id="1_62pje"]
+
+[node name="DamageLable" type="Label"]
+script = ExtResource("1_62pje")

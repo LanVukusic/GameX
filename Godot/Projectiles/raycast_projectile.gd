@@ -3,7 +3,7 @@ class_name RaycastProjectile
 
 # --- Variables ---
 var velocity: Vector2 = Vector2.ZERO
-var hit_mask: int = 1
+var hit_mask: int = 3
 var max_lifetime: float = 3.0 
 var attack_data: AttackComponent 
 
@@ -79,20 +79,21 @@ func _perform_raycast(start: Vector2, end: Vector2) -> Dictionary:
 
 func _handle_impact(result: Dictionary):
 	var collider = result.collider
-	
-	# DEBUG: Print what we hit
-	if debug_draw:
-		print("Hit: ", collider.name)
-
 	if collider is HurtboxComponent:
-		var payload = {
-			"damage": attack_data.damage,
-			"knockback_force": attack_data.knockback_force,
-			"stun_time": attack_data.stun_time,
-			"direction": velocity.normalized(),
-			"source_player": owner
-		}
-		collider.relay_damage(payload)
+		print("SUCCESS:Delivered payload to", collider.owner.name)
+		# --- NEW TYPE-SAFE WAY ---
+		# Look how clean this is! 
+		# You pass the arguments in the order defined in HitInfo._init
+		var hit = HitInfo.new(
+			attack_data.damage,
+			attack_data.knockback_force,
+			velocity.normalized(),      # The dynamic direction
+			attack_data.stun_time,
+			owner                       # The source player
+		)
+		
+		collider.relay_damage(hit)
+		
 
 func _destroy_bullet():
 	if particles:

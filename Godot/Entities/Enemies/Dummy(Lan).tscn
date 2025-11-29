@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://cqhp2f5qx1cjg"]
+
+[ext_resource type="Script" uid="uid://mueso8od6k60" path="res://Entities/Enemies/Enemy.gd" id="1_r5d27"]
+[ext_resource type="Script" uid="uid://btfu14vinopdh" path="res://Components/Entities/health_component.gd" id="2_0sob3"]
+[ext_resource type="PackedScene" uid="uid://b3mcmrupa1k8k" path="res://UI/DamageLable.tscn" id="2_6c7bl"]
+[ext_resource type="Script" uid="uid://briwpik7x17jl" path="res://Components/Entities/hurtbox_component.gd" id="4_jnxpr"]
+[ext_resource type="Texture2D" uid="uid://ckdbul8vla5d8" path="res://Assets/{768B6756-A940-4E02-B0D2-963D91A6511A}.png" id="4_xpy0v"]
+[ext_resource type="Script" uid="uid://xj65taaemtnd" path="res://Components/Entities/status_effect_handler_component.gd" id="5_xpy0v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0uvp"]
+size = Vector2(39, 35)
+
+[node name="Dummy(lan)" type="CharacterBody2D"]
+script = ExtResource("1_r5d27")
+damage_number_scene = ExtResource("2_6c7bl")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("2_0sob3")
+metadata/_custom_type_script = "uid://btfu14vinopdh"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.47499704, 4.25)
+scale = Vector2(0.26385137, 0.2875)
+texture = ExtResource("4_xpy0v")
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component", "status_effects_handler")]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("4_jnxpr")
+health_component = NodePath("../HealthComponent")
+status_effects_handler = NodePath("../StatusEffectHandler")
+metadata/_custom_type_script = "uid://briwpik7x17jl"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+position = Vector2(-1, 4)
+shape = SubResource("RectangleShape2D_a0uvp")
+
+[node name="StatusEffectHandler" type="Node2D" parent="."]
+script = ExtResource("5_xpy0v")
+metadata/_custom_type_script = "uid://xj65taaemtnd"
+
+[node name="DamageLabelMarker" type="Marker2D" parent="."]
+position = Vector2(1, -18)

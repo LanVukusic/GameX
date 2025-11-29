@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b5n6tc3kklr8q" path="res://Components/PickUp/PickUp.tscn" id="8_scmed"]
 [ext_resource type="Resource" uid="uid://bb2rf0ray1cee" path="res://NewWeapons/SMG/SMG.tres" id="13_63cyx"]
 [ext_resource type="Script" uid="uid://d0y7nevjy0nja" path="res://daytime_manager.gd" id="13_cmpqi"]
-[ext_resource type="Texture2D" uid="uid://c1arsd44hn5y6" path="res://testmap.jpg" id="13_i64v2"]
+[ext_resource type="Texture2D" uid="uid://c1arsd44hn5y6" path="res://Assets/testmap.jpg" id="13_i64v2"]
 [ext_resource type="Script" uid="uid://doiu0ywr8ypg8" path="res://Networking/Server.gd" id="15_ir7tf"]
 [ext_resource type="Script" uid="uid://cw6vntnj236ud" path="res://Camera/Camera.gd" id="16_5r80f"]
 
@@ -362,7 +362,7 @@ polygon = PackedVector2Array(-408, -336, -404, -238, -377, -238, -378, -357, -40
 position = Vector2(288, 228)
 
 [node name="Player" parent="PlayerRoot" instance=ExtResource("5_3rete")]
-position = Vector2(-297, -240)
+position = Vector2(-286, -223)
 stats = SubResource("Resource_hprkm")
 
 [node name="PlayerDevNode" type="Node2D" parent="PlayerRoot/Player" node_paths=PackedStringArray("uIManager")]

@@ -99,7 +99,7 @@ func reload() -> void:
 
 
 func spawn_bullet() -> void:
-	var bullet = current_bullet.instantiate() as Projectile
+	var bullet = current_bullet.instantiate() as RaycastProjectile
 	bullet.global_position = raycast.global_position
 	bullet.rotation = self.global_rotation + raycast.target_position.angle()
 	bullet.move_component.one_time_move_impulse(Vector2.from_angle(bullet.rotation))
